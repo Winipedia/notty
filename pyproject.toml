@@ -3,7 +3,8 @@ name = "notty-game"
 version = "0.1.0"
 description = "A simple card game called Notty using Pygame"
 authors = [
-    {name = "Winipedia",email = "win.steveker@gmx.de"}
+    {name = "Winipedia",email = "win.steveker@gmx.de"},
+    {name = "Azeez",email = "abdualahmari2@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.12"
