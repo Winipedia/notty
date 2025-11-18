@@ -24,14 +24,16 @@ class NottyGameWorkflowMixin(WinipediaWorkflow):
     """
 
     @classmethod
-    def steps_core_matrix_setup(
+    def steps_core_installed_setup(
         cls, python_version: str | None = None, *, repo_token: bool = False
     ) -> list[dict[str, Any]]:
         """Get the poetry setup steps.
 
         We need to install additional system dependencies for pyside6.
         """
-        steps = super().steps_core_matrix_setup(python_version, repo_token=repo_token)
+        steps = super().steps_core_installed_setup(
+            python_version, repo_token=repo_token
+        )
 
         index = next(
             i
