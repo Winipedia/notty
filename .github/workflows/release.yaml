@@ -149,10 +149,6 @@ jobs:
       run: echo "version=v$(poetry version -s)" >> $GITHUB_OUTPUT
     - name: Create And Push Tag
       id: create_and_push_tag
-      uses: actions/download-artifact@main
-      with:
-        path: artifacts
-        merge-multiple: 'true'
       run: git tag v$(poetry version -s) && git push origin v$(poetry version -s)
     - name: Download Artifacts
       id: download_artifacts
