@@ -17,6 +17,8 @@ run-name: Release Workflow
 defaults:
   run:
     shell: bash
+env:
+  PYTHONDONTWRITEBYTECODE: 1
 jobs:
   health_check_matrix:
     strategy:
@@ -149,18 +151,33 @@ jobs:
       run: echo "version=v$(poetry version -s)" >> $GITHUB_OUTPUT
     - name: Create And Push Tag
       id: create_and_push_tag
-      run: git tag v$(poetry version -s) && git push origin v$(poetry version -s)
-    - name: Download Artifacts
-      id: download_artifacts
       uses: actions/download-artifact@main
       with:
-        path: artifacts
+        path: dist
         merge-multiple: 'true'
+      run: git tag v$(poetry version -s) && git push origin v$(poetry version -s)
     - name: Build Changelog
       id: build_changelog
       uses: mikepenz/release-changelog-builder-action@develop
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Download Artifacts
+      id: download_artifacts
+      uses: actions/download-artifact@main
+      with:
+        path: dist
+        merge-multiple: 'true'
+    - name: Download Artifacts
+      id: download_artifacts
+      uses: actions/download-artifact@main
+      with:
+        tag: ${{ steps.extract_version.outputs.version }}
+        name: ${{ github.event.repository.name }} ${{ steps.extract_version.outputs.version
+          }}
+        body: ${{ steps.build_changelog.outputs.changelog }}
+        artifacts: dist/*
+        path: dist
+        merge-multiple: 'true'
     - name: Create Release
       id: create_release
       uses: ncipollo/release-action@main
@@ -169,4 +186,4 @@ jobs:
         name: ${{ github.event.repository.name }} ${{ steps.extract_version.outputs.version
           }}
         body: ${{ steps.build_changelog.outputs.changelog }}
-        artifacts: artifacts/*
+        artifacts: dist/*

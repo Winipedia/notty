@@ -1,6 +1,6 @@
 """module."""
 
-from notty_game.dev.configs.configs import NottyGameWorkflowMixin, ReleaseWorkflow
+from notty.dev.configs.configs import NottyGameWorkflowMixin, ReleaseWorkflow
 
 
 class TestNottyGameWorkflowMixin:

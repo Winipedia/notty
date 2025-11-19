@@ -1,5 +1,5 @@
 [project]
-name = "notty-game"
+name = "notty"
 version = "0.1.7"
 description = "A simple card game called Notty using Pygame"
 authors = [
@@ -13,12 +13,13 @@ dynamic = ["dependencies"]
 
 [project.scripts]
 notty-game = "pyrig.dev.cli.cli:main"
+notty = "pyrig.dev.cli.cli:main"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [[tool.poetry.packages]]
-include = "notty_game"
+include = "notty"
 
 [tool.poetry.dependencies]
 pygame = "*"
