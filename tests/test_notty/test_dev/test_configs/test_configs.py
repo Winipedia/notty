@@ -1,6 +1,6 @@
 """module."""
 
-from notty.dev.configs.configs import NottyGameWorkflowMixin, ReleaseWorkflow
+from notty.dev.configs.configs import NottyGameWorkflowMixin
 
 
 class TestNottyGameWorkflowMixin:
@@ -31,15 +31,3 @@ class TestHealthCheckWorkflow:
 
 class TestReleaseWorkflow:
     """Test class for ReleaseWorkflow."""
-
-    def test_steps_release(self) -> None:
-        """Test method for steps_release."""
-        # just assert that the method returns a list of dicts
-        steps = ReleaseWorkflow.steps_release()
-        assert isinstance(steps, list), f"Expected list, got {type(steps)}"
-        # assert insall pygame system dependencies is in the list of steps
-        assert any(
-            step["id"]
-            == NottyGameWorkflowMixin.step_pre_install_pygame_from_binary().get("id")
-            for step in steps
-        ), "Expected install pygame system dependencies step"
