@@ -15,6 +15,3 @@ class NottyBuilder(PyInstallerBuilder):
     def get_add_datas(cls) -> list[tuple[Path, Path]]:
         """Get the add datas."""
         return []
-
-
-NottyBuilder.get_add_datas()
