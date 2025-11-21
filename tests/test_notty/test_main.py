@@ -60,3 +60,9 @@ def test_show_player_with_hand() -> None:
 def test_run_event_loop() -> None:
     """Test function."""
     raise NotImplementedError
+
+
+@pytest.mark.skip(reason="Won't test UI")
+def test_load_background() -> None:
+    """Test function."""
+    raise NotImplementedError
