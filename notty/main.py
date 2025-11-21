@@ -344,7 +344,7 @@ def show_deck(
 
 
 def get_player_display_order(game: Game) -> list[Player]:
-    """Get the display order of players with human in the middle.
+    """Get the display order of players with human in the right.
 
     Args:
         game: The game instance.
@@ -355,9 +355,9 @@ def get_player_display_order(game: Game) -> list[Player]:
     # Separate human and computer players
     all_players = game.players
     human_player = next(p for p in all_players if p.is_human)
-    display_order = [p for p in all_players if not p.is_human]
+    display_order = [p for p in all_players if p != human_player]
 
-    display_order.insert(1, human_player)
+    display_order.append(human_player)
 
     return display_order
 
