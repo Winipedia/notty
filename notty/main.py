@@ -53,6 +53,46 @@ def run() -> None:
     run_event_loop(screen, game, background, app_width, app_height)
 
 
+def run_event_loop(
+    screen: pygame.Surface,
+    game: Game,
+    background: pygame.Surface,
+    app_width: int,
+    app_height: int,
+) -> None:
+    """Run the main event loop.
+
+    Args:
+        screen: The pygame display surface.
+        game: The game instance.
+        background: The background image surface.
+        app_width: Width of the window.
+        app_height: Height of the window.
+    """
+    clock = pygame.time.Clock()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+
+        # Draw background image
+        screen.blit(background, (0, 0))
+
+        # Display deck
+        show_deck(screen, game.deck, app_width, app_height)
+
+        # Display players
+        show_players(screen, game, app_width, app_height)
+
+        # show actions to take in top right
+        show_actions(screen, game, app_width, app_height)
+
+        # Update display
+        pygame.display.flip()
+        clock.tick(60)  # 60 FPS
+
+
 def get_window_size() -> tuple[int, int]:
     """Get the window size based on screen dimensions.
 
@@ -432,41 +472,17 @@ def show_player_with_hand(
         screen.blit(number_text, number_rect)
 
 
-def run_event_loop(
-    screen: pygame.Surface,
-    game: Game,
-    background: pygame.Surface,
-    app_width: int,
-    app_height: int,
+def show_actions(
+    screen: pygame.Surface, game: Game, app_width: int, app_height: int
 ) -> None:
-    """Run the main event loop.
+    """Display the actions that can be taken.
 
     Args:
         screen: The pygame display surface.
         game: The game instance.
-        background: The background image surface.
         app_width: Width of the window.
         app_height: Height of the window.
     """
-    clock = pygame.time.Clock()
-
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return
-
-        # Draw background image
-        screen.blit(background, (0, 0))
-
-        # Display deck
-        show_deck(screen, game.deck, app_width, app_height)
-
-        # Display players
-        show_players(screen, game, app_width, app_height)
-
-        # Update display
-        pygame.display.flip()
-        clock.tick(60)  # 60 FPS
 
 
 if __name__ == "__main__":

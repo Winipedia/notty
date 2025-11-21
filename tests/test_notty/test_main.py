@@ -78,3 +78,9 @@ def test_get_window_size() -> None:
 def test_simulate_first_shuffle_and_deal() -> None:
     """Test function."""
     raise NotImplementedError
+
+
+@pytest.mark.skip(reason="Won't test UI")
+def test_get_player_display_order() -> None:
+    """Test function."""
+    raise NotImplementedError
