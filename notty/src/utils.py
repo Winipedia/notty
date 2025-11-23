@@ -13,7 +13,10 @@ def get_window_size() -> tuple[int, int]:
         Tuple of (width, height) for the window.
     """
     # Get the display info to determine screen size
+    pygame.display.init()
     display_info = pygame.display.Info()
+    # quit pygame display
+    pygame.display.quit()
     screen_width = display_info.current_w
     screen_height = display_info.current_h
 

@@ -23,8 +23,7 @@ def main() -> None:
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
-    if not pygame.get_init():
-        pygame.init()
+    pygame.init()
 
     try:
         run()
