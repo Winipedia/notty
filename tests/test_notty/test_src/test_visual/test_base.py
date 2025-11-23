@@ -4,6 +4,9 @@
 class TestVisual:
     """Test class."""
 
+    def test_get_center(self) -> None:
+        """Test method."""
+
     def test___init__(self) -> None:
         """Test method."""
 
