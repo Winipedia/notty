@@ -26,26 +26,27 @@ class WinnerDisplay:
         self.winner = winner
         self.winner_name = winner.name
 
-        # Load and scale the winner's image
+        # Load and scale the winner's image - scale proportionally
         png_path = get_resource_path(winner.name + ".png", players)
         img = pygame.image.load(png_path)
-        self.winner_image = pygame.transform.scale(img, (200, 200))
+        image_size = int(APP_HEIGHT * 0.24)  # 24% of screen height
+        self.winner_image = pygame.transform.scale(img, (image_size, image_size))
 
-        # Button properties
-        self.button_width = 250
-        self.button_height = 60
-        self.button_spacing = 20
+        # Button properties - scale proportionally
+        self.button_width = int(APP_WIDTH * 0.22)  # 22% of screen width
+        self.button_height = int(APP_HEIGHT * 0.07)  # 7% of screen height
+        self.button_spacing = int(APP_HEIGHT * 0.024)  # 2.4% of screen height
 
         # Calculate button positions
-        dialog_width = 600
-        dialog_height = 550
-        dialog_x = (APP_WIDTH - dialog_width) // 2
-        dialog_y = (APP_HEIGHT - dialog_height) // 2
+        dialog_width = int(APP_WIDTH * 0.52)  # 52% of screen width
+        dialog_height = int(APP_HEIGHT * 0.66)  # 66% of screen height
+        dialog_x = int((APP_WIDTH - dialog_width) // 2)
+        dialog_y = int((APP_HEIGHT - dialog_height) // 2)
 
         # New Game button
         self.new_game_button_rect = pygame.Rect(
             dialog_x + (dialog_width - self.button_width) // 2,
-            dialog_y + dialog_height - 140,
+            dialog_y + dialog_height - int(APP_HEIGHT * 0.17),
             self.button_width,
             self.button_height,
         )
@@ -53,7 +54,11 @@ class WinnerDisplay:
         # Quit button
         self.quit_button_rect = pygame.Rect(
             dialog_x + (dialog_width - self.button_width) // 2,
-            dialog_y + dialog_height - 140 + self.button_height + self.button_spacing,
+            dialog_y
+            + dialog_height
+            - int(APP_HEIGHT * 0.17)
+            + self.button_height
+            + self.button_spacing,
             self.button_width,
             self.button_height,
         )
@@ -106,16 +111,16 @@ class WinnerDisplay:
     def _draw(self) -> None:
         """Draw the winner display dialog."""
         # Draw semi-transparent overlay
-        overlay = pygame.Surface((APP_WIDTH, APP_HEIGHT))
+        overlay = pygame.Surface((int(APP_WIDTH), int(APP_HEIGHT)))
         overlay.set_alpha(220)
         overlay.fill((0, 0, 0))
         self.screen.blit(overlay, (0, 0))
 
-        # Draw dialog background
-        dialog_width = 600
-        dialog_height = 550
-        dialog_x = (APP_WIDTH - dialog_width) // 2
-        dialog_y = (APP_HEIGHT - dialog_height) // 2
+        # Draw dialog background - scale proportionally
+        dialog_width = int(APP_WIDTH * 0.52)  # 52% of screen width
+        dialog_height = int(APP_HEIGHT * 0.66)  # 66% of screen height
+        dialog_x = int((APP_WIDTH - dialog_width) // 2)
+        dialog_y = int((APP_HEIGHT - dialog_height) // 2)
 
         # Draw background with gradient effect (using solid color for simplicity)
         pygame.draw.rect(
@@ -125,34 +130,44 @@ class WinnerDisplay:
         )
 
         # Draw dialog border with gold color
+        border_width = max(3, int(APP_HEIGHT * 0.006))  # 0.6% of screen height, min 3
         pygame.draw.rect(
             self.screen,
             (255, 215, 0),  # Gold border
             (dialog_x, dialog_y, dialog_width, dialog_height),
-            5,
+            border_width,
         )
 
         # Draw inner border for extra emphasis
+        inner_border_offset = int(APP_HEIGHT * 0.012)  # 1.2% of screen height
         pygame.draw.rect(
             self.screen,
             (200, 200, 100),  # Lighter gold
-            (dialog_x + 10, dialog_y + 10, dialog_width - 20, dialog_height - 20),
-            2,
+            (
+                dialog_x + inner_border_offset,
+                dialog_y + inner_border_offset,
+                dialog_width - 2 * inner_border_offset,
+                dialog_height - 2 * inner_border_offset,
+            ),
+            max(2, int(APP_HEIGHT * 0.0024)),  # 0.24% of screen height, min 2
         )
 
-        # Draw "WINNER!" title
-        title_font = pygame.font.Font(None, 96)
+        # Draw "WINNER!" title - scale font size
+        title_font_size = int(APP_HEIGHT * 0.115)  # 11.5% of screen height
+        title_font = pygame.font.Font(None, title_font_size)
         title_text = title_font.render("WINNER!", ANTI_ALIASING, (255, 215, 0))
-        title_rect = title_text.get_rect(center=(APP_WIDTH // 2, dialog_y + 60))
+        title_rect = title_text.get_rect(
+            center=(int(APP_WIDTH // 2), dialog_y + int(APP_HEIGHT * 0.07))
+        )
         self.screen.blit(title_text, title_rect)
 
         # Draw winner image with gold border
-        image_size = 200
-        image_x = (APP_WIDTH - image_size) // 2
-        image_y = dialog_y + 140
+        image_size = int(APP_HEIGHT * 0.24)  # 24% of screen height
+        image_x = int((APP_WIDTH - image_size) // 2)
+        image_y = dialog_y + int(APP_HEIGHT * 0.17)
 
         # Draw gold border around image
-        border_padding = 10
+        border_padding = int(APP_HEIGHT * 0.012)  # 1.2% of screen height
         pygame.draw.rect(
             self.screen,
             (255, 215, 0),  # Gold border
@@ -162,17 +177,18 @@ class WinnerDisplay:
                 image_size + 2 * border_padding,
                 image_size + 2 * border_padding,
             ),
-            5,
+            border_width,
         )
 
         # Draw the winner's image
         self.screen.blit(self.winner_image, (image_x, image_y))
 
-        # Draw winner name below image
-        name_font = pygame.font.Font(None, 56)
+        # Draw winner name below image - scale font size
+        name_font_size = int(APP_HEIGHT * 0.067)  # 6.7% of screen height
+        name_font = pygame.font.Font(None, name_font_size)
         name_text = name_font.render(self.winner_name, ANTI_ALIASING, (255, 255, 255))
         name_rect = name_text.get_rect(
-            center=(APP_WIDTH // 2, image_y + image_size + 40)
+            center=(int(APP_WIDTH // 2), image_y + image_size + int(APP_HEIGHT * 0.048))
         )
         self.screen.blit(name_text, name_rect)
 
@@ -214,15 +230,20 @@ class WinnerDisplay:
         # Choose color based on hover state
         color = hover_color if hovered else normal_color
 
-        # Draw button background
-        pygame.draw.rect(self.screen, color, rect, border_radius=10)
+        # Draw button background - scale border radius
+        border_radius = int(APP_HEIGHT * 0.012)  # 1.2% of screen height
+        pygame.draw.rect(self.screen, color, rect, border_radius=border_radius)
 
         # Draw button border
         border_color = (255, 215, 0) if hovered else (200, 200, 100)
-        pygame.draw.rect(self.screen, border_color, rect, 3, border_radius=10)
+        border_width = max(2, int(APP_HEIGHT * 0.0036))  # 0.36% of screen height, min 2
+        pygame.draw.rect(
+            self.screen, border_color, rect, border_width, border_radius=border_radius
+        )
 
-        # Draw button text
-        button_font = pygame.font.Font(None, 48)
+        # Draw button text - scale font size
+        button_font_size = int(APP_HEIGHT * 0.058)  # 5.8% of screen height
+        button_font = pygame.font.Font(None, button_font_size)
         button_text = button_font.render(text, ANTI_ALIASING, (255, 255, 255))
         text_rect = button_text.get_rect(center=rect.center)
         self.screen.blit(button_text, text_rect)

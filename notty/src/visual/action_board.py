@@ -137,8 +137,9 @@ class ActionButton:
             button_surface, border_color, (0, 0, self.width, self.height), 3
         )
 
-        # Draw button text on the surface
-        font = pygame.font.Font(None, 24)
+        # Draw button text on the surface - scale font size based on button height
+        font_size = int(self.height * 0.35)  # 35% of button height
+        font = pygame.font.Font(None, font_size)
         text_surface = font.render(self.text, ANTI_ALIASING, text_color)
         text_rect = text_surface.get_rect(center=(self.width // 2, self.height // 2))
         button_surface.blit(text_surface, text_rect)
@@ -299,11 +300,15 @@ class ActionBoard:
                 3,
             )
 
-            # Draw title
-            font = pygame.font.Font(None, 32)
+            # Draw title - scale font size
+            font_size = int(ACTION_BOARD_HEIGHT * 0.04)  # 4% of action board height
+            font = pygame.font.Font(None, font_size)
             title_text = font.render("Actions", ANTI_ALIASING, (255, 255, 255))
             title_rect = title_text.get_rect(
-                center=(panel_x + panel_width // 2, panel_y - 20)
+                center=(
+                    panel_x + panel_width // 2,
+                    panel_y - int(ACTION_BOARD_HEIGHT * 0.025),
+                )
             )
             self.screen.blit(title_text, title_rect)
 

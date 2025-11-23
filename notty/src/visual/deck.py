@@ -8,6 +8,7 @@ import pygame
 from notty.dev.artifacts.resources.visuals import deck
 from notty.src.consts import (
     ANTI_ALIASING,
+    APP_HEIGHT,
     DECK_HEIGHT,
     DECK_POS_X,
     DECK_POS_Y,
@@ -32,10 +33,12 @@ class VisualDeck(Visual):
             card.draw()
         super().draw()
         # Cards stay hidden behind the deck - only draw the deck image
-        # draw the number of cards in the deck in black
-        font = pygame.font.Font(None, 100)
+        # draw the number of cards in the deck in black - scale font size
+        font_size = int(APP_HEIGHT * 0.12)  # 12% of screen height
+        font = pygame.font.Font(None, font_size)
         text = font.render(str(self.size()), ANTI_ALIASING, (0, 0, 0))
-        self.screen.blit(text, (self.x + 10, self.y + 10))
+        text_padding = int(APP_HEIGHT * 0.012)  # 1.2% of screen height
+        self.screen.blit(text, (self.x + text_padding, self.y + text_padding))
 
     def __init__(
         self,
