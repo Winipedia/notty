@@ -118,9 +118,10 @@ class CardSelector:
 
     def _setup_buttons(self) -> None:
         """Set up the card buttons."""
-        card_width = 60
-        card_height = 90
-        card_spacing = 10
+        # Scale card size proportionally to APP dimensions
+        card_width = int(APP_WIDTH * 0.05)  # 5% of screen width
+        card_height = int(APP_HEIGHT * 0.11)  # 11% of screen height
+        card_spacing = int(APP_WIDTH * 0.008)  # 0.8% of screen width
         max_cards_per_row = 10
 
         # Calculate how many rows we need
@@ -186,9 +187,9 @@ class CardSelector:
         overlay.fill((0, 0, 0))
         self.screen.blit(overlay, (0, 0))
 
-        # Draw dialog background
-        dialog_width = 700
-        dialog_height = 400
+        # Draw dialog background - scale proportionally
+        dialog_width = int(APP_WIDTH * 0.61)  # 61% of screen width
+        dialog_height = int(APP_HEIGHT * 0.48)  # 48% of screen height
         dialog_x = (APP_WIDTH - dialog_width) // 2
         dialog_y = (APP_HEIGHT - dialog_height) // 2
 
@@ -206,12 +207,15 @@ class CardSelector:
             3,
         )
 
-        # Draw title
-        font = pygame.font.Font(None, 48)
+        # Draw title - scale font size
+        font_size = int(APP_HEIGHT * 0.06)  # 6% of screen height
+        font = pygame.font.Font(None, font_size)
         title_text = font.render(
             "Choose a card to discard", ANTI_ALIASING, (255, 255, 255)
         )
-        title_rect = title_text.get_rect(center=(APP_WIDTH // 2, dialog_y + 40))
+        title_rect = title_text.get_rect(
+            center=(APP_WIDTH // 2, dialog_y + int(APP_HEIGHT * 0.05))
+        )
         self.screen.blit(title_text, title_rect)
 
         # Draw buttons

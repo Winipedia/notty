@@ -4,7 +4,13 @@ from typing import TYPE_CHECKING
 
 import pygame
 
-from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
+from notty.src.consts import (
+    ACTION_BOARD_HEIGHT,
+    ACTION_BOARD_WIDTH,
+    ACTION_BOARD_X,
+    ACTION_BOARD_Y,
+    ANTI_ALIASING,
+)
 
 if TYPE_CHECKING:
     from notty.src.visual.game import VisualGame
@@ -166,14 +172,11 @@ class ActionBoard:
 
     def _setup_buttons(self) -> None:
         """Set up the action buttons."""
-        # Position the action board to the right of the human player's area
-        # Human player is at the bottom, so we'll place it in the middle-right area
-        board_x = APP_WIDTH - 250  # 250px from right edge
-        board_y = APP_HEIGHT // 3 - 200  # Centered vertically
-
-        button_width = 220
-        button_height = 50
-        button_spacing = 10
+        # Use constants from consts.py for action board position and size
+        board_x = ACTION_BOARD_X
+        board_y = ACTION_BOARD_Y
+        board_width = ACTION_BOARD_WIDTH
+        board_height = ACTION_BOARD_HEIGHT
 
         # Define all possible actions
         actions = [
@@ -186,11 +189,26 @@ class ActionBoard:
             ("Play for Me", Action.PLAY_FOR_ME),
         ]
 
+        # Calculate button dimensions based on action board size and number of buttons
+        num_buttons = len(actions)
+        button_spacing = 10
+        total_spacing = button_spacing * (
+            num_buttons + 1
+        )  # Spacing above, below, and between buttons
+
+        # Button width is board width minus padding on both sides
+        button_padding = 15
+        button_width = board_width - (2 * button_padding)
+
+        # Button height is calculated to fit all buttons with spacing
+        button_height = (board_height - total_spacing) // num_buttons
+
         # Create buttons
         for i, (text, action_name) in enumerate(actions):
-            y = board_y + i * (button_height + button_spacing)
+            y = board_y + button_spacing + i * (button_height + button_spacing)
+            x = board_x + button_padding
             button = ActionButton(
-                x=board_x,
+                x=x,
                 y=y,
                 width=button_width,
                 height=button_height,

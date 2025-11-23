@@ -96,8 +96,9 @@ class NumberButton:
             screen, border_color, (self.x, self.y, self.width, self.height), 3
         )
 
-        # Draw button text
-        font = pygame.font.Font(None, 72)
+        # Draw button text - scale font size based on button height
+        font_size = int(self.height * 0.7)  # 70% of button height
+        font = pygame.font.Font(None, font_size)
         text_surface = font.render(str(self.number), ANTI_ALIASING, text_color)
         text_rect = text_surface.get_rect(
             center=(self.x + self.width // 2, self.y + self.height // 2)
@@ -122,9 +123,10 @@ class NumberSelector:
 
     def _setup_buttons(self) -> None:
         """Set up the number buttons."""
-        button_width = 100
-        button_height = 100
-        button_spacing = 20
+        # Scale button size proportionally to APP dimensions
+        button_width = int(APP_WIDTH * 0.08)  # 8% of screen width
+        button_height = int(APP_HEIGHT * 0.12)  # 12% of screen height
+        button_spacing = int(APP_WIDTH * 0.015)  # 1.5% of screen width
 
         # Center the buttons horizontally
         total_width = 3 * button_width + 2 * button_spacing
@@ -182,9 +184,9 @@ class NumberSelector:
         overlay.fill((0, 0, 0))
         self.screen.blit(overlay, (0, 0))
 
-        # Draw dialog background
-        dialog_width = 400
-        dialog_height = 250
+        # Draw dialog background - scale proportionally
+        dialog_width = int(APP_WIDTH * 0.35)  # 35% of screen width
+        dialog_height = int(APP_HEIGHT * 0.30)  # 30% of screen height
         dialog_x = (APP_WIDTH - dialog_width) // 2
         dialog_y = (APP_HEIGHT - dialog_height) // 2
 
@@ -202,10 +204,13 @@ class NumberSelector:
             3,
         )
 
-        # Draw title
-        font = pygame.font.Font(None, 48)
+        # Draw title - scale font size
+        font_size = int(APP_HEIGHT * 0.06)  # 6% of screen height
+        font = pygame.font.Font(None, font_size)
         title_text = font.render("How many cards?", ANTI_ALIASING, (255, 255, 255))
-        title_rect = title_text.get_rect(center=(APP_WIDTH // 2, dialog_y + 50))
+        title_rect = title_text.get_rect(
+            center=(APP_WIDTH // 2, dialog_y + int(APP_HEIGHT * 0.06))
+        )
         self.screen.blit(title_text, title_rect)
 
         # Draw buttons

@@ -98,12 +98,16 @@ class PlayerButton:
         # Draw player image
         screen.blit(self.player_image, (self.x, self.y))
 
-        # Draw player name below the image
-        font = pygame.font.Font(None, 36)
+        # Draw player name below the image - scale font size
+        font_size = int(self.height * 0.24)  # 24% of image height
+        font = pygame.font.Font(None, font_size)
         text_color = (100, 200, 255) if self.hovered else (255, 255, 255)
         text_surface = font.render(self.player.name, ANTI_ALIASING, text_color)
         text_rect = text_surface.get_rect(
-            center=(self.x + self.width // 2, self.y + self.height + 30)
+            center=(
+                self.x + self.width // 2,
+                self.y + self.height + int(self.height * 0.2),
+            )
         )
         screen.blit(text_surface, text_rect)
 
@@ -127,8 +131,9 @@ class PlayerSelector:
 
     def _setup_buttons(self) -> None:
         """Set up the player buttons."""
-        image_size = 150
-        button_spacing = 40
+        # Scale image size proportionally to APP dimensions
+        image_size = int(APP_HEIGHT * 0.18)  # 18% of screen height
+        button_spacing = int(APP_WIDTH * 0.03)  # 3% of screen width
 
         # Calculate total width needed
         num_players = len(self.available_players)
@@ -184,9 +189,9 @@ class PlayerSelector:
         overlay.fill((0, 0, 0))
         self.screen.blit(overlay, (0, 0))
 
-        # Draw dialog background
-        dialog_width = 600
-        dialog_height = 350
+        # Draw dialog background - scale proportionally
+        dialog_width = int(APP_WIDTH * 0.52)  # 52% of screen width
+        dialog_height = int(APP_HEIGHT * 0.42)  # 42% of screen height
         dialog_x = (APP_WIDTH - dialog_width) // 2
         dialog_y = (APP_HEIGHT - dialog_height) // 2
 
@@ -204,12 +209,15 @@ class PlayerSelector:
             3,
         )
 
-        # Draw title
-        font = pygame.font.Font(None, 48)
+        # Draw title - scale font size
+        font_size = int(APP_HEIGHT * 0.06)  # 6% of screen height
+        font = pygame.font.Font(None, font_size)
         title_text = font.render(
             "Choose a player to steal from", ANTI_ALIASING, (255, 255, 255)
         )
-        title_rect = title_text.get_rect(center=(APP_WIDTH // 2, dialog_y + 50))
+        title_rect = title_text.get_rect(
+            center=(APP_WIDTH // 2, dialog_y + int(APP_HEIGHT * 0.06))
+        )
         self.screen.blit(title_text, title_rect)
 
         # Draw buttons

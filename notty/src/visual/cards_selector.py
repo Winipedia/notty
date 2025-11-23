@@ -114,8 +114,9 @@ class MultiCardButton:
             overlay.fill((50, 255, 50, 80))
             screen.blit(overlay, (self.x, self.y))
 
-            # Draw checkmark
-            font = pygame.font.Font(None, 48)
+            # Draw checkmark - scale font size based on card height
+            font_size = int(self.height * 0.53)  # 53% of card height
+            font = pygame.font.Font(None, font_size)
             checkmark = font.render("✓", ANTI_ALIASING, (255, 255, 255))
             checkmark_rect = checkmark.get_rect(
                 center=(self.x + self.width // 2, self.y + self.height // 2)
@@ -199,8 +200,9 @@ class SubmitButton:
             screen, border_color, (self.x, self.y, self.width, self.height), 3
         )
 
-        # Draw button text
-        font = pygame.font.Font(None, 36)
+        # Draw button text - scale font size based on button height
+        font_size = int(self.height * 0.72)  # 72% of button height
+        font = pygame.font.Font(None, font_size)
         text_surface = font.render("Submit", ANTI_ALIASING, text_color)
         text_rect = text_surface.get_rect(
             center=(self.x + self.width // 2, self.y + self.height // 2)
@@ -233,9 +235,10 @@ class CardsSelector:
 
     def _setup_buttons(self) -> None:
         """Set up the card and submit buttons."""
-        card_width = 60
-        card_height = 90
-        card_spacing = 10
+        # Scale card size proportionally to APP dimensions
+        card_width = int(APP_WIDTH * 0.05)  # 5% of screen width
+        card_height = int(APP_HEIGHT * 0.11)  # 11% of screen height
+        card_spacing = int(APP_WIDTH * 0.008)  # 0.8% of screen width
         max_cards_per_row = 10
 
         # Calculate how many rows we need
@@ -243,7 +246,11 @@ class CardsSelector:
         num_rows = (num_cards + max_cards_per_row - 1) // max_cards_per_row
 
         # Calculate starting position (leave room for submit button at bottom)
-        start_y = APP_HEIGHT // 2 - (num_rows * (card_height + card_spacing)) // 2 - 50
+        start_y = (
+            APP_HEIGHT // 2
+            - (num_rows * (card_height + card_spacing)) // 2
+            - int(APP_HEIGHT * 0.06)
+        )
 
         # Create buttons for each card
         for i, card in enumerate(self.available_cards):
@@ -261,11 +268,11 @@ class CardsSelector:
             button = MultiCardButton(x, y, card_width, card_height, card, card_image)
             self.card_buttons.append(button)
 
-        # Create submit button
-        submit_width = 200
-        submit_height = 50
+        # Create submit button - scale proportionally
+        submit_width = int(APP_WIDTH * 0.17)  # 17% of screen width
+        submit_height = int(APP_HEIGHT * 0.06)  # 6% of screen height
         submit_x = (APP_WIDTH - submit_width) // 2
-        submit_y = APP_HEIGHT - 100
+        submit_y = APP_HEIGHT - int(APP_HEIGHT * 0.12)  # 12% from bottom
         self.submit_button = SubmitButton(
             submit_x, submit_y, submit_width, submit_height
         )
@@ -338,9 +345,9 @@ class CardsSelector:
         overlay.fill((0, 0, 0))
         self.screen.blit(overlay, (0, 0))
 
-        # Draw dialog background
-        dialog_width = 750
-        dialog_height = 500
+        # Draw dialog background - scale proportionally
+        dialog_width = int(APP_WIDTH * 0.65)  # 65% of screen width
+        dialog_height = int(APP_HEIGHT * 0.60)  # 60% of screen height
         dialog_x = (APP_WIDTH - dialog_width) // 2
         dialog_y = (APP_HEIGHT - dialog_height) // 2
 
@@ -358,16 +365,20 @@ class CardsSelector:
             3,
         )
 
-        # Draw title
-        font = pygame.font.Font(None, 48)
+        # Draw title - scale font size
+        title_font_size = int(APP_HEIGHT * 0.06)  # 6% of screen height
+        font = pygame.font.Font(None, title_font_size)
         title_text = font.render(
             "Select cards to discard", ANTI_ALIASING, (255, 255, 255)
         )
-        title_rect = title_text.get_rect(center=(APP_WIDTH // 2, dialog_y + 40))
+        title_rect = title_text.get_rect(
+            center=(APP_WIDTH // 2, dialog_y + int(APP_HEIGHT * 0.05))
+        )
         self.screen.blit(title_text, title_rect)
 
-        # Draw instruction
-        instruction_font = pygame.font.Font(None, 28)
+        # Draw instruction - scale font size
+        instruction_font_size = int(APP_HEIGHT * 0.034)  # 3.4% of screen height
+        instruction_font = pygame.font.Font(None, instruction_font_size)
         selected_cards = self._get_selected_cards()
         is_valid = self.validation_func(selected_cards) if selected_cards else False
 
@@ -384,7 +395,7 @@ class CardsSelector:
 
         instruction_text = instruction_font.render(instruction, ANTI_ALIASING, color)
         instruction_rect = instruction_text.get_rect(
-            center=(APP_WIDTH // 2, dialog_y + 80)
+            center=(APP_WIDTH // 2, dialog_y + int(APP_HEIGHT * 0.10))
         )
         self.screen.blit(instruction_text, instruction_rect)
 
