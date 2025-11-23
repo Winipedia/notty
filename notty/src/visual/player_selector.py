@@ -5,12 +5,13 @@ from typing import TYPE_CHECKING
 import pygame
 
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
+from notty.src.visual.base_selector import BaseSelector, SelectableButton
 
 if TYPE_CHECKING:
     from notty.src.visual.player import VisualPlayer
 
 
-class PlayerButton:
+class PlayerButton(SelectableButton["VisualPlayer"]):
     """Represents a clickable player button."""
 
     def __init__(  # noqa: PLR0913
@@ -32,40 +33,11 @@ class PlayerButton:
             player: The player this button represents.
             player_image: The image of the player.
         """
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
+        super().__init__(
+            x, y, width, height, player, player_image, enabled=True, selectable=False
+        )
         self.player = player
         self.player_image = player_image
-        self.hovered = False
-
-    def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
-        """Check if the button was clicked.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-
-        Returns:
-            True if the button was clicked.
-        """
-        return (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
-    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
-        """Update hover state based on mouse position.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-        """
-        self.hovered = (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
 
     def draw(self, screen: pygame.Surface) -> None:
         """Draw the button.
@@ -112,7 +84,7 @@ class PlayerButton:
         screen.blit(text_surface, text_rect)
 
 
-class PlayerSelector:
+class PlayerSelector(BaseSelector["VisualPlayer"]):
     """Dialog for selecting a player to steal from."""
 
     def __init__(
@@ -124,102 +96,48 @@ class PlayerSelector:
             screen: The pygame display surface.
             available_players: List of players that can be selected.
         """
-        self.screen = screen
-        self.available_players = available_players
-        self.buttons: list[PlayerButton] = []
-        self._setup_buttons()
+        super().__init__(
+            screen,
+            title="Choose a player to steal from",
+            items=available_players,
+            max_selections=1,
+        )
+
+    def _get_button_dimensions(self) -> tuple[int, int, int]:
+        """Get button dimensions (width, height, spacing).
+
+        Returns:
+            Tuple of (button_width, button_height, button_spacing).
+        """
+        image_size = int(APP_HEIGHT * 0.18)  # 18% of screen height
+        button_spacing = int(APP_WIDTH * 0.03)  # 3% of screen width
+        return image_size, image_size, button_spacing
+
+    def _get_dialog_dimensions(self) -> tuple[int, int]:
+        """Get dialog dimensions.
+
+        Returns:
+            Tuple of (dialog_width, dialog_height).
+        """
+        dialog_width = int(APP_WIDTH * 0.52)  # 52% of screen width
+        dialog_height = int(APP_HEIGHT * 0.42)  # 42% of screen height
+        return dialog_width, dialog_height
 
     def _setup_buttons(self) -> None:
         """Set up the player buttons."""
-        # Scale image size proportionally to APP dimensions
-        image_size = int(APP_HEIGHT * 0.18)  # 18% of screen height
-        button_spacing = int(APP_WIDTH * 0.03)  # 3% of screen width
+        # Get button dimensions
+        image_size, _, button_spacing = self._get_button_dimensions()
 
         # Calculate total width needed
-        num_players = len(self.available_players)
+        num_players = len(self.items)
         total_width = num_players * image_size + (num_players - 1) * button_spacing
-        start_x = (APP_WIDTH - total_width) // 2
-        y = APP_HEIGHT // 2 - image_size // 2
+        start_x = int((APP_WIDTH - total_width) // 2)
+        y = int(APP_HEIGHT // 2 - image_size // 2)
 
         # Create buttons for each player
-        for i, player in enumerate(self.available_players):
+        for i, player in enumerate(self.items):
             x = start_x + i * (image_size + button_spacing)
             # Load and scale player image
             player_image = pygame.transform.scale(player.png, (image_size, image_size))
             button = PlayerButton(x, y, image_size, image_size, player, player_image)
             self.buttons.append(button)
-
-    def show(self) -> "VisualPlayer":
-        """Show the player selector and wait for user input.
-
-        Returns:
-            The selected player.
-        """
-        clock = pygame.time.Clock()
-
-        while True:
-            # Handle events
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    raise SystemExit
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_x, mouse_y = pygame.mouse.get_pos()
-                    for button in self.buttons:
-                        if button.is_clicked(mouse_x, mouse_y):
-                            return button.player
-
-            # Update hover state
-            mouse_x, mouse_y = pygame.mouse.get_pos()
-            for button in self.buttons:
-                button.update_hover(mouse_x, mouse_y)
-
-            # Draw
-            self._draw()
-
-            # Update display
-            pygame.display.flip()
-            clock.tick(60)  # 60 FPS
-
-    def _draw(self) -> None:
-        """Draw the player selector dialog."""
-        # Draw semi-transparent overlay
-        overlay = pygame.Surface((APP_WIDTH, APP_HEIGHT))
-        overlay.set_alpha(200)
-        overlay.fill((0, 0, 0))
-        self.screen.blit(overlay, (0, 0))
-
-        # Draw dialog background - scale proportionally
-        dialog_width = int(APP_WIDTH * 0.52)  # 52% of screen width
-        dialog_height = int(APP_HEIGHT * 0.42)  # 42% of screen height
-        dialog_x = (APP_WIDTH - dialog_width) // 2
-        dialog_y = (APP_HEIGHT - dialog_height) // 2
-
-        pygame.draw.rect(
-            self.screen,
-            (40, 40, 40),
-            (dialog_x, dialog_y, dialog_width, dialog_height),
-        )
-
-        # Draw dialog border
-        pygame.draw.rect(
-            self.screen,
-            (200, 200, 200),
-            (dialog_x, dialog_y, dialog_width, dialog_height),
-            3,
-        )
-
-        # Draw title - scale font size
-        font_size = int(APP_HEIGHT * 0.06)  # 6% of screen height
-        font = pygame.font.Font(None, font_size)
-        title_text = font.render(
-            "Choose a player to steal from", ANTI_ALIASING, (255, 255, 255)
-        )
-        title_rect = title_text.get_rect(
-            center=(APP_WIDTH // 2, dialog_y + int(APP_HEIGHT * 0.06))
-        )
-        self.screen.blit(title_text, title_rect)
-
-        # Draw buttons
-        for button in self.buttons:
-            button.draw(self.screen)

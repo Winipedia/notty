@@ -2,6 +2,7 @@
 
 import itertools
 from types import ModuleType
+from typing import cast
 
 import pygame
 
@@ -322,7 +323,7 @@ class VisualGame(Visual):
             max_drawable = min(available_space, self.deck.size(), 3)
             # Show number selector dialog for human player
             selector = NumberSelector(self.screen, max_number=max_drawable)
-            return selector.show()
+            return cast("int", (selector.show()))
         # For computer players, choose randomly
         msg = "Should not be reached"
         raise ValueError(msg)
@@ -375,7 +376,7 @@ class VisualGame(Visual):
 
             other_players = self.get_other_players()
             selector = PlayerSelector(self.screen, other_players)
-            return selector.show()
+            return cast("VisualPlayer", (selector.show()))
         msg = "Should not be reached"
         raise ValueError(msg)
 
@@ -448,7 +449,7 @@ class VisualGame(Visual):
 
             available_cards = current_player.hand.cards
             selector = CardSelector(self.screen, available_cards)
-            return selector.show()
+            return cast("VisualCard", (selector.show()))
         msg = "Should not be reached"
         raise ValueError(msg)
 
@@ -462,6 +463,9 @@ class VisualGame(Visual):
             True if group is valid.
         """
         is_valid = False
+
+        # order cards by number
+        cards.sort(key=lambda card: card.number)
 
         numbers = [card.number for card in cards]
         colors = [card.color for card in cards]
