@@ -6,6 +6,7 @@ from types import ModuleType
 import pygame
 
 from notty.dev.artifacts import resources
+from notty.src.computer_action_selection import computer_chooses_action
 from notty.src.consts import (
     APP_HEIGHT,
     APP_WIDTH,
@@ -257,6 +258,21 @@ class VisualGame(Visual):
             raise ValueError(msg)
 
         self.next_turn()
+        return True
+
+    def play_for_me(self) -> bool:
+        """Let the computer play for the human player.
+
+        Returns:
+            True if action was successful.
+        """
+        current_player = self.get_current_player()
+        # make current player a computer player
+        current_player.is_human = False
+        # play for the computer player
+        computer_chooses_action(self)
+        # make current player a human player
+        current_player.is_human = True
         return True
 
     def player_can_draw_multiple(self) -> bool:
@@ -560,6 +576,9 @@ class VisualGame(Visual):
         Returns:
             True if action is possible.
         """
+        # "Play for Me" is handled separately in the action board
+        if action == Action.PLAY_FOR_ME:
+            return True
         # make any button False except Draw discard discard
         # if Draw discard draw is 1 and Draw discard discard is 0
         if (
@@ -594,7 +613,7 @@ class VisualGame(Visual):
             if self.action_is_possible(action)
         ]
 
-    def do_action(
+    def do_action(  # noqa: PLR0911
         self,
         action: str,
         count: int | None = None,
@@ -614,6 +633,8 @@ class VisualGame(Visual):
         Returns:
             True if action was successful.
         """
+        if action == Action.PLAY_FOR_ME:
+            return self.play_for_me()
         if action == Action.DRAW_MULTIPLE:
             return self.player_draws_multiple(count=count)
         if action == Action.STEAL:

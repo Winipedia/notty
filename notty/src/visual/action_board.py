@@ -19,6 +19,7 @@ class Action:
     DRAW_DISCARD_DISCARD = "draw_discard_discard"
     DISCARD_GROUP = "discard_group"
     NEXT_TURN = "next_turn"
+    PLAY_FOR_ME = "play_for_me"
 
     @classmethod
     def get_all_actions(cls) -> set[str]:
@@ -182,6 +183,7 @@ class ActionBoard:
             ("Draw & Discard (Discard)", Action.DRAW_DISCARD_DISCARD),
             ("Discard Group", Action.DISCARD_GROUP),
             ("Next Turn", Action.NEXT_TURN),
+            ("Play for Me", Action.PLAY_FOR_ME),
         ]
 
         # Create buttons
@@ -210,6 +212,9 @@ class ActionBoard:
         for button in self.buttons:
             if not is_human_turn:
                 button.enabled = False
+            elif button.action_name == Action.PLAY_FOR_ME:
+                # "Play for Me" button is always enabled during human's turn
+                button.enabled = True
             else:
                 button.enabled = game.action_is_possible(button.action_name)
 
