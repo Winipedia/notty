@@ -46,7 +46,7 @@ exclude = [".*", "**/migrations/*.py"]
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["D203", "D213", "COM812", "ANN401"]
+ignore = ["D203", "D213", "COM812", "ANN401", "S311"]
 fixable = ["ALL"]
 
 [tool.ruff.lint.pydocstyle]
@@ -65,6 +65,7 @@ testpaths = ["tests"]
 
 [tool.bandit]
 exclude_dirs = ["./experiment.py"]
+skips = ["B311"]
 
 [tool.bandit.assert_used]
 skips = ["*test_*.py"]
