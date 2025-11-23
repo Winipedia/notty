@@ -27,3 +27,7 @@ def test_simulate_first_shuffle_and_deal() -> None:
 
 def test_run_event_loop() -> None:
     """Test function."""
+
+
+def test_show_winner() -> None:
+    """Test function."""

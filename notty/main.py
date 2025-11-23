@@ -12,6 +12,7 @@ from notty.src.computer_action_selection import (
 from notty.src.consts import APP_HEIGHT, APP_NAME, APP_WIDTH
 from notty.src.player_selection import get_players
 from notty.src.visual.game import VisualGame
+from notty.src.visual.winner_display import WinnerDisplay
 
 
 def main() -> None:
@@ -91,14 +92,39 @@ def run_event_loop(game: VisualGame) -> None:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 game.action_board.handle_click(mouse_x, mouse_y)
+                continue
 
         computer_chooses_action(game)
 
         game.draw()
 
+        # Check for winner
+        if game.check_win_condition():
+            # Draw one final time to show the winning state
+            game.draw()
+            pygame.display.flip()
+
+            # Show winner and reset game
+            show_winner(game)
+            break
+
         # Update display
         pygame.display.flip()
         clock.tick(60)  # 60 FPS
+
+
+def show_winner(game: VisualGame) -> None:
+    """Show the winner display and reset the game.
+
+    Args:
+        game: The game instance.
+    """
+    if game.winner is None:
+        return
+
+    # Show winner display
+    winner_display = WinnerDisplay(game.screen, game.winner)
+    winner_display.show()
 
 
 if __name__ == "__main__":
