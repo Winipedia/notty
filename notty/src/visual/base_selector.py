@@ -105,7 +105,6 @@ class SelectableButton[T](ABC):
         Args:
             screen: The pygame display surface.
         """
-        ...
 
 
 class BaseSelector[T](ABC):
@@ -141,7 +140,6 @@ class BaseSelector[T](ABC):
     @abstractmethod
     def _setup_buttons(self) -> None:
         """Set up the selectable buttons. Must be implemented by subclasses."""
-        ...
 
     @abstractmethod
     def _get_button_dimensions(self) -> tuple[int, int, int]:
@@ -150,7 +148,6 @@ class BaseSelector[T](ABC):
         Returns:
             Tuple of (button_width, button_height, button_spacing).
         """
-        ...
 
     @abstractmethod
     def _get_dialog_dimensions(self) -> tuple[int, int]:
@@ -159,7 +156,6 @@ class BaseSelector[T](ABC):
         Returns:
             Tuple of (dialog_width, dialog_height).
         """
-        ...
 
     def _get_selected_items(self) -> list[T]:
         """Get the list of currently selected items.
