@@ -81,10 +81,22 @@ class SelectableButton[T](ABC):
             and self.y <= mouse_y <= self.y + self.height
         )
 
-    def toggle_selection(self) -> None:
-        """Toggle the selection state of this button."""
+    def toggle_selection(
+        self, current_selected_count: int, max_selections: int
+    ) -> None:
+        """Toggle the selection state of this button.
+
+        Args:
+            current_selected_count: Number of currently selected items.
+            max_selections: Maximum number of selections allowed.
+        """
         if self.selectable:
-            self.selected = not self.selected
+            if self.selected:
+                # Always allow deselection
+                self.selected = False
+            elif current_selected_count < max_selections:
+                # Only allow selection if under max
+                self.selected = True
 
     @abstractmethod
     def draw(self, screen: pygame.Surface) -> None:
@@ -93,7 +105,6 @@ class SelectableButton[T](ABC):
         Args:
             screen: The pygame display surface.
         """
-        ...
 
 
 class BaseSelector[T](ABC):
@@ -129,7 +140,6 @@ class BaseSelector[T](ABC):
     @abstractmethod
     def _setup_buttons(self) -> None:
         """Set up the selectable buttons. Must be implemented by subclasses."""
-        ...
 
     @abstractmethod
     def _get_button_dimensions(self) -> tuple[int, int, int]:
@@ -138,7 +148,6 @@ class BaseSelector[T](ABC):
         Returns:
             Tuple of (button_width, button_height, button_spacing).
         """
-        ...
 
     @abstractmethod
     def _get_dialog_dimensions(self) -> tuple[int, int]:
@@ -147,7 +156,6 @@ class BaseSelector[T](ABC):
         Returns:
             Tuple of (dialog_width, dialog_height).
         """
-        ...
 
     def _get_selected_items(self) -> list[T]:
         """Get the list of currently selected items.
@@ -196,7 +204,8 @@ class BaseSelector[T](ABC):
                                 # Single selection - return immediately
                                 return button.item
                             # Multi-selection - toggle selection
-                            button.toggle_selection()
+                            current_count = len(self._get_selected_items())
+                            button.toggle_selection(current_count, self.max_selections)
                             break
 
             # Update hover state
