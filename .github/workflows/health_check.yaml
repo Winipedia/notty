@@ -36,12 +36,12 @@ jobs:
       uses: astral-sh/setup-uv@main
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Pre Install Pygame From Binary
-      id: pre_install_pygame_from_binary
-      run: 'uv pip install pygame --only-binary=:all:'
     - name: Install Python Dependencies
       id: install_python_dependencies
       run: uv sync
+    - name: Pre Install Pygame From Binary
+      id: pre_install_pygame_from_binary
+      run: 'uv pip install pygame --only-binary=:all:'
     - name: Patch Version
       id: patch_version
       run: uv version --bump patch && git add pyproject.toml
