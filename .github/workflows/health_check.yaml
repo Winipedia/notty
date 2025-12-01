@@ -39,6 +39,9 @@ jobs:
     - name: Patch Version
       id: patch_version
       run: uv version --bump patch && git add pyproject.toml
+    - name: Pre Install Pygame From Binary
+      id: pre_install_pygame_from_binary
+      run: 'uv pip install pygame --only-binary=:all:'
     - name: Install Python Dependencies
       id: install_python_dependencies
       run: uv sync
@@ -48,6 +51,8 @@ jobs:
     - name: Add Dependency Updates To Git
       id: add_dependency_updates_to_git
       run: git add pyproject.toml uv.lock
+      env:
+        REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
     - name: Protect Repository
       id: protect_repository
       run: uv run pyrig protect-repo

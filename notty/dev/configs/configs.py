@@ -61,7 +61,7 @@ class HealthCheckWorkflow(NottyGameWorkflowMixin, WinipediaHealthCheckWorkflow):
     """
 
 
-class ReleaseWorkflow(HealthCheckWorkflow, WinipediaReleaseWorkflow):
+class ReleaseWorkflow(NottyGameWorkflowMixin, WinipediaReleaseWorkflow):
     """Release workflow.
 
     Extends winipedia_utils release workflow to add additional steps.
