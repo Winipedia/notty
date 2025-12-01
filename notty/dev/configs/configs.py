@@ -48,7 +48,7 @@ class NottyGameWorkflowMixin(WinipediaWorkflow):
         """Get the step to install PySide6 dependencies."""
         return cls.get_step(
             step_func=cls.step_pre_install_pygame_from_binary,
-            run="pip install pygame --only-binary=:all:",
+            run="uv pip install pygame --only-binary=:all:",
         )
 
 
