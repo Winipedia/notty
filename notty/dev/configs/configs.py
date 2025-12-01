@@ -27,7 +27,7 @@ class NottyGameWorkflowMixin(WinipediaWorkflow):
     def steps_core_installed_setup(
         cls, python_version: str | None = None, *, repo_token: bool = False
     ) -> list[dict[str, Any]]:
-        """Get the poetry setup steps.
+        """Get the setup steps.
 
         We need to install additional system dependencies for pyside6.
         """

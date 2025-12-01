@@ -5,55 +5,75 @@ description = "A simple card game called Notty using Pygame"
 authors = [
     {name = "Winipedia", email = "win.steveker@gmx.de"},
     {name = "Azeez", email = "abdualahmari2@gmail.com"},
-    {name = "Hanmiao chen", email = "924675206@qq.com"}
+    {name = "Hanmiao chen", email = "924675206@qq.com"},
 ]
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
-dynamic = ["dependencies"]
-
+dependencies = [
+    "pygame",
+    "pyrig",
+]
 
 [project.scripts]
 notty-game = "pyrig.dev.cli.cli:main"
 notty = "pyrig.dev.cli.cli:main"
+
+[dependency-groups]
+dev = [
+    "bandit",
+    "mypy",
+    "pre-commit",
+    "pyinstaller",
+    "pytest",
+    "pytest-mock",
+    "ruff",
+    "types-defusedxml",
+    "types-networkx",
+    "types-pyinstaller",
+    "types-pyyaml",
+    "types-setuptools",
+    "types-tqdm",
+]
+
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = [
+    "uv_build",
+]
+build-backend = "uv_build"
 
-[[tool.poetry.packages]]
-include = "notty"
-
-[tool.poetry.dependencies]
-pygame = "*"
-pyrig = "*"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "*"
-types-networkx = "*"
-types-defusedxml = "*"
-types-pyyaml = "*"
-pytest = "*"
-types-setuptools = "*"
-pytest-mock = "*"
-bandit = "*"
-pre-commit = "*"
-mypy = "*"
-types-tqdm = "*"
-types-pyinstaller = "*"
-pyinstaller = {version = "*", python = "<3.15"}
+[tool.uv.build-backend]
+module-name = "notty"
+module-root = ""
 
 [tool.ruff]
-exclude = [".*", "**/migrations/*.py"]
+exclude = [
+    ".*",
+    "**/migrations/*.py",
+]
 
 [tool.ruff.lint]
-select = ["ALL"]
-ignore = ["D203", "D213", "COM812", "ANN401", "S311"]
-fixable = ["ALL"]
+select = [
+    "ALL",
+]
+ignore = [
+    "D203",
+    "D213",
+    "COM812",
+    "ANN401",
+    "S311",
+]
+fixable = [
+    "ALL",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",
+]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.lint.per-file-ignores]
-"tests/**/*.py" = ["S101"]
 [tool.mypy]
 strict = true
 warn_unreachable = true
@@ -61,11 +81,20 @@ show_error_codes = true
 files = "."
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = [
+    "tests",
+]
 
 [tool.bandit]
-exclude_dirs = ["./experiment.py"]
-skips = ["B311"]
+exclude_dirs = [
+    "./experiment.py",
+    ".*",
+]
+skips = [
+    "B311",
+]
 
 [tool.bandit.assert_used]
-skips = ["*test_*.py"]
+skips = [
+    "*test_*.py",
+]
