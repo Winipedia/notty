@@ -293,15 +293,6 @@ wheels = [
 ]
 
 [[package]]
-name = "networkx"
-version = "3.6"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e8/fc/7b6fd4d22c8c4dc5704430140d8b3f520531d4fe7328b8f8d03f5a7950e8/networkx-3.6.tar.gz", hash = "sha256:285276002ad1f7f7da0f7b42f004bcba70d381e936559166363707fdad3d72ad", size = 2511464, upload-time = "2025-11-24T03:03:47.158Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/07/c7/d64168da60332c17d24c0d2f08bdf3987e8d1ae9d84b5bbd0eec2eb26a55/networkx-3.6-py3-none-any.whl", hash = "sha256:cdb395b105806062473d3be36458d8f1459a4e4b98e236a66c3a48996e07684f", size = 2063713, upload-time = "2025-11-24T03:03:45.21Z" },
-]
-
-[[package]]
 name = "nodeenv"
 version = "1.9.1"
 source = { registry = "https://pypi.org/simple" }
@@ -329,7 +320,6 @@ dev = [
     { name = "pytest-mock" },
     { name = "ruff" },
     { name = "types-defusedxml" },
-    { name = "types-networkx" },
     { name = "types-pyinstaller" },
     { name = "types-pyyaml" },
     { name = "types-setuptools" },
@@ -352,30 +342,10 @@ dev = [
     { name = "pytest-mock" },
     { name = "ruff" },
     { name = "types-defusedxml" },
-    { name = "types-networkx" },
     { name = "types-pyinstaller" },
     { name = "types-pyyaml" },
     { name = "types-setuptools" },
     { name = "types-tqdm" },
-]
-
-[[package]]
-name = "numpy"
-version = "2.3.5"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/76/65/21b3bc86aac7b8f2862db1e808f1ea22b028e30a225a34a5ede9bf8678f2/numpy-2.3.5.tar.gz", hash = "sha256:784db1dcdab56bf0517743e746dfb0f885fc68d948aba86eeec2cba234bdf1c0", size = 20584950, upload-time = "2025-11-16T22:52:42.067Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/44/37/e669fe6cbb2b96c62f6bbedc6a81c0f3b7362f6a59230b23caa673a85721/numpy-2.3.5-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:74ae7b798248fe62021dbf3c914245ad45d1a6b0cb4a29ecb4b31d0bfbc4cc3e", size = 16733873, upload-time = "2025-11-16T22:49:49.84Z" },
-    { url = "https://files.pythonhosted.org/packages/c5/65/df0db6c097892c9380851ab9e44b52d4f7ba576b833996e0080181c0c439/numpy-2.3.5-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:ee3888d9ff7c14604052b2ca5535a30216aa0a58e948cdd3eeb8d3415f638769", size = 12259838, upload-time = "2025-11-16T22:49:52.863Z" },
-    { url = "https://files.pythonhosted.org/packages/5b/e1/1ee06e70eb2136797abe847d386e7c0e830b67ad1d43f364dd04fa50d338/numpy-2.3.5-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:612a95a17655e213502f60cfb9bf9408efdc9eb1d5f50535cc6eb365d11b42b5", size = 5088378, upload-time = "2025-11-16T22:49:55.055Z" },
-    { url = "https://files.pythonhosted.org/packages/6d/9c/1ca85fb86708724275103b81ec4cf1ac1d08f465368acfc8da7ab545bdae/numpy-2.3.5-cp312-cp312-macosx_14_0_x86_64.whl", hash = "sha256:3101e5177d114a593d79dd79658650fe28b5a0d8abeb8ce6f437c0e6df5be1a4", size = 6628559, upload-time = "2025-11-16T22:49:57.371Z" },
-    { url = "https://files.pythonhosted.org/packages/74/78/fcd41e5a0ce4f3f7b003da85825acddae6d7ecb60cf25194741b036ca7d6/numpy-2.3.5-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:8b973c57ff8e184109db042c842423ff4f60446239bd585a5131cc47f06f789d", size = 14250702, upload-time = "2025-11-16T22:49:59.632Z" },
-    { url = "https://files.pythonhosted.org/packages/b6/23/2a1b231b8ff672b4c450dac27164a8b2ca7d9b7144f9c02d2396518352eb/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:0d8163f43acde9a73c2a33605353a4f1bc4798745a8b1d73183b28e5b435ae28", size = 16606086, upload-time = "2025-11-16T22:50:02.127Z" },
-    { url = "https://files.pythonhosted.org/packages/a0/c5/5ad26fbfbe2012e190cc7d5003e4d874b88bb18861d0829edc140a713021/numpy-2.3.5-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:51c1e14eb1e154ebd80e860722f9e6ed6ec89714ad2db2d3aa33c31d7c12179b", size = 16025985, upload-time = "2025-11-16T22:50:04.536Z" },
-    { url = "https://files.pythonhosted.org/packages/d2/fa/dd48e225c46c819288148d9d060b047fd2a6fb1eb37eae25112ee4cb4453/numpy-2.3.5-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:b46b4ec24f7293f23adcd2d146960559aaf8020213de8ad1909dba6c013bf89c", size = 18542976, upload-time = "2025-11-16T22:50:07.557Z" },
-    { url = "https://files.pythonhosted.org/packages/05/79/ccbd23a75862d95af03d28b5c6901a1b7da4803181513d52f3b86ed9446e/numpy-2.3.5-cp312-cp312-win32.whl", hash = "sha256:3997b5b3c9a771e157f9aae01dd579ee35ad7109be18db0e85dbdbe1de06e952", size = 6285274, upload-time = "2025-11-16T22:50:10.746Z" },
-    { url = "https://files.pythonhosted.org/packages/2d/57/8aeaf160312f7f489dea47ab61e430b5cb051f59a98ae68b7133ce8fa06a/numpy-2.3.5-cp312-cp312-win_amd64.whl", hash = "sha256:86945f2ee6d10cdfd67bcb4069c1662dd711f7e2a4343db5cecec06b87cf31aa", size = 12782922, upload-time = "2025-11-16T22:50:12.811Z" },
-    { url = "https://files.pythonhosted.org/packages/78/a6/aae5cc2ca78c45e64b9ef22f089141d661516856cf7c8a54ba434576900d/numpy-2.3.5-cp312-cp312-win_arm64.whl", hash = "sha256:f28620fe26bee16243be2b7b874da327312240a7cdc38b769a697578d2100013", size = 10194667, upload-time = "2025-11-16T22:50:16.16Z" },
 ]
 
 [[package]]
@@ -589,11 +559,10 @@ wheels = [
 
 [[package]]
 name = "pyrig"
-version = "2.0.23"
+version = "2.0.25"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dotenv" },
-    { name = "networkx" },
     { name = "packaging" },
     { name = "pathspec" },
     { name = "pillow" },
@@ -603,9 +572,9 @@ dependencies = [
     { name = "tomlkit" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c6/e3/37c7d9059a58721ac2b7ae32ffb99e938eab1bd3c751a340536173737db0/pyrig-2.0.23.tar.gz", hash = "sha256:eaff291b6bcd839cd0dd8e20401ed60640039d8778c56722a6414c6462fb3fea", size = 67933, upload-time = "2025-12-02T13:37:18.657Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e5/e2/5b0ec9436246db1bf8d664cb23397cd0272ce4b1981730740a7dbb55de1e/pyrig-2.0.25.tar.gz", hash = "sha256:4cc0c7e0c358961e1306829d6b428fb4acf6bd19be6d9523f5465d219b6a134f", size = 68766, upload-time = "2025-12-03T16:51:53.002Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d3/40/5339ab01372957ae0d54e2d74accaf0885106cde819a2673e73df083acef/pyrig-2.0.23-py3-none-any.whl", hash = "sha256:1ea8f6fa8bf3c48c77ea407ddd3a6a9121fbf31c43652baf7340f77794b3ab88", size = 93707, upload-time = "2025-12-02T13:37:17.665Z" },
+    { url = "https://files.pythonhosted.org/packages/47/cb/572a635123cfb63fef0af523db63b9dcc19c0c0d85990ed6919fad98a15a/pyrig-2.0.25-py3-none-any.whl", hash = "sha256:b4ab3a8d0c83829d3aa937f762d2a0e74cf7314855d2b36704040954241ecc91", size = 94772, upload-time = "2025-12-03T16:51:52.081Z" },
 ]
 
 [[package]]
@@ -784,18 +753,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/7d/4a/5b997ae87bf301d1796f72637baa4e0e10d7db17704a8a71878a9f77f0c0/types_defusedxml-0.7.0.20250822.tar.gz", hash = "sha256:ba6c395105f800c973bba8a25e41b215483e55ec79c8ca82b6fe90ba0bc3f8b2", size = 10590, upload-time = "2025-08-22T03:02:59.547Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/13/73/8a36998cee9d7c9702ed64a31f0866c7f192ecffc22771d44dbcc7878f18/types_defusedxml-0.7.0.20250822-py3-none-any.whl", hash = "sha256:5ee219f8a9a79c184773599ad216123aedc62a969533ec36737ec98601f20dcf", size = 13430, upload-time = "2025-08-22T03:02:58.466Z" },
-]
-
-[[package]]
-name = "types-networkx"
-version = "3.6.0.20251127"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "numpy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/8d/9a/c39cb9682cab54a7ae74787dad733b7510e05f411359c153879179ce793b/types_networkx-3.6.0.20251127.tar.gz", hash = "sha256:df8c81f66247e9dcdbdc4e9827990befeb7cb14f9cfb36d401b1ec4ab834a6cc", size = 73166, upload-time = "2025-11-27T03:04:36.729Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/63/46be846bb9ca52251bd42686cf0b820e895592f7d42ce1d0d70b6229e215/types_networkx-3.6.0.20251127-py3-none-any.whl", hash = "sha256:e83cd6b9ec381613a5f81f6020612989f77ebf4e501ce0e085e324a738d01143", size = 162436, upload-time = "2025-11-27T03:04:35.456Z" },
 ]
 
 [[package]]
