@@ -5,7 +5,7 @@ from pathlib import Path
 from types import ModuleType
 
 import pygame
-from pyrig.dev.artifacts.resources.resource import get_resource_path
+from pyrig.src.resource import get_resource_path
 
 from notty.src.consts import ANIMATION_SPEED
 

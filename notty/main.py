@@ -3,7 +3,7 @@
 import logging
 
 import pygame
-from pyrig.dev.artifacts.resources.resource import get_resource_path
+from pyrig.src.resource import get_resource_path
 
 from notty.dev.artifacts.resources import music
 from notty.src.computer_action_selection import (

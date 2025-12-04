@@ -3,7 +3,7 @@
 from typing import TYPE_CHECKING
 
 import pygame
-from pyrig.dev.artifacts.resources.resource import get_resource_path
+from pyrig.src.resource import get_resource_path
 
 from notty.dev.artifacts.resources.visuals import players
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
