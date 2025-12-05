@@ -396,11 +396,11 @@ wheels = [
 
 [[package]]
 name = "platformdirs"
-version = "4.5.0"
+version = "4.5.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/61/33/9611380c2bdb1225fdef633e2a9610622310fed35ab11dac9620972ee088/platformdirs-4.5.0.tar.gz", hash = "sha256:70ddccdd7c99fc5942e9fc25636a8b34d04c24b335100223152c2803e4063312", size = 21632, upload-time = "2025-10-08T17:44:48.791Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cf/86/0248f086a84f01b37aaec0fa567b397df1a119f73c16f6c7a9aac73ea309/platformdirs-4.5.1.tar.gz", hash = "sha256:61d5cdcc6065745cdd94f0f878977f8de9437be93de97c1c12f853c9c0cdcbda", size = 21715, upload-time = "2025-12-05T13:52:58.638Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/73/cb/ac7874b3e5d58441674fb70742e6c374b28b0c7cb988d37d991cde47166c/platformdirs-4.5.0-py3-none-any.whl", hash = "sha256:e578a81bb873cbb89a41fcc904c7ef523cc18284b7e3b3ccf06aca1403b7ebd3", size = 18651, upload-time = "2025-10-08T17:44:47.223Z" },
+    { url = "https://files.pythonhosted.org/packages/cb/28/3bfe2fa5a7b9c46fe7e13c97bda14c895fb10fa2ebf1d0abb90e0cea7ee1/platformdirs-4.5.1-py3-none-any.whl", hash = "sha256:d03afa3963c806a9bed9d5125c8f4cb2fdaf74a55ab60e5d59b3fde758104d31", size = 18731, upload-time = "2025-12-05T13:52:56.823Z" },
 ]
 
 [[package]]
@@ -559,7 +559,7 @@ wheels = [
 
 [[package]]
 name = "pyrig"
-version = "2.0.37"
+version = "2.0.39"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dotenv" },
@@ -572,9 +572,9 @@ dependencies = [
     { name = "tomlkit" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5f/b7/f49125c5d2843a92e6ac23cb959a9c744465a724b7c1bc512819d1e11c33/pyrig-2.0.37.tar.gz", hash = "sha256:1acf71a523362fd1a87ef8f084f4339ea60527ba14910a0d9680a0ef26c3b8d4", size = 73967, upload-time = "2025-12-05T11:25:54.875Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5d/33/acc419796c9d9a30e65f2085111073f9266fcea0d65475abb8a83ab17503/pyrig-2.0.39.tar.gz", hash = "sha256:074eca9c5e5319484d53c4798d1d8a833be42a9fe0a13521fb74394cbde31b63", size = 75072, upload-time = "2025-12-05T12:56:11.566Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bc/e1/617770a6c28d55c3d72e1785745f895c44576503fa1b7a6d5604e142d779/pyrig-2.0.37-py3-none-any.whl", hash = "sha256:f4bc686842da27f263e36919baa56a29f9b80c54cb36e95418bbafd95d9314c3", size = 114205, upload-time = "2025-12-05T11:25:56.149Z" },
+    { url = "https://files.pythonhosted.org/packages/36/b1/0768d5a6483eedc94d2b1cd605208205debe677ec6b51cce85cce57c1856/pyrig-2.0.39-py3-none-any.whl", hash = "sha256:9697030e4cc396b2ca0fdea4a61c5e01ec54d3a112f502596ae7f547dcd57eac", size = 115345, upload-time = "2025-12-05T12:56:12.485Z" },
 ]
 
 [[package]]
@@ -817,11 +817,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.5.0"
+version = "2.6.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/15/22/9ee70a2574a4f4599c47dd506532914ce044817c7752a79b6a51286319bc/urllib3-2.5.0.tar.gz", hash = "sha256:3fc47733c7e419d4bc3f6b3dc2b4f890bb743906a30d56ba4a5bfa4bbff92760", size = 393185, upload-time = "2025-06-18T14:07:41.644Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1c/43/554c2569b62f49350597348fc3ac70f786e3c32e7f19d266e19817812dd3/urllib3-2.6.0.tar.gz", hash = "sha256:cb9bcef5a4b345d5da5d145dc3e30834f58e8018828cbc724d30b4cb7d4d49f1", size = 432585, upload-time = "2025-12-05T15:08:47.885Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a7/c2/fe1e52489ae3122415c51f387e221dd0773709bad6c6cdaa599e8a2c5185/urllib3-2.5.0-py3-none-any.whl", hash = "sha256:e6b01673c0fa6a13e374b50871808eb3bf7046c4b125b216f6bf1cc604cff0dc", size = 129795, upload-time = "2025-06-18T14:07:40.39Z" },
+    { url = "https://files.pythonhosted.org/packages/56/1a/9ffe814d317c5224166b23e7c47f606d6e473712a2fad0f704ea9b99f246/urllib3-2.6.0-py3-none-any.whl", hash = "sha256:c90f7a39f716c572c4e3e58509581ebd83f9b59cced005b7db7ad2d22b0db99f", size = 131083, upload-time = "2025-12-05T15:08:45.983Z" },
 ]
 
 [[package]]
