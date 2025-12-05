@@ -1,4 +1,4 @@
-# Notty Documentation
+# notty Documentation
 
 Welcome to the Notty card game documentation.
 
