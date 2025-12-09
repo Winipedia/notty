@@ -303,7 +303,7 @@ wheels = [
 
 [[package]]
 name = "notty"
-version = "0.3.4"
+version = "0.3.5"
 source = { editable = "." }
 dependencies = [
     { name = "pygame" },
@@ -559,7 +559,7 @@ wheels = [
 
 [[package]]
 name = "pyrig"
-version = "2.1.6"
+version = "2.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dotenv" },
@@ -572,9 +572,9 @@ dependencies = [
     { name = "tomlkit" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/aa/aa/f6de6c0370500505a96f69d15e96dfa9cd1145e5691a21838523a2c480c0/pyrig-2.1.6.tar.gz", hash = "sha256:8e06bf2e52cf70971ecada8ed1f71f4f41d5a29fbd8a4f57d92bf03b480b05f0", size = 75116, upload-time = "2025-12-08T01:44:03.333Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/54/2b188b5c45c7081bd94e17024458a89ac723c0687670a5af0ea275176e12/pyrig-2.1.7.tar.gz", hash = "sha256:f2e30e1806fc30a88bc564b6b179cd12c88293e89ad0bb71e8f75bd328886741", size = 75117, upload-time = "2025-12-09T01:42:16.994Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/20/6a/a33dcf6d599c34a58e39a614ca1f7b536a873d206f1e606de6322fb35802/pyrig-2.1.6-py3-none-any.whl", hash = "sha256:40e9b208653de3e75e6cf153f04424a7a16e4621e886fb60a73b10a8d3bd5098", size = 112387, upload-time = "2025-12-08T01:44:02.323Z" },
+    { url = "https://files.pythonhosted.org/packages/a0/19/7cac5fbecb47bb645d2ca32e6bc58d1194acc762da8d04afcd6dc50525d0/pyrig-2.1.7-py3-none-any.whl", hash = "sha256:ccb17e1bfa22d1ff7bfe6ebd7f1dc72c39ad13a1a956e20a04dbdf0b3c752ca5", size = 112387, upload-time = "2025-12-09T01:42:16.053Z" },
 ]
 
 [[package]]
@@ -817,11 +817,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.6.0"
+version = "2.6.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/1c/43/554c2569b62f49350597348fc3ac70f786e3c32e7f19d266e19817812dd3/urllib3-2.6.0.tar.gz", hash = "sha256:cb9bcef5a4b345d5da5d145dc3e30834f58e8018828cbc724d30b4cb7d4d49f1", size = 432585, upload-time = "2025-12-05T15:08:47.885Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5e/1d/0f3a93cca1ac5e8287842ed4eebbd0f7a991315089b1a0b01c7788aa7b63/urllib3-2.6.1.tar.gz", hash = "sha256:5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f", size = 432678, upload-time = "2025-12-08T15:25:26.773Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/56/1a/9ffe814d317c5224166b23e7c47f606d6e473712a2fad0f704ea9b99f246/urllib3-2.6.0-py3-none-any.whl", hash = "sha256:c90f7a39f716c572c4e3e58509581ebd83f9b59cced005b7db7ad2d22b0db99f", size = 131083, upload-time = "2025-12-05T15:08:45.983Z" },
+    { url = "https://files.pythonhosted.org/packages/bc/56/190ceb8cb10511b730b564fb1e0293fa468363dbad26145c34928a60cb0c/urllib3-2.6.1-py3-none-any.whl", hash = "sha256:e67d06fe947c36a7ca39f4994b08d73922d40e6cca949907be05efa6fd75110b", size = 131138, upload-time = "2025-12-08T15:25:25.51Z" },
 ]
 
 [[package]]
