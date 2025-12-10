@@ -7,7 +7,7 @@ from typing import ClassVar
 
 import pygame
 
-from notty.dev.artifacts.resources.visuals import hand, players
+from notty.resources.visuals import hand, players
 from notty.src.consts import (
     APP_HEIGHT,
     APP_WIDTH,

@@ -5,7 +5,7 @@ import logging
 import pygame
 from pyrig.src.resource import get_resource_path
 
-from notty.dev.artifacts.resources import music
+from notty.resources import music
 from notty.src.computer_action_selection import (
     computer_chooses_action,
     save_qlearning_agent,

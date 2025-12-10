@@ -3,7 +3,7 @@
 import pygame
 from pyrig.src.resource import get_resource_path
 
-from notty.dev.artifacts.resources.visuals import players
+from notty.resources.visuals import players
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
 from notty.src.visual.base_selector import BaseSelector, SelectableButton
 

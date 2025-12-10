@@ -5,7 +5,7 @@ from types import ModuleType
 
 import pygame
 
-from notty.dev.artifacts.resources.visuals import cards
+from notty.resources.visuals import cards
 from notty.src.consts import CARD_HEIGHT, CARD_WIDTH
 from notty.src.visual.base import Visual
 

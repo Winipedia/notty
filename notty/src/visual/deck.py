@@ -5,7 +5,7 @@ from types import ModuleType
 
 import pygame
 
-from notty.dev.artifacts.resources.visuals import deck
+from notty.resources.visuals import deck
 from notty.src.consts import (
     ANTI_ALIASING,
     APP_HEIGHT,

@@ -6,7 +6,7 @@ from typing import cast
 
 import pygame
 
-from notty.dev.artifacts import resources
+from notty import resources
 from notty.src.computer_action_selection import computer_chooses_action
 from notty.src.consts import (
     APP_HEIGHT,

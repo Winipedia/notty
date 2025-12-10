@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 import pygame
 from pyrig.src.resource import get_resource_path
 
-from notty.dev.artifacts.resources.visuals import players
+from notty.resources.visuals import players
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
 
 if TYPE_CHECKING:
