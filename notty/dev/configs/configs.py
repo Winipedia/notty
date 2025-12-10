@@ -3,20 +3,24 @@
 All subclasses of ConfigFile in the configs package are automatically called.
 """
 
+import re
 from typing import Any
 
+from pyrig.dev.configs.pyproject import (
+    PyprojectConfigFile as PyrigPyprojectConfigFile,
+)
 from pyrig.dev.configs.workflows.base.base import (
-    Workflow as WinipediaWorkflow,
+    Workflow as PyrigWorkflow,
 )
 from pyrig.dev.configs.workflows.health_check import (
-    HealthCheckWorkflow as WinipediaHealthCheckWorkflow,
+    HealthCheckWorkflow as PyrigHealthCheckWorkflow,
 )
 from pyrig.dev.configs.workflows.release import (
-    ReleaseWorkflow as WinipediaReleaseWorkflow,
+    ReleaseWorkflow as PyrigReleaseWorkflow,
 )
 
 
-class NottyGameWorkflowMixin(WinipediaWorkflow):
+class NottyGameWorkflowMixin(PyrigWorkflow):
     """Mixin to add PySide6-specific workflow steps.
 
     This mixin provides common overrides for PySide6 workflows to work on
@@ -52,7 +56,7 @@ class NottyGameWorkflowMixin(WinipediaWorkflow):
         )
 
 
-class HealthCheckWorkflow(NottyGameWorkflowMixin, WinipediaHealthCheckWorkflow):
+class HealthCheckWorkflow(NottyGameWorkflowMixin, PyrigHealthCheckWorkflow):
     """Health check workflow.
 
     Extends winipedia_utils health check workflow to add additional steps.
@@ -61,10 +65,30 @@ class HealthCheckWorkflow(NottyGameWorkflowMixin, WinipediaHealthCheckWorkflow):
     """
 
 
-class ReleaseWorkflow(NottyGameWorkflowMixin, WinipediaReleaseWorkflow):
+class ReleaseWorkflow(NottyGameWorkflowMixin, PyrigReleaseWorkflow):
     """Release workflow.
 
     Extends winipedia_utils release workflow to add additional steps.
     This is necessary to make pyside6 work on github actions which is a headless linux
     environment.
     """
+
+
+class PyprojectConfigFile(PyrigPyprojectConfigFile):
+    """Pyproject config file.
+
+    Extends winipedia_utils pyproject config file to add additional config.
+    """
+
+    @classmethod
+    def get_configs(cls) -> dict[str, Any]:
+        """Get the configs."""
+        configs = super().get_configs()
+
+        # not testing, so adjust pytest addopts
+        addopts = configs["tool"]["pytest"]["ini_options"]["addopts"]
+        # use regex to replace --cov-fail-under=SOME_NUMBER with --cov-fail-under=0
+        configs["tool"]["pytest"]["ini_options"]["addopts"] = re.sub(
+            r"--cov-fail-under=\d+", "--cov-fail-under=0", addopts
+        )
+        return configs

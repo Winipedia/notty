@@ -1,5 +1,7 @@
 """module."""
 
+from notty.dev.configs.configs import PyprojectConfigFile
+
 
 class TestNottyGameWorkflowMixin:
     """Test class."""
@@ -17,3 +19,12 @@ class TestHealthCheckWorkflow:
 
 class TestReleaseWorkflow:
     """Test class."""
+
+
+class TestPyprojectConfigFile:
+    """Test class."""
+
+    def test_get_configs(self) -> None:
+        """Test method."""
+        configs = PyprojectConfigFile.get_configs()
+        assert isinstance(configs, dict)
