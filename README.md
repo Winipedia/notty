@@ -1,10 +1,31 @@
 # notty
 
-[![built with pyrig](https://img.shields.io/badge/built%20with-pyrig-3776AB?logo=python&logoColor=white)](https://github.com/Winipedia/pyrig)
-[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- tooling -->
+[![pyrig](https://img.shields.io/badge/built%20with-pyrig-3776AB?logo=buildkite&logoColor=black)](https://github.com/Winipedia/pyrig)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://pre-commit.com/)
+<!-- code-quality -->
+[![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![mypy](https://img.shields.io/badge/type%20checked-mypy-039dfc.svg)](https://mypy-lang.org/)
+[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+[![pytest](https://img.shields.io/badge/tested%20with-pytest-46a2f1.svg?logo=pytest)](https://pytest.org/)
+[![coverage](https://img.shields.io/badge/coverage-90%25+-brightgreen.svg?logo=codecov&logoColor=white)](https://github.com/winipedia/pyrig)
+<!-- package-info -->
+[![PyPI](https://img.shields.io/pypi/v/notty?logo=pypi&logoColor=white)](https://pypi.org/project/notty/)
+[![Python](https://img.shields.io/pypi/pyversions/notty)](https://pypi.org/project/notty/)
+[![License](https://img.shields.io/github/license/Winipedia/notty)](https://github.com/Winipedia/notty/blob/main/LICENSE)
+<!-- ci/cd -->
+[![CI](https://img.shields.io/github/actions/workflow/status/Winipedia/notty/health_check.yaml?label=CI&logo=github)](https://github.com/Winipedia/notty/actions/workflows/health_check.yaml)
+[![CD](https://img.shields.io/github/actions/workflow/status/Winipedia/notty/release.yaml?label=CD&logo=github)](https://github.com/Winipedia/notty/actions/workflows/release.yaml)
 
-A strategic card game for 2-3 players built with Python and Pygame. Be the first to empty your hand by discarding valid card groups!
+
+---
+
+> A simple card game called Notty using Pygame
+
+---
+
+
 
 ## Features
 

@@ -13,6 +13,9 @@ dependencies = [
     "pygame",
     "pyrig",
 ]
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+]
 
 [project.scripts]
 notty-game = "pyrig.dev.cli.cli:main"
