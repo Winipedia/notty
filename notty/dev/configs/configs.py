@@ -29,14 +29,20 @@ class NottyGameWorkflowMixin(PyrigWorkflow):
 
     @classmethod
     def steps_core_installed_setup(
-        cls, python_version: str | None = None, *, repo_token: bool = False
+        cls,
+        *,
+        no_dev: bool,
+        python_version: str | None = None,
+        repo_token: bool = False,
     ) -> list[dict[str, Any]]:
         """Get the setup steps.
 
         We need to install additional system dependencies for pyside6.
         """
         steps = super().steps_core_installed_setup(
-            python_version, repo_token=repo_token
+            no_dev=no_dev,
+            python_version=python_version,
+            repo_token=repo_token,
         )
 
         index = next(

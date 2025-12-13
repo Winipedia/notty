@@ -328,6 +328,7 @@ name = "notty"
 version = "0.3.17"
 source = { editable = "." }
 dependencies = [
+    { name = "platformdirs" },
     { name = "pygame" },
     { name = "pyrig" },
 ]
@@ -335,13 +336,20 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "bandit" },
+    { name = "dotenv" },
     { name = "mypy" },
+    { name = "pillow" },
     { name = "pre-commit" },
+    { name = "pygithub" },
     { name = "pyinstaller" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-mock" },
+    { name = "pyyaml" },
     { name = "ruff" },
+    { name = "setuptools" },
+    { name = "tenacity" },
+    { name = "tomlkit" },
     { name = "ty" },
     { name = "types-defusedxml" },
     { name = "types-pyinstaller" },
@@ -352,6 +360,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "platformdirs" },
     { name = "pygame" },
     { name = "pyrig" },
 ]
@@ -359,13 +368,20 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "bandit" },
+    { name = "dotenv" },
     { name = "mypy" },
+    { name = "pillow" },
     { name = "pre-commit" },
+    { name = "pygithub" },
     { name = "pyinstaller" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-mock" },
+    { name = "pyyaml" },
     { name = "ruff" },
+    { name = "setuptools" },
+    { name = "tenacity" },
+    { name = "tomlkit" },
     { name = "ty" },
     { name = "types-defusedxml" },
     { name = "types-pyinstaller" },
@@ -585,23 +601,14 @@ wheels = [
 
 [[package]]
 name = "pyrig"
-version = "2.1.33"
+version = "2.1.36"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "dotenv" },
-    { name = "packaging" },
-    { name = "pathspec" },
-    { name = "pillow" },
-    { name = "pygithub" },
-    { name = "pyyaml" },
-    { name = "setuptools" },
-    { name = "tenacity" },
-    { name = "tomlkit" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/43/c7/d1f20baaceba7ae9c116a74e2762af5aa2a99e46aa735f8d00cd8df3b504/pyrig-2.1.33.tar.gz", hash = "sha256:c22c3bfc6ee18a5cd4daa50e2ef832fa6bfc5a3f60bb77d1ad841d882403537e", size = 84215, upload-time = "2025-12-13T01:08:29.802Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/97/b6/413269f08e7def43fa3efc2ff9dc30bbfcc6e172a767ca53d804d93bfd06/pyrig-2.1.36.tar.gz", hash = "sha256:181ec47f693f7cc4fade5c14dea391cf9667f92ce5c62b8e6dcc26317e64a54a", size = 84419, upload-time = "2025-12-13T23:06:28.464Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a2/44/84a446cd051f4d90e9c38899d1be4f855662e6c5c4b17bb0745f437cd2df/pyrig-2.1.33-py3-none-any.whl", hash = "sha256:93da3173a4105f3d53b6a0a439f669cdbfeefb732ed20171ca8eccfd1452c194", size = 123706, upload-time = "2025-12-13T01:08:27.423Z" },
+    { url = "https://files.pythonhosted.org/packages/95/43/5cab23a8e2b6da3824b567531f7fabc5fcd8281bf2c0c1e2a4d4d0fec8e9/pyrig-2.1.36-py3-none-any.whl", hash = "sha256:66f7f770b2e75ecfab2a032e12011fb064a7aca5918a273fa12d7f7e159e05fe", size = 123225, upload-time = "2025-12-13T23:06:27.211Z" },
 ]
 
 [[package]]
