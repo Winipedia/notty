@@ -54,10 +54,6 @@ jobs:
       run: git add pyproject.toml uv.lock
     - name: Build Artifacts
       id: build_artifacts
-      uses: actions/upload-artifact@main
-      with:
-        name: notty-${{ runner.os }}
-        path: dist
       run: uv run pyrig build
     - name: Upload Artifacts
       id: upload_artifacts
