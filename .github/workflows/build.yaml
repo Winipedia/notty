@@ -46,11 +46,18 @@ jobs:
     - name: Install Python Dependencies
       id: install_python_dependencies
       run: uv lock --upgrade && uv sync
+    - name: Pre Install Pygame From Binary
+      id: pre_install_pygame_from_binary
+      run: 'uv pip install pygame --only-binary=:all:'
     - name: Add Dependency Updates To Git
       id: add_dependency_updates_to_git
       run: git add pyproject.toml uv.lock
     - name: Build Artifacts
       id: build_artifacts
+      uses: actions/upload-artifact@main
+      with:
+        name: notty-${{ runner.os }}
+        path: dist
       run: uv run pyrig build
     - name: Upload Artifacts
       id: upload_artifacts

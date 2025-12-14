@@ -28,3 +28,7 @@ class TestPyprojectConfigFile:
         """Test method."""
         configs = PyprojectConfigFile.get_configs()
         assert isinstance(configs, dict)
+
+
+class TestBuildWorkflow:
+    """Test class."""
