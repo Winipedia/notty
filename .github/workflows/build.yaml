@@ -86,5 +86,5 @@ jobs:
       id: upload_artifacts
       uses: actions/upload-artifact@main
       with:
-        name: notty-${{ runner.os }}
+        name: container-image
         path: dist
