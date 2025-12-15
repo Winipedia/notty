@@ -70,11 +70,21 @@ jobs:
       uses: actions/checkout@main
     - name: Install Container Engine
       id: install_container_engine
-      if: ${{ matrix.os != 'macos-latest' }}
       uses: redhat-actions/podman-install@main
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Build Container Image
       id: build_container_image
       run: podman build -t notty .
-      if: ${{ matrix.os != 'macos-latest' }}
+    - name: Make Dist Folder
+      id: make_dist_folder
+      run: mkdir -p dist
+    - name: Save Container Image
+      id: save_container_image
+      run: podman save -o dist/notty.tar notty
+    - name: Upload Artifacts
+      id: upload_artifacts
+      uses: actions/upload-artifact@main
+      with:
+        name: notty-${{ runner.os }}
+        path: dist
