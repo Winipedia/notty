@@ -10,9 +10,9 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "platformdirs",
-    "pygame",
-    "pyrig",
+    "platformdirs>=4.5.1",
+    "pygame>=2.6.1",
+    "pyrig>=2.2.1",
 ]
 classifiers = [
     "Programming Language :: Python :: 3.12",
@@ -27,7 +27,7 @@ notty = "pyrig.dev.cli.cli:main"
 
 [dependency-groups]
 dev = [
-    "pyrig-dev",
+    "pyrig-dev>=0.1.1",
 ]
 
 [build-system]
