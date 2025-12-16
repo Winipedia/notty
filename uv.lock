@@ -559,19 +559,19 @@ wheels = [
 
 [[package]]
 name = "pyrig"
-version = "2.2.1"
+version = "2.2.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/85/f8/6cfe18d17d3e7d6acdd8e3b44b4ec57ed151e6250e8504e2fbe523c3e2bf/pyrig-2.2.1.tar.gz", hash = "sha256:8526141e30e6ccacb94e4234d32cfc6a5b0fa0e85c4494d1d49e3f27b7ba419d", size = 84618, upload-time = "2025-12-16T21:14:05.565Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6f/d3/049465a5764cab42e333b62531b2d572015b47226d07a38f1e3f1529e10d/pyrig-2.2.2.tar.gz", hash = "sha256:a66410692c2009537213008ec500d5d2a7e6cce156f17ddcf9f40e21bf589f84", size = 84633, upload-time = "2025-12-16T21:51:43.208Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/60/df/a616c85968fe6353825e7f2335260e14666952cabb0aea6e40af754a7f7b/pyrig-2.2.1-py3-none-any.whl", hash = "sha256:c7db2314815d077db1e35befa5adf7dd22cc56f6b0f62f96bdf9e77bf4017fa0", size = 124409, upload-time = "2025-12-16T21:14:04.049Z" },
+    { url = "https://files.pythonhosted.org/packages/b0/be/58230ec9a128ad24ecc6ad8ea01dfcba4888ebff8479e14ddb8272774b6a/pyrig-2.2.2-py3-none-any.whl", hash = "sha256:a892d72f480681ac4f3dbbfe0b70da7d759498da055a71b629285dab01117d88", size = 124409, upload-time = "2025-12-16T21:51:44.426Z" },
 ]
 
 [[package]]
 name = "pyrig-dev"
-version = "0.1.1"
+version = "0.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "bandit" },
@@ -596,9 +596,9 @@ dependencies = [
     { name = "types-setuptools" },
     { name = "types-tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b5/18/39288d93da8a3d56b3acf28dd9d53d7f3aba80f5ad1615e28813d3ade307/pyrig_dev-0.1.1.tar.gz", hash = "sha256:2fde50e11f6ede6eaed9518c3d1c7e52951710f257f2956b76a1119c7108da98", size = 1982, upload-time = "2025-12-15T19:39:25.243Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/19/30/86150b1063080a9187c9c9feed54defc55df241c74c60184091014bb4ba0/pyrig_dev-0.1.2.tar.gz", hash = "sha256:d060239e2396816ed9abc1159998c41b35704a6e5dd77aff75ebab6c33cd3200", size = 2061, upload-time = "2025-12-16T21:44:43.651Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/70/d3/ad5bf715f2bc6a516776f772f0c4a31d02b71d6e1d001e60cbd57a2d9005/pyrig_dev-0.1.1-py3-none-any.whl", hash = "sha256:35f8cfd04806aa6834d63ff2deaed8449f5cbc8d7672a4055fbcc9b8009bb4a1", size = 2111, upload-time = "2025-12-15T19:39:24.415Z" },
+    { url = "https://files.pythonhosted.org/packages/10/4a/3b120a670970002e01aa29913d0b38a695fbde18688102f4189bceb88b98/pyrig_dev-0.1.2-py3-none-any.whl", hash = "sha256:f868995962ec49cc374fe7a2415dd3492c0eb808cc63aa97bdaa68f7ff65b5b0", size = 2211, upload-time = "2025-12-16T21:44:42.848Z" },
 ]
 
 [[package]]
