@@ -2,7 +2,7 @@
 
 import logging
 import pickle  # nosec: B403
-import random
+import secrets
 from collections import defaultdict
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -100,9 +100,9 @@ class QLearningAgent:
         self.total_actions += 1
 
         # Epsilon-greedy exploration
-        if random.random() < self.epsilon:
+        if secrets.randbelow(10000) / 10000 < self.epsilon:
             self.exploration_actions += 1
-            action = random.choice(possible_actions)
+            action = secrets.choice(possible_actions)
         else:
             # Exploitation: choose best known action
             q_values = {
@@ -111,7 +111,7 @@ class QLearningAgent:
             max_q = max(q_values.values())
             # If multiple actions have same Q-value, choose randomly among them
             best_actions = [a for a, q in q_values.items() if q == max_q]
-            action = random.choice(best_actions)
+            action = secrets.choice(best_actions)
 
         # Store for learning
         self.last_state = state
