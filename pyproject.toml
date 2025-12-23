@@ -16,14 +16,28 @@ dependencies = [
 ]
 classifiers = [
     "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
 ]
 license-files = [
     "LICENSE",
 ]
+maintainers = [
+    {name = "Winipedia"},
+]
+license = "MIT"
+keywords = []
 
 [project.scripts]
 notty-game = "pyrig.dev.cli.cli:main"
 notty = "pyrig.dev.cli.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Winipedia/notty"
+Documentation = "https://Winipedia.github.io/notty"
+Source = "https://github.com/Winipedia/notty"
+Issues = "https://github.com/Winipedia/notty/issues"
+Changelog = "https://github.com/Winipedia/notty/releases"
 
 [dependency-groups]
 dev = [
