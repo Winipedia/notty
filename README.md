@@ -8,10 +8,11 @@
 [![MkDocs](https://img.shields.io/badge/MkDocs-Documentation-326CE5?logo=mkdocs&logoColor=white)](https://www.mkdocs.org/)
 <!-- code-quality -->
 [![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)[![mypy](https://img.shields.io/badge/type%20checked-mypy-039dfc.svg)](https://mypy-lang.org/)
+[![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 [![pytest](https://img.shields.io/badge/tested%20with-pytest-46a2f1.svg?logo=pytest)](https://pytest.org/)
 [![codecov](https://codecov.io/gh/Winipedia/notty/branch/main/graph/badge.svg)](https://codecov.io/gh/Winipedia/notty)
+[![rumdl](https://img.shields.io/badge/markdown-rumdl-darkgreen)](https://github.com/rvben/rumdl)
 <!-- package-info -->
 [![PyPI](https://img.shields.io/pypi/v/notty?logo=pypi&logoColor=white)](https://pypi.org/project/notty)
 [![Python](https://img.shields.io/badge/python-3.12-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
@@ -61,6 +62,7 @@ notty
 ```
 
 The game will guide you through:
+
 1. Selecting your player character
 2. Choosing 1-2 computer opponents
 3. Starting with 4 cards each
@@ -68,7 +70,9 @@ The game will guide you through:
 ## Game Rules
 
 ### Deck
-- **90 cards**: 5 colors (Red, Green, Yellow, Black, Blue) × 9 numbers (1-9) × 2 duplicates
+
+- **90 cards**: 5 colors (Red, Green, Yellow, Black, Blue)
+                × 9 numbers (1-9) × 2 duplicates
 - **Players**: 2-3 (1 human, 1-2 computer)
 - **Starting hand**: 4 cards per player
 - **Hand limit**: 20 cards maximum
@@ -85,9 +89,11 @@ The game will guide you through:
 ### Valid Card Groups
 
 **Sequence (Run):** 3+ consecutive cards of the same color
+
 - Example: Blue 4, Blue 5, Blue 6
 
 **Set:** 4+ cards of the same number with different colors (no duplicate colors)
+
 - Example: Blue 4, Green 4, Red 4, Yellow 4
 
 ### Win Condition
@@ -97,19 +103,23 @@ The game will guide you through:
 ## How to Play
 
 ### Interface
+
 - **Top center**: Deck with card count
 - **Bottom**: Player hands and avatars
 - **Right side**: Action buttons
 - **Black border**: Current player's turn
 
 ### Controls
+
 - **Green buttons**: Available actions
 - **Gray buttons**: Unavailable actions
 - Click buttons to perform actions
 
 ### Tips
+
 - Use "Play for Me" to learn from the AI
-- Form sequences (same color, consecutive) or sets (same number, different colors)
+- Form sequences (same color, consecutive)
+    or sets (same number, different colors)
 - Steal from opponents with many cards
 - Watch the deck count
 
@@ -133,7 +143,7 @@ mypy .
 
 ### Project Structure
 
-```
+```text
 notty/
 ├── notty/
 │   ├── main.py              # Entry point
@@ -148,6 +158,7 @@ notty/
 ## Documentation
 
 See the [docs/](docs/) directory for more information:
+
 - [Game Mechanics](docs/game-mechanics.md) - Detailed rules
 - [AI System](docs/ai-system.md) - How the AI works
 

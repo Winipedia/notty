@@ -4,7 +4,8 @@ This document explains the rules and mechanics of Notty.
 
 ## Overview
 
-Notty is a card game for 2-3 players where the objective is to be the first to empty your hand by discarding valid card groups.
+Notty is a card game for 2-3 players where the objective is to be the first to
+empty your hand by discarding valid card groups.
 
 ## Deck Composition
 
@@ -24,7 +25,8 @@ Example: There are 2 Red 5s, 2 Blue 3s, etc.
 
 ## Turn Actions
 
-On your turn, you can perform multiple actions. Most actions can only be done once per turn.
+On your turn, you can perform multiple actions. Most actions can only be done
+once per turn.
 
 ### 1. Draw 1-3 Cards (once per turn)
 
@@ -41,6 +43,7 @@ On your turn, you can perform multiple actions. Most actions can only be done on
 ### 3. Draw & Discard (once per turn, two-step)
 
 This is a two-step action:
+
 1. **Draw**: Draw one card from the deck
 2. **Discard**: Discard one card back to the deck
 
@@ -70,28 +73,32 @@ You can only discard cards if they form one of these two valid group types:
 
 ### Sequence (Run)
 
-**3 or more consecutive cards of the same color**
+#### 3 or more consecutive cards of the same color
 
 Examples:
+
 - Blue 4, Blue 5, Blue 6 ✓
 - Red 1, Red 2, Red 3, Red 4 ✓
 - Green 7, Green 8, Green 9 ✓
 
 Invalid:
+
 - Blue 4, Blue 6, Blue 7 ✗ (not consecutive)
 - Blue 4, Red 5, Green 6 ✗ (different colors)
 
 ### Set
 
-**4 or more cards of the same number with different colors**
+#### 4 or more cards of the same number with different colors
 
 All colors must be unique (no duplicate colors allowed).
 
 Examples:
+
 - Blue 4, Green 4, Red 4, Yellow 4 ✓
 - Red 7, Blue 7, Black 7, Green 7, Yellow 7 ✓
 
 Invalid:
+
 - Blue 4, Red 4, Blue 4 ✗ (duplicate color)
 - Blue 4, Green 4, Red 4 ✗ (only 3 cards, need at least 4)
 
@@ -99,7 +106,8 @@ Invalid:
 
 **The first player to empty their hand wins immediately!**
 
-As soon as a player has 0 cards in their hand, the game ends and that player is declared the winner.
+As soon as a player has 0 cards in their hand,
+the game ends and that player is declared the winner.
 
 ## Special Rules
 
@@ -148,4 +156,3 @@ As soon as a player has 0 cards in their hand, the game ends and that player is 
 ---
 
 For more information, see the [AI System](ai-system.md) documentation.
-

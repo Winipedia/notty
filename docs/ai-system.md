@@ -4,11 +4,15 @@ This document explains how the computer players work in Notty.
 
 ## Overview
 
-Computer players in Notty use **Q-Learning**, a reinforcement learning technique, to make strategic decisions. The AI learns from experience and improves over time.
+Computer players in Notty use **Q-Learning**, a reinforcement learning
+technique, to make strategic decisions. The AI learns from experience and
+improves over time.
 
 ## Q-Learning Basics
 
-Q-Learning is a type of machine learning where an agent learns to make decisions by:
+Q-Learning is a type of machine learning where an agent learns to make decisions
+by:
+
 1. **Observing** the current state of the game
 2. **Choosing** an action to perform
 3. **Receiving** a reward based on the outcome
@@ -38,10 +42,13 @@ This simplified state makes learning faster and more efficient.
 
 The AI uses an **epsilon-greedy** strategy:
 
-- **Exploration** (ε% of the time): Try a random action to discover new strategies
-- **Exploitation** (1-ε% of the time): Choose the best known action based on past experience
+- **Exploration** (ε% of the time):
+    Try a random action to discover new strategies
+- **Exploitation** (1-ε% of the time):
+    Choose the best known action based on past experience
 
-The exploration rate (epsilon) starts at 20% and gradually decreases to 5% as the AI learns.
+The exploration rate (epsilon) starts at 20%
+and gradually decreases to 5% as the AI learns.
 
 ### Reward System
 
@@ -60,11 +67,13 @@ The AI receives rewards based on its actions:
 
 After each action, the AI updates its Q-table using this formula:
 
-```
-Q(state, action) = Q(state, action) + α × [reward + γ × max(Q(next_state)) - Q(state, action)]
+```text
+Q(state, action) = Q(state, action) + α ×
+[reward + γ × max(Q(next_state)) - Q(state, action)]
 ```
 
 Where:
+
 - **α (alpha)** = 0.1 (learning rate - how much to update)
 - **γ (gamma)** = 0.9 (discount factor - how much to value future rewards)
 
@@ -73,6 +82,7 @@ Where:
 ### Draw Count Selection
 
 When drawing cards, the AI considers:
+
 - **Hand size**: Draw fewer if close to 20-card limit
 - **Card potential**: Draw more if close to forming groups
 - **Opponent status**: Draw more if opponents have few cards
@@ -81,12 +91,14 @@ When drawing cards, the AI considers:
 ### Target Player Selection
 
 When stealing, the AI targets:
+
 - Players with the most cards (more likely to have useful cards)
 - Avoids players with very few cards (close to winning)
 
 ### Card Discard Selection
 
 When using Draw & Discard, the AI discards:
+
 - Cards that don't fit into potential groups
 - Duplicate cards that aren't useful
 - Cards with numbers/colors that are isolated
@@ -94,6 +106,7 @@ When using Draw & Discard, the AI discards:
 ### Group Discard Selection
 
 The AI finds the best group to discard by:
+
 1. Finding all valid groups in hand
 2. Prioritizing larger groups (more cards discarded)
 3. Choosing groups that leave useful cards in hand
@@ -101,15 +114,18 @@ The AI finds the best group to discard by:
 ## Persistent Learning
 
 The AI's Q-table is saved to disk periodically:
+
 - **Auto-save**: Every 100 actions
 - **Manual save**: When the game exits
 - **Save location**: `~/.notty/qlearning/notty_qtable.pkl`
 
-This means the AI remembers what it learned across multiple games and continues to improve.
+This means the AI remembers what it
+learned across multiple games and continues to improve.
 
 ## Learning Statistics
 
 The AI tracks:
+
 - **Total actions**: How many actions it has taken
 - **Exploration actions**: How many were random (exploring)
 - **Epsilon**: Current exploration rate
@@ -151,7 +167,8 @@ The AI tracks:
 
 ## Customization
 
-You can modify the AI behavior by changing these parameters in `computer_action_selection.py`:
+You can modify the AI behavior by
+changing these parameters in `computer_action_selection.py`:
 
 ```python
 agent = QLearningAgent(
@@ -166,6 +183,7 @@ agent = QLearningAgent(
 ## Future Improvements
 
 Potential enhancements to the AI system:
+
 - More sophisticated state representation
 - Deep Q-Learning with neural networks
 - Multi-agent learning (AIs learn from each other)
@@ -175,4 +193,3 @@ Potential enhancements to the AI system:
 ---
 
 For game rules, see [Game Mechanics](game-mechanics.md).
-

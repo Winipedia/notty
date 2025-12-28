@@ -1,0 +1,3 @@
+# API Reference
+
+::: notty
