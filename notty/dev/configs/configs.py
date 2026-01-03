@@ -106,4 +106,26 @@ class PyprojectConfigFile(PyrigPyprojectConfigFile):
         configs["tool"]["pytest"]["ini_options"]["addopts"] = re.sub(
             r"--cov-fail-under=\d+", "--cov-fail-under=0", addopts
         )
+
+        # add mypy settings
+        configs["tool"]["mypy"] = {
+            "strict": True,
+            "warn_unreachable": True,
+            "show_error_codes": True,
+            "files": ".",
+        }
         return configs
+
+    @classmethod
+    def get_standard_dev_dependencies(cls) -> list[str]:
+        """Get the standard dev dependencies."""
+        dev_deps = super().get_standard_dev_dependencies()
+        # add mypy
+        return sorted([*["mypy"], *dev_deps])
+
+    @classmethod
+    def get_dependencies(cls) -> list[str]:
+        """Get the dependencies."""
+        deps = super().get_dependencies()
+        # add pygame
+        return sorted([*["pygame", "platformdirs"], *deps])

@@ -10,8 +10,8 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "platformdirs>=4.5.1",
-    "pygame>=2.6.1",
+    "platformdirs",
+    "pygame",
     "pyrig>=2.2.1",
 ]
 classifiers = [
@@ -41,6 +41,7 @@ Changelog = "https://github.com/Winipedia/notty/releases"
 
 [dependency-groups]
 dev = [
+    "mypy",
     "pyrig-dev>=0.1.1",
 ]
 
@@ -57,7 +58,6 @@ module-root = ""
 [tool.ruff]
 exclude = [
     ".*",
-    "**/migrations/*.py",
 ]
 
 [tool.ruff.lint]
@@ -82,12 +82,6 @@ fixable = [
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.mypy]
-strict = true
-warn_unreachable = true
-show_error_codes = true
-files = "."
-
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
@@ -109,3 +103,9 @@ error-on-warning = true
 
 [tool.rumdl]
 respect_gitignore = true
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+show_error_codes = true
+files = "."
