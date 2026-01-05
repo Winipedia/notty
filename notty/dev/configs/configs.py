@@ -98,7 +98,7 @@ class PyprojectConfigFile(PyrigPyprojectConfigFile):
     @classmethod
     def _get_configs(cls) -> dict[str, Any]:
         """Get the configs."""
-        configs = super().get_configs()
+        configs = super()._get_configs()
 
         # not testing, so adjust pytest addopts
         addopts = configs["tool"]["pytest"]["ini_options"]["addopts"]
