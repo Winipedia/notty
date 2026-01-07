@@ -48,7 +48,7 @@ class NottyGameWorkflowMixin(PyrigWorkflow):
         index = next(
             i
             for i, step in enumerate(steps)
-            if step["id"] == cls.make_id_from_func(cls.step_install_python_dependencies)
+            if step["id"] == cls.make_id_from_func(cls.step_install_dependencies)
         )
         steps.insert(index + 1, cls.step_pre_install_pygame_from_binary())
         return steps
