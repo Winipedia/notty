@@ -26,8 +26,8 @@ jobs:
       id: setup_git
       run: git config --global user.email "github-actions[bot]@users.noreply.github.com"
         && git config --global user.name "github-actions[bot]"
-    - name: Setup Project Mgt
-      id: setup_project_mgt
+    - name: Setup Package Manager
+      id: setup_package_manager
       uses: astral-sh/setup-uv@main
       with:
         python-version: '3.12'
@@ -53,23 +53,17 @@ jobs:
       id: setup_git
       run: git config --global user.email "github-actions[bot]@users.noreply.github.com"
         && git config --global user.name "github-actions[bot]"
-    - name: Setup Project Mgt
-      id: setup_project_mgt
+    - name: Setup Package Manager
+      id: setup_package_manager
       uses: astral-sh/setup-uv@main
       with:
         python-version: '3.12'
-    - name: Patch Version
-      id: patch_version
-      run: uv version --bump patch && git add pyproject.toml
     - name: Update Dependencies
       id: update_dependencies
       run: uv lock --upgrade
     - name: Install Dependencies
       id: install_dependencies
       run: uv sync
-    - name: Add Dependency Updates To Git
-      id: add_dependency_updates_to_git
-      run: git add pyproject.toml uv.lock
     - name: Build Documentation
       id: build_documentation
       run: uv run mkdocs build
