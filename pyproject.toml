@@ -29,8 +29,8 @@ license = "MIT"
 keywords = []
 
 [project.scripts]
-notty-game = "pyrig.dev.cli.cli:main"
-notty = "pyrig.dev.cli.cli:main"
+notty-game = "pyrig.rig.cli.cli:main"
+notty = "pyrig.rig.cli.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/Winipedia/notty"
