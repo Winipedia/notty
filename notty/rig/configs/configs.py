@@ -117,13 +117,6 @@ class PyprojectConfigFile(PyrigPyprojectConfigFile):
         return configs
 
     @classmethod
-    def get_standard_dev_dependencies(cls) -> list[str]:
-        """Get the standard dev dependencies."""
-        dev_deps = super().get_standard_dev_dependencies()
-        # add mypy
-        return sorted([*["mypy"], *dev_deps])
-
-    @classmethod
     def get_dependencies(cls) -> list[str]:
         """Get the dependencies."""
         deps = super().get_dependencies()

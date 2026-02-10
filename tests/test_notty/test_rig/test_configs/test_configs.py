@@ -25,9 +25,6 @@ class TestPyprojectConfigFile:
     def test__get_configs(self) -> None:
         """Test method."""
 
-    def test_get_standard_dev_dependencies(self) -> None:
-        """Test method."""
-
     def test_get_dependencies(self) -> None:
         """Test method."""
 
