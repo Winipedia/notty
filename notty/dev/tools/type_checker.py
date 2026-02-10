@@ -1,6 +1,6 @@
 """Overriding the type checker to get from ty to mypy."""
 
-from pyrig.dev.management.type_checker import TypeChecker
+from pyrig.dev.tools.type_checker import TypeChecker
 from pyrig.src.processes import Args
 
 
