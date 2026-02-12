@@ -8,7 +8,7 @@ class MypyTypeChecker(TypeChecker):
     """Mypy type checker."""
 
     @classmethod
-    def name(cls) -> str:
+    def get_name(cls) -> str:
         """Get the name of the type checker."""
         return "mypy"
 
