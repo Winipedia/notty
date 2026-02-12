@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "0.4.47"
+version = "0.4.48"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
