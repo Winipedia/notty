@@ -3,7 +3,7 @@
 from typing import TYPE_CHECKING
 
 import pygame
-from pyrig.src.resource import get_resource_path
+from pyrig.src.resource import resource_path
 
 from notty.resources.visuals import players
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
@@ -27,7 +27,7 @@ class WinnerDisplay:
         self.winner_name = winner.name
 
         # Load and scale the winner's image - scale proportionally
-        png_path = get_resource_path(winner.name + ".png", players)
+        png_path = resource_path(winner.name + ".png", players)
         img = pygame.image.load(png_path)
         image_size = int(APP_HEIGHT * 0.24)  # 24% of screen height
         self.winner_image = pygame.transform.scale(img, (image_size, image_size))

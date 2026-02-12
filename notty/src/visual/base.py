@@ -5,7 +5,7 @@ from pathlib import Path
 from types import ModuleType
 
 import pygame
-from pyrig.src.resource import get_resource_path
+from pyrig.src.resource import resource_path
 
 from notty.src.consts import ANIMATION_SPEED
 
@@ -92,7 +92,7 @@ class Visual(ABC):
 
     def get_png_path(self) -> Path:
         """Get the png for the visual element."""
-        return get_resource_path(self.get_png_name() + ".png", self.get_png_pkg())
+        return resource_path(self.get_png_name() + ".png", self.get_png_pkg())
 
     @abstractmethod
     def get_png_name(self) -> str:

@@ -56,7 +56,7 @@ class NottyGameWorkflowMixin(PyrigWorkflow):
     @classmethod
     def step_pre_install_pygame_from_binary(cls) -> dict[str, Any]:
         """Get the step to install PySide6 dependencies."""
-        return cls.get_step(
+        return cls.step(
             step_func=cls.step_pre_install_pygame_from_binary,
             run="uv pip install pygame --only-binary=:all:",
         )
@@ -96,9 +96,9 @@ class PyprojectConfigFile(PyrigPyprojectConfigFile):
     """
 
     @classmethod
-    def _get_configs(cls) -> dict[str, Any]:
+    def _configs(cls) -> dict[str, Any]:
         """Get the configs."""
-        configs = super()._get_configs()
+        configs = super()._configs()
 
         # not testing, so adjust pytest addopts
         addopts = configs["tool"]["pytest"]["ini_options"]["addopts"]
@@ -117,8 +117,8 @@ class PyprojectConfigFile(PyrigPyprojectConfigFile):
         return configs
 
     @classmethod
-    def get_dependencies(cls) -> list[str]:
+    def dependencies(cls) -> list[str]:
         """Get the dependencies."""
-        deps = super().get_dependencies()
+        deps = super().dependencies()
         # add pygame
         return sorted([*["pygame", "platformdirs"], *deps])

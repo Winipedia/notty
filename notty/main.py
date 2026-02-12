@@ -3,7 +3,7 @@
 import logging
 
 import pygame
-from pyrig.src.resource import get_resource_path
+from pyrig.src.resource import resource_path
 
 from notty.resources import music
 from notty.src.computer_action_selection import (
@@ -47,7 +47,7 @@ def main() -> None:
 
 def start_background_music() -> None:
     """Start looping background music if possible."""
-    music_path = get_resource_path("music.mp3", music)
+    music_path = resource_path("music.mp3", music)
 
     pygame.mixer.init()
     pygame.mixer.music.load(str(music_path))

@@ -22,10 +22,10 @@ class TestReleaseWorkflow:
 class TestPyprojectConfigFile:
     """Test class."""
 
-    def test__get_configs(self) -> None:
+    def test__configs(self) -> None:
         """Test method."""
 
-    def test_get_dependencies(self) -> None:
+    def test_dependencies(self) -> None:
         """Test method."""
 
 

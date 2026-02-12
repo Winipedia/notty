@@ -1,7 +1,7 @@
 """Player name selector for initial player selection."""
 
 import pygame
-from pyrig.src.resource import get_resource_path
+from pyrig.src.resource import resource_path
 
 from notty.resources.visuals import players
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
@@ -158,7 +158,7 @@ class PlayerNameSelector(BaseSelector[str]):
         # Load player images
         player_images: dict[str, pygame.Surface] = {}
         for name in self.items:
-            png_path = get_resource_path(name + ".png", players)
+            png_path = resource_path(name + ".png", players)
             img = pygame.image.load(png_path)
             player_images[name] = pygame.transform.scale(img, (image_size, image_size))
 

@@ -12,6 +12,6 @@ class NottyBuilder(PyInstallerBuilder):
     """Builder for notty."""
 
     @classmethod
-    def get_additional_resource_pkgs(cls) -> list[ModuleType]:
+    def additional_resource_packages(cls) -> list[ModuleType]:
         """Get the add datas."""
         return []

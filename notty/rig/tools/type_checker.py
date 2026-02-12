@@ -8,11 +8,11 @@ class MypyTypeChecker(TypeChecker):
     """Mypy type checker."""
 
     @classmethod
-    def get_name(cls) -> str:
+    def name(cls) -> str:
         """Get the name of the type checker."""
         return "mypy"
 
     @classmethod
-    def get_check_args(cls, *args: str) -> Args:
+    def check_args(cls, *args: str) -> Args:
         """Get the args for checking types."""
-        return cls.get_args(*args)
+        return cls.args(*args)
