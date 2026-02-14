@@ -7,12 +7,10 @@ from pyrig.src.processes import Args
 class MypyTypeChecker(TypeChecker):
     """Mypy type checker."""
 
-    @classmethod
-    def name(cls) -> str:
+    def name(self) -> str:
         """Get the name of the type checker."""
         return "mypy"
 
-    @classmethod
-    def check_args(cls, *args: str) -> Args:
+    def check_args(self, *args: str) -> Args:
         """Get the args for checking types."""
-        return cls.args(*args)
+        return self.args(*args)
