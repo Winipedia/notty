@@ -11,7 +11,6 @@ from pyrig.rig.builders.pyinstaller import PyInstallerBuilder
 class NottyBuilder(PyInstallerBuilder):
     """Builder for notty."""
 
-    @classmethod
-    def additional_resource_packages(cls) -> list[ModuleType]:
+    def additional_resource_packages(self) -> list[ModuleType]:
         """Get the add datas."""
         return []
