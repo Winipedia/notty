@@ -1,7 +1,7 @@
 """module."""
 
 
-class TestNottyGameWorkflowMixin:
+class TestWorkflowConfigFileMixin:
     """Test class."""
 
     def test_steps_core_installed_setup(self) -> None:
@@ -30,4 +30,16 @@ class TestPyprojectConfigFile:
 
 
 class TestBuildWorkflow:
+    """Test class."""
+
+
+class TestHealthCheckWorkflowConfigFile:
+    """Test class."""
+
+
+class TestReleaseWorkflowConfigFile:
+    """Test class."""
+
+
+class TestBuildWorkflowConfigFile:
     """Test class."""

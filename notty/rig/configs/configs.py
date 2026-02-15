@@ -6,33 +6,30 @@ All subclasses of ConfigFile in the configs package are automatically called.
 import re
 from typing import Any
 
-from pyrig.rig.configs.base.workflow import (
-    Workflow as PyrigWorkflow,
-)
+from pyrig.rig.configs.base.workflow import WorkflowConfigFile as BaseWorkflowConfigFile
 from pyrig.rig.configs.pyproject import (
-    PyprojectConfigFile as PyrigPyprojectConfigFile,
+    PyprojectConfigFile as BasePyprojectConfigFile,
 )
 from pyrig.rig.configs.workflows.build import (
-    BuildWorkflow as PyrigBuildWorkflow,
+    BuildWorkflowConfigFile as BaseBuildWorkflowConfigFile,
 )
 from pyrig.rig.configs.workflows.health_check import (
-    HealthCheckWorkflow as PyrigHealthCheckWorkflow,
+    HealthCheckWorkflowConfigFile as BaseHealthCheckWorkflowConfigFile,
 )
 from pyrig.rig.configs.workflows.release import (
-    ReleaseWorkflow as PyrigReleaseWorkflow,
+    ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
 )
 
 
-class NottyGameWorkflowMixin(PyrigWorkflow):
+class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
     """Mixin to add PySide6-specific workflow steps.
 
     This mixin provides common overrides for PySide6 workflows to work on
     GitHub Actions headless Linux environments.
     """
 
-    @classmethod
     def steps_core_installed_setup(
-        cls,
+        self,
         *args: Any,
         **kwargs: Any,
     ) -> list[dict[str, Any]]:
@@ -48,21 +45,22 @@ class NottyGameWorkflowMixin(PyrigWorkflow):
         index = next(
             i
             for i, step in enumerate(steps)
-            if step["id"] == cls.make_id_from_func(cls.step_install_dependencies)
+            if step["id"] == self.make_id_from_func(self.step_install_dependencies)
         )
-        steps.insert(index + 1, cls.step_pre_install_pygame_from_binary())
+        steps.insert(index + 1, self.step_pre_install_pygame_from_binary())
         return steps
 
-    @classmethod
-    def step_pre_install_pygame_from_binary(cls) -> dict[str, Any]:
+    def step_pre_install_pygame_from_binary(self) -> dict[str, Any]:
         """Get the step to install PySide6 dependencies."""
-        return cls.step(
-            step_func=cls.step_pre_install_pygame_from_binary,
+        return self.step(
+            step_func=self.step_pre_install_pygame_from_binary,
             run="uv pip install pygame --only-binary=:all:",
         )
 
 
-class HealthCheckWorkflow(NottyGameWorkflowMixin, PyrigHealthCheckWorkflow):
+class HealthCheckWorkflowConfigFile(
+    WorkflowConfigFileMixin, BaseHealthCheckWorkflowConfigFile
+):
     """Health check workflow.
 
     Extends winipedia_utils health check workflow to add additional steps.
@@ -71,7 +69,7 @@ class HealthCheckWorkflow(NottyGameWorkflowMixin, PyrigHealthCheckWorkflow):
     """
 
 
-class ReleaseWorkflow(NottyGameWorkflowMixin, PyrigReleaseWorkflow):
+class ReleaseWorkflowConfigFile(WorkflowConfigFileMixin, BaseReleaseWorkflowConfigFile):
     """Release workflow.
 
     Extends winipedia_utils release workflow to add additional steps.
@@ -80,7 +78,7 @@ class ReleaseWorkflow(NottyGameWorkflowMixin, PyrigReleaseWorkflow):
     """
 
 
-class BuildWorkflow(NottyGameWorkflowMixin, PyrigBuildWorkflow):
+class BuildWorkflowConfigFile(WorkflowConfigFileMixin, BaseBuildWorkflowConfigFile):
     """Build workflow.
 
     Extends winipedia_utils build workflow to add additional steps.
@@ -89,14 +87,13 @@ class BuildWorkflow(NottyGameWorkflowMixin, PyrigBuildWorkflow):
     """
 
 
-class PyprojectConfigFile(PyrigPyprojectConfigFile):
+class PyprojectConfigFile(BasePyprojectConfigFile):
     """Pyproject config file.
 
     Extends winipedia_utils pyproject config file to add additional config.
     """
 
-    @classmethod
-    def _configs(cls) -> dict[str, Any]:
+    def _configs(self) -> dict[str, Any]:
         """Get the configs."""
         configs = super()._configs()
 
@@ -116,8 +113,7 @@ class PyprojectConfigFile(PyrigPyprojectConfigFile):
         }
         return configs
 
-    @classmethod
-    def dependencies(cls) -> list[str]:
+    def dependencies(self) -> list[str]:
         """Get the dependencies."""
         deps = super().dependencies()
         # add pygame
