@@ -6,3 +6,10 @@ discovered and added to the CLI by pyrig.
 Example is version command that is available in all packages.
 uv run my-awesome-project version will return my-awesome-project version 0.1.0
 """
+
+import typer
+
+
+def version() -> None:
+    """Print the version of notty."""
+    typer.echo("Is overriding pyrigs default version command")
