@@ -1,6 +1,5 @@
-"""Subcommands for the CLI.
+"""Project-specific CLI commands.
 
-They will be automatically imported and added to the CLI
-IMPORTANT: All funcs in this file will be added as subcommands.
-So best to define the logic elsewhere and just call it here in a wrapper.
+Add custom CLI commands here as public functions. All public functions are
+automatically discovered and registered as CLI commands.
 """
