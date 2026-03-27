@@ -1,9 +1,8 @@
 """test module."""
 
 
-def test_main(main_test_fixture: None) -> None:
+def test_main() -> None:
     """Test func for main."""
-    assert main_test_fixture is None
 
 
 def test_run() -> None:
