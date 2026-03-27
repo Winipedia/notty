@@ -4,5 +4,5 @@
 class TestNottyBuilder:
     """Test class."""
 
-    def test_additional_resource_packages(self) -> None:
+    def test_entry_point_module(self) -> None:
         """Test method."""

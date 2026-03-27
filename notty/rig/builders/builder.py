@@ -7,10 +7,12 @@ from types import ModuleType
 
 from pyrig.rig.builders.pyinstaller import PyInstallerBuilder
 
+from notty import main
+
 
 class NottyBuilder(PyInstallerBuilder):
     """Builder for notty."""
 
-    def additional_resource_packages(self) -> list[ModuleType]:
-        """Get the add datas."""
-        return []
+    def entry_point_module(self) -> ModuleType:
+        """Get the entry point module."""
+        return main
