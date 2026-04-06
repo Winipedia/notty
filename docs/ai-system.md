@@ -43,9 +43,9 @@ This simplified state makes learning faster and more efficient.
 The AI uses an **epsilon-greedy** strategy:
 
 - **Exploration** (ε% of the time):
-    Try a random action to discover new strategies
+  Try a random action to discover new strategies
 - **Exploitation** (1-ε% of the time):
-    Choose the best known action based on past experience
+  Choose the best known action based on past experience
 
 The exploration rate (epsilon) starts at 20%
 and gradually decreases to 5% as the AI learns.

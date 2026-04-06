@@ -1,6 +1,6 @@
 """module."""
 
-from pyrig.src.processes import run_subprocess
+from pyrig.core.processes import run_subprocess
 
 from notty.rig.cli.shared_subcommands import version
 

@@ -77,7 +77,7 @@ The game will guide you through:
 ### Deck
 
 - **90 cards**: 5 colors (Red, Green, Yellow, Black, Blue)
-                × 9 numbers (1-9) × 2 duplicates
+  × 9 numbers (1-9) × 2 duplicates
 - **Players**: 2-3 (1 human, 1-2 computer)
 - **Starting hand**: 4 cards per player
 - **Hand limit**: 20 cards maximum
@@ -124,7 +124,7 @@ The game will guide you through:
 
 - Use "Play for Me" to learn from the AI
 - Form sequences (same color, consecutive)
-    or sets (same number, different colors)
+  or sets (same number, different colors)
 - Steal from opponents with many cards
 - Watch the deck count
 
