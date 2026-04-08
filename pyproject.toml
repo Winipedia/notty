@@ -22,13 +22,16 @@ keywords = []
 
 [[project.authors]]
 name = "Winipedia"
+
 [[project.authors]]
 name = "Azeez"
+
 [[project.authors]]
 name = "Hanmiao chen"
 
 [[project.maintainers]]
 name = "Winipedia"
+
 [project.scripts]
 notty-game = "pyrig.rig.cli.cli:main"
 notty = "pyrig.rig.cli.cli:main"
@@ -98,14 +101,10 @@ testpaths = [
 ]
 addopts = "--cov=notty --cov-report=term-missing --cov-fail-under=0"
 
-[tool.bandit]
-exclude_dirs = [
-    ".*",
-]
-
 [tool.bandit.assert_used]
 skips = [
     "*/tests/*.py",
+    "*/test_*/*.py",
 ]
 
 [tool.ty.terminal]
