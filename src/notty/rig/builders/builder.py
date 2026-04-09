@@ -5,7 +5,7 @@ All subclasses of Builder in the builds package are automatically called.
 
 from types import ModuleType
 
-from pyrig.rig.builders.pyinstaller import PyInstallerBuilder
+from pyrig.rig.builders.base.pyinstaller import PyInstallerBuilder
 
 from notty import main
 from notty.rig import resources
