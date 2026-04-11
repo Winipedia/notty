@@ -103,6 +103,8 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
         configs["tool"]["pytest"]["ini_options"]["addopts"] = re.sub(
             r"--cov-fail-under=\d+", "--cov-fail-under=0", addopts
         )
+        # rm ty from tool section
+        del configs["tool"]["ty"]
 
         # add mypy settings
         configs["tool"]["mypy"] = {
