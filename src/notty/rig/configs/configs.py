@@ -10,13 +10,13 @@ from pyrig.rig.configs.base.workflow import WorkflowConfigFile as BaseWorkflowCo
 from pyrig.rig.configs.pyproject import (
     PyprojectConfigFile as BasePyprojectConfigFile,
 )
-from pyrig.rig.configs.workflows.build import (
+from pyrig.rig.configs.remote_version_control.workflows.build import (
     BuildWorkflowConfigFile as BaseBuildWorkflowConfigFile,
 )
-from pyrig.rig.configs.workflows.health_check import (
+from pyrig.rig.configs.remote_version_control.workflows.health_check import (
     HealthCheckWorkflowConfigFile as BaseHealthCheckWorkflowConfigFile,
 )
-from pyrig.rig.configs.workflows.release import (
+from pyrig.rig.configs.remote_version_control.workflows.release import (
     ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
 )
 
