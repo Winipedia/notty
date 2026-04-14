@@ -114,9 +114,3 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
             "files": ".",
         }
         return configs
-
-    def dependencies(self) -> list[str]:
-        """Get the dependencies."""
-        deps = super().dependencies()
-        # add pygame
-        return sorted([*["pygame", "platformdirs"], *deps])

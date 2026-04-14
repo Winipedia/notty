@@ -25,9 +25,6 @@ class TestPyprojectConfigFile:
     def test__configs(self) -> None:
         """Test method."""
 
-    def test_dependencies(self) -> None:
-        """Test method."""
-
 
 class TestBuildWorkflow:
     """Test class."""
