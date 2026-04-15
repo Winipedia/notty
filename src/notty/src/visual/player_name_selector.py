@@ -1,7 +1,7 @@
 """Player name selector for initial player selection."""
 
 import pygame
-from pyrig.core.resource import resource_path
+from pyrig.core.resources import resource_path
 
 from notty.rig.resources.visuals import players
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
