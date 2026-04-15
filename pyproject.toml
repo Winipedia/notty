@@ -68,11 +68,6 @@ requires = [
 ]
 build-backend = "uv_build"
 
-[tool.ruff]
-exclude = [
-    ".*",
-]
-
 [tool.ruff.lint]
 select = [
     "ALL",
@@ -106,9 +101,6 @@ skips = [
     "*/tests/*.py",
     "*/test_*/*.py",
 ]
-
-[tool.rumdl]
-respect_gitignore = true
 
 [tool.mypy]
 strict = true
