@@ -3,7 +3,6 @@
 All subclasses of ConfigFile in the configs package are automatically called.
 """
 
-import re
 from typing import Any
 
 from pyrig.rig.configs.base.workflow import WorkflowConfigFile as BaseWorkflowConfigFile
@@ -97,12 +96,6 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
         """Get the configs."""
         configs = super()._configs()
 
-        # not testing, so adjust pytest addopts
-        addopts = configs["tool"]["pytest"]["ini_options"]["addopts"]
-        # use regex to replace --cov-fail-under=SOME_NUMBER with --cov-fail-under=0
-        configs["tool"]["pytest"]["ini_options"]["addopts"] = re.sub(
-            r"--cov-fail-under=\d+", "--cov-fail-under=0", addopts
-        )
         # rm ty from tool section
         del configs["tool"]["ty"]
 
