@@ -19,6 +19,8 @@ from pyrig.rig.configs.remote_version_control.workflows.release import (
     ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
 )
 
+from notty.rig.tools.type_checker import TypeChecker
+
 
 class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
     """Mixin to add PySide6-specific workflow steps.
@@ -96,11 +98,8 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
         """Get the configs."""
         configs = super()._configs()
 
-        # rm ty from tool section
-        del configs["tool"]["ty"]
-
         # add mypy settings
-        configs["tool"]["mypy"] = {
+        configs["tool"][TypeChecker.I.name()] = {  # type: ignore[call-arg]
             "strict": True,
             "warn_unreachable": True,
             "show_error_codes": True,

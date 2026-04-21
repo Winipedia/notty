@@ -1,10 +1,10 @@
 """Overriding the type checker to get from ty to mypy."""
 
 from pyrig.core.subprocesses import Args
-from pyrig.rig.tools.type_checker import TypeChecker
+from pyrig.rig.tools.type_checker import TypeChecker as BaseTypeChecker
 
 
-class MypyTypeChecker(TypeChecker):
+class TypeChecker(BaseTypeChecker):
     """Mypy type checker."""
 
     def name(self) -> str:

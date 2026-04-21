@@ -1,7 +1,7 @@
 """module."""
 
 
-class TestMypyTypeChecker:
+class TestTypeChecker:
     """Test class."""
 
     def test_name(self) -> None:
