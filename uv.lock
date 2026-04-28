@@ -656,7 +656,7 @@ wheels = [
 
 [[package]]
 name = "notty"
-version = "0.4.79"
+version = "0.4.80"
 source = { editable = "." }
 dependencies = [
     { name = "platformdirs" },
