@@ -44,9 +44,6 @@ jobs:
     - name: Pre Install Pygame From Binary
       id: pre-install-pygame-from-binary
       run: 'uv pip install pygame --only-binary=:all:'
-    - name: Add Dependency Updates To Version Control
-      id: add-dependency-updates-to-version-control
-      run: git add pyproject.toml uv.lock
     - name: Run Pre Commit Hooks
       id: run-pre-commit-hooks
       run: uv run prek run --all-files --hook-stage pre-commit
@@ -91,9 +88,6 @@ jobs:
     - name: Pre Install Pygame From Binary
       id: pre-install-pygame-from-binary
       run: 'uv pip install pygame --only-binary=:all:'
-    - name: Add Dependency Updates To Version Control
-      id: add-dependency-updates-to-version-control
-      run: git add pyproject.toml uv.lock
     - name: Run Tests
       id: run-tests
       run: uv run pytest --log-cli-level=INFO --cov-report=xml
