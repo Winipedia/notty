@@ -5,13 +5,13 @@ All subclasses of Builder in the builds package are automatically called.
 
 from types import ModuleType
 
-from pyrig.rig.builders.base.pyinstaller import PyInstallerBuilder
+from pyrig.rig.builders.base.executable import ExecutableBuilder
 
 from notty import main
 from notty.rig import resources
 
 
-class NottyBuilder(PyInstallerBuilder):
+class NottyBuilder(ExecutableBuilder):
     """Builder for notty."""
 
     def entry_point_module(self) -> ModuleType:
