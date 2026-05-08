@@ -10,3 +10,7 @@ def test_version() -> None:
     # invoke the version command and check the output
     res = run_subprocess(["uv", "run", "notty", version.__name__], check=True)
     assert "Is overriding pyrigs default version command" in res.stdout
+
+
+def test_hello() -> None:
+    """Test function."""

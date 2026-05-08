@@ -8,8 +8,14 @@ uv run my-awesome-project version will return my-awesome-project version 0.1.0
 """
 
 import typer
+from pyrig.core.cli import project_name_from_argv
 
 
 def version() -> None:
     """Print the version of notty."""
     typer.echo("Is overriding pyrigs default version command")
+
+
+def hello() -> None:
+    """Print a greeting message."""
+    typer.echo(f"Hello from {project_name_from_argv()}!")
