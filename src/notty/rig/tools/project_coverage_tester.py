@@ -5,17 +5,17 @@ Shows coverage badge from Codecov.io.
 
 Example:
     >>> from pyrig.rig.tools.project_coverage_tester import (
-    ...     ProjectCoverageTester,
+    ...     CoverageTester,
     ... )
-    >>> ProjectCoverageTester.I.remote_coverage_url()
+    >>> CoverageTester.I.remote_coverage_url()
 """
 
-from pyrig.rig.tools.project_coverage_tester import (
-    ProjectCoverageTester as BaseProjectCoverageTester,
+from pyrig.rig.tools.coverage_tester import (
+    CoverageTester as BaseCoverageTester,
 )
 
 
-class ProjectCoverageTester(BaseProjectCoverageTester):
+class CoverageTester(BaseCoverageTester):
     """You can override methods from the base class to customize behavior."""
 
     def coverage_threshold(self) -> int:

@@ -1,7 +1,7 @@
 """Test module."""
 
 
-class TestProjectCoverageTester:
+class TestCoverageTester:
     """Test class."""
 
     def test_coverage_threshold(self) -> None:
