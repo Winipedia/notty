@@ -18,6 +18,6 @@ from pyrig.rig.tools.coverage_tester import (
 class CoverageTester(BaseCoverageTester):
     """You can override methods from the base class to customize behavior."""
 
-    def coverage_threshold(self) -> int:
+    def threshold(self) -> int:
         """Override this method to set a custom coverage threshold."""
         return 0
