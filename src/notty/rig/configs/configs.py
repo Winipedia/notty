@@ -12,11 +12,11 @@ from pyrig.rig.configs.pyproject import (
 from pyrig.rig.configs.remote_version_control.workflows.build import (
     BuildWorkflowConfigFile as BaseBuildWorkflowConfigFile,
 )
-from pyrig.rig.configs.remote_version_control.workflows.health_check import (
-    HealthCheckWorkflowConfigFile as BaseHealthCheckWorkflowConfigFile,
-)
 from pyrig.rig.configs.remote_version_control.workflows.release import (
     ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
+)
+from pyrig_codecov.rig.configs.remote_version_control.workflows.health_check import (
+    HealthCheckWorkflowConfigFile as BaseHealthCheckWorkflowConfigFile,
 )
 
 from notty.rig.tools.type_checker import TypeChecker

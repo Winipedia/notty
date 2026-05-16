@@ -54,6 +54,7 @@ dev = [
     "pip-audit>=2.10.0",
     "prek>=0.3.2",
     "pygithub>=2.8.1",
+    "pyrig-codecov>=1.0.0",
     "pyrig-dev>=0.1.1",
     "pytest-cov>=7.0.0",
     "pytest-mock>=3.15.1",
@@ -94,7 +95,7 @@ convention = "google"
 testpaths = [
     "tests",
 ]
-addopts = "--cov=notty --cov-report=term-missing --cov-fail-under=0"
+addopts = "--cov=notty --cov-branch --cov-report=term-missing --cov-fail-under=0 --cov-report=xml"
 
 [tool.bandit.assert_used]
 skips = [

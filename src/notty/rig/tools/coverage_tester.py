@@ -4,13 +4,13 @@ Provides type-safe wrapper for pytest-cov commands for code coverage analysis.
 Shows coverage badge from Codecov.io.
 
 Example:
-    >>> from pyrig.rig.tools.coverage_tester import (
+    >>> from pyrig_codecov.rig.tools.coverage_tester import (
     ...     CoverageTester,
     ... )
     >>> CoverageTester.I.remote_coverage_url()
 """
 
-from pyrig.rig.tools.coverage_tester import (
+from pyrig_codecov.rig.tools.coverage_tester import (
     CoverageTester as BaseCoverageTester,
 )
 
