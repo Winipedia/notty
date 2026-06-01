@@ -33,8 +33,7 @@ name = "Hanmiao chen"
 name = "Winipedia"
 
 [project.scripts]
-notty-game = "pyrig.rig.cli.cli:main"
-notty = "pyrig.rig.cli.cli:main"
+notty = "pyrig.rig.cli.main:main"
 
 [project.urls]
 Homepage = "https://github.com/Winipedia/notty"

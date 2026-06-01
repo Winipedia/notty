@@ -8,7 +8,6 @@ uv run my-awesome-project version will return my-awesome-project version 0.1.0
 """
 
 import typer
-from pyrig.core.cli import project_name_from_argv
 
 
 def version() -> None:
@@ -18,4 +17,4 @@ def version() -> None:
 
 def hello() -> None:
     """Print a greeting message."""
-    typer.echo(f"Hello from {project_name_from_argv()}!")
+    typer.echo("Hello from notty!")
