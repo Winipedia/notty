@@ -20,4 +20,4 @@ class CoverageTester(BaseCoverageTester):
 
     def threshold(self) -> int:
         """Override this method to set a custom coverage threshold."""
-        return 0
+        return 1
