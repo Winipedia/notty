@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "0.10.3"
+version = "0.10.4"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -13,17 +13,6 @@ license-files = [
     "LICENSE",
 ]
 license = "MIT"
-classifiers = [
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.12",
-    "Operating System :: OS Independent",
-    "Typing :: Typed",
-]
-keywords = [
-    "pyrig",
-]
 
 [[project.authors]]
 name = "Winipedia"
