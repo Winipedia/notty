@@ -9,14 +9,11 @@ from pyrig.rig.configs.base.workflow import WorkflowConfigFile as BaseWorkflowCo
 from pyrig.rig.configs.pyproject import (
     PyprojectConfigFile as BasePyprojectConfigFile,
 )
-from pyrig.rig.configs.remote_version_control.workflows.build import (
-    BuildWorkflowConfigFile as BaseBuildWorkflowConfigFile,
-)
-from pyrig.rig.configs.remote_version_control.workflows.release import (
-    ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
-)
 from pyrig_codecov.rig.configs.remote_version_control.workflows.health_check import (
     HealthCheckWorkflowConfigFile as BaseHealthCheckWorkflowConfigFile,
+)
+from pyrig_executables.rig.configs.remote_version_control.workflows.release import (
+    ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
 )
 
 from notty.rig.tools.type_checker import TypeChecker
@@ -74,15 +71,6 @@ class ReleaseWorkflowConfigFile(WorkflowConfigFileMixin, BaseReleaseWorkflowConf
     """Release workflow.
 
     Extends winipedia_utils release workflow to add additional steps.
-    This is necessary to make pyside6 work on github actions which is a headless linux
-    environment.
-    """
-
-
-class BuildWorkflowConfigFile(WorkflowConfigFileMixin, BaseBuildWorkflowConfigFile):
-    """Build workflow.
-
-    Extends winipedia_utils build workflow to add additional steps.
     This is necessary to make pyside6 work on github actions which is a headless linux
     environment.
     """
