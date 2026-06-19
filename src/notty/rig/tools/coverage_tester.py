@@ -10,7 +10,7 @@ Example:
     >>> CoverageTester.I.remote_coverage_url()
 """
 
-from pyrig_codecov.rig.tools.coverage_tester import (
+from pyrig_codecov.rig.tools.testers.coverage import (  # deptry: ignore[DEP004]
     CoverageTester as BaseCoverageTester,
 )
 

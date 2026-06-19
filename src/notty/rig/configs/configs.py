@@ -5,14 +5,16 @@ All subclasses of ConfigFile in the configs package are automatically called.
 
 from typing import Any
 
-from pyrig.rig.configs.base.workflow import WorkflowConfigFile as BaseWorkflowConfigFile
-from pyrig.rig.configs.pyproject import (
-    PyprojectConfigFile as BasePyprojectConfigFile,
-)
-from pyrig_codecov.rig.configs.remote_version_control.workflows.health_check import (
+from pyrig_codecov.rig.configs.remote_version_control.workflows.health_check import (  # deptry: ignore[DEP004]  # noqa: E501
     HealthCheckWorkflowConfigFile as BaseHealthCheckWorkflowConfigFile,
 )
-from pyrig_executables.rig.configs.remote_version_control.workflows.release import (
+from pyrig_dev.rig.configs.base.workflow import (  # deptry: ignore[DEP004]
+    WorkflowConfigFile as BaseWorkflowConfigFile,
+)
+from pyrig_dev.rig.configs.pyproject import (  # deptry: ignore[DEP004]
+    PyprojectConfigFile as BasePyprojectConfigFile,
+)
+from pyrig_executables.rig.configs.remote_version_control.workflows.release import (  # deptry: ignore[DEP004]  # noqa: E501
     ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
 )
 
