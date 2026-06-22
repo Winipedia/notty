@@ -1033,7 +1033,7 @@ wheels = [
 
 [[package]]
 name = "pyrig-fixtures"
-version = "0.6.0"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pyrig" },
@@ -1042,9 +1042,9 @@ dependencies = [
     { name = "pytest-mock" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5c/f3/36e35880248accc9233d493450af32a8d2a3593000bd8460794dab458f46/pyrig_fixtures-0.6.0.tar.gz", hash = "sha256:ca8f732de5f20bb21f97f8ac068d31063e1dfeb1b4ff99f2f545ddc1c707103a", size = 8119, upload-time = "2026-06-21T22:06:21.138Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e6/8f/ba44a5f25e930c4bc41646a461de2d24eb7f83e3d8e8efad7236a23658ba/pyrig_fixtures-0.8.0.tar.gz", hash = "sha256:9af648b733f76dfe6cd512ccdcf62de4925b9185084ef9086eee58f4fd5efd25", size = 8119, upload-time = "2026-06-22T02:42:44.35Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6e/e0/2cfda83ce467e952d48d84ce2b631be929900d48bafd36a30ec2fc4d6f40/pyrig_fixtures-0.6.0-py3-none-any.whl", hash = "sha256:af7b1e32f022a849b4fbf32e3ef8be35623c2fa23755372ea2c1ff80f4e9cbf5", size = 13439, upload-time = "2026-06-21T22:06:20.316Z" },
+    { url = "https://files.pythonhosted.org/packages/94/d0/0b41790f3c8d5c3ad7b5c19c79d4e4b37abbfc142497865f4491cbda4d72/pyrig_fixtures-0.8.0-py3-none-any.whl", hash = "sha256:f63ae9f575882d43a4ecce386b8a4c67ec103d09259ece17b6f79b1f18f6e3f4", size = 13440, upload-time = "2026-06-22T02:42:43.361Z" },
 ]
 
 [[package]]
