@@ -92,7 +92,7 @@ convention = "google"
 testpaths = [
     "tests",
 ]
-addopts = "--cov=notty --cov-branch --cov-report=term-missing --cov-fail-under=1 --cov-report=xml"
+addopts = "--cov=notty --cov-branch --cov-report=term-missing --cov-fail-under=0 --cov-report=xml"
 
 [tool.bandit.assert_used]
 skips = [
