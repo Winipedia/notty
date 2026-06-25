@@ -73,12 +73,7 @@ def run() -> str:
 
 
 def get_screen() -> pygame.Surface:
-    """Create the game window.
-
-    Args:
-        app_width: Width of the window.
-        app_height: Height of the window.
-    """
+    """Create the game window."""
     screen = pygame.display.set_mode((APP_WIDTH, APP_HEIGHT))
     # set the title
     pygame.display.set_caption(APP_NAME)
