@@ -1,6 +1,8 @@
 """Subclassing MirrorTest to test the notty game."""
 
-from pyrig.rig.tests.mirror_test import MirrorTestConfigFile as BaseMirrorTestConfigFile
+from pyrig.rig.tests.mirror_test import (
+    MirrorTestConfigFile as BaseMirrorTestConfigFile,  # deptry: ignore[DEP004]  # noqa: E501
+)
 
 
 class MirrorTestConfigFile(BaseMirrorTestConfigFile):

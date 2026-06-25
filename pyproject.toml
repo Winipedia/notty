@@ -7,8 +7,8 @@ requires-python = ">=3.12,<3.13"
 dependencies = [
     "platformdirs>=4.10.0",
     "pygame>=2.6.1",
+    "pyrig>=15.28.0",
     "pyrig-runtime",
-    "pyrig>=15.4.0",
 ]
 license-files = [
     "LICENSE",
@@ -58,6 +58,7 @@ dev = [
     "pytest>=9.0.2",
     "ruff>=0.15.0",
     "rumdl>=0.1.17",
+    "ty",
     "typos>=1.47.2",
 ]
 
@@ -72,8 +73,6 @@ select = [
     "ALL",
 ]
 ignore = [
-    "D203",
-    "D213",
     "COM812",
     "ANN401",
 ]
@@ -114,3 +113,6 @@ root = "src"
 DEP002 = [
     "pyrig-runtime",
 ]
+
+[tool.ty.terminal]
+error-on-warning = true

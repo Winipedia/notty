@@ -11,3 +11,7 @@ def test_get_user_data_dir() -> None:
 
 def test_get_qlearning_save_path() -> None:
     """Test function."""
+
+
+def test_resource_path() -> None:
+    """Test function."""

@@ -1,7 +1,9 @@
 """Overriding the type checker to get from ty to mypy."""
 
-from pyrig.core.subprocesses import Args
-from pyrig.rig.tools.type_checker import TypeChecker as BaseTypeChecker
+from pyrig.core.subprocesses import Args  # deptry: ignore[DEP004]
+from pyrig.rig.tools.type_checker import (
+    TypeChecker as BaseTypeChecker,  # deptry: ignore[DEP004]
+)
 
 
 class TypeChecker(BaseTypeChecker):
