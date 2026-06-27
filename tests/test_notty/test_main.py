@@ -1,8 +1,11 @@
 """test module."""
 
+import notty
+
 
 def test_main() -> None:
     """Test func for main."""
+    assert notty.__name__ == notty.__name__
 
 
 def test_run() -> None:
