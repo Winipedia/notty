@@ -49,9 +49,7 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
             i
             for i, step in enumerate(steps)
             if step["id"]
-            == self.make_id_from_func(
-                cast("MethodType", self.step_install_dependencies)
-            )
+            == self.id_from_method(cast("MethodType", self.step_install_dependencies))
         )
         steps.insert(index + 1, self.step_pre_install_pygame_from_binary())
         return steps
@@ -59,7 +57,7 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
     def step_pre_install_pygame_from_binary(self) -> dict[str, Any]:
         """Get the step to install PySide6 dependencies."""
         return self.step(
-            step_func=cast("MethodType", self.step_pre_install_pygame_from_binary),
+            cast("MethodType", self.step_pre_install_pygame_from_binary),
             run="uv pip install pygame --only-binary=:all:",
         )
 
