@@ -93,7 +93,7 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
         configs = super()._configs()
 
         # add mypy settings
-        configs["tool"][TypeChecker.I.name()] = {  # type: ignore[call-arg]
+        configs["tool"][TypeChecker.I.name()] = {
             "strict": True,
             "warn_unreachable": True,
             "show_error_codes": True,
