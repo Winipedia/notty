@@ -1,14 +1,14 @@
 [project]
 name = "notty"
-version = "2.0.13"
+version = "2.0.14"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "platformdirs>=4.10.0",
     "pygame>=2.6.1",
-    "pyrig>=17.0.0",
-    "pyrig-runtime>=2.0.0",
+    "pyrig>=17.6.0",
+    "pyrig-runtime>=3.0.5",
 ]
 license-files = [
     "LICENSE",
@@ -48,11 +48,11 @@ dev = [
     "mypy>=2.1.0",
     "pillow>=12.3.0",
     "pip-audit>=2.10.1",
-    "prek>=0.4.6",
+    "prek>=0.4.8",
     "pyinstaller>=6.21.0",
-    "pyrig>=17.0.0",
-    "pyrig-codecov>=3.0.0",
-    "pyrig-executables>=3.0.0",
+    "pyrig>=17.6.0",
+    "pyrig-codecov>=3.0.10",
+    "pyrig-executables>=3.0.10",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
     "ruff>=0.15.20",
