@@ -1,14 +1,14 @@
 [project]
 name = "notty"
-version = "2.1.0"
+version = "2.1.4"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "platformdirs>=4.10.0",
     "pygame>=2.6.1",
-    "pyrig>=17.6.0",
-    "pyrig-runtime>=3.0.5",
+    "pyrig>=18.3.4",
+    "pyrig-runtime>=3.5.2",
 ]
 license-files = [
     "LICENSE",
@@ -41,22 +41,23 @@ Changelog = "https://github.com/Winipedia/notty/releases"
 dev = [
     "bandit>=1.9.4",
     "deptry>=0.25.1",
+    "detect-secrets>=1.5.0",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.7.6",
     "mkdocs-mermaid2-plugin>=1.2.3",
-    "mkdocstrings[python]>=1.0.4",
-    "mypy>=2.1.0",
+    "mkdocstrings[python]>=1.0.5",
+    "mypy>=2.2.0",
     "pillow>=12.3.0",
     "pip-audit>=2.10.1",
     "prek>=0.4.8",
     "pyinstaller>=6.21.0",
-    "pyrig>=17.6.0",
-    "pyrig-codecov>=3.0.10",
-    "pyrig-executables>=3.0.10",
+    "pyrig>=18.3.4",
+    "pyrig-codecov>=3.2.6",
+    "pyrig-executables>=3.1.2",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
-    "ruff>=0.15.20",
-    "rumdl>=0.2.28",
+    "ruff>=0.15.21",
+    "rumdl>=0.2.30",
     "typos>=1.48.0",
 ]
 
