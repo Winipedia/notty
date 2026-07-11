@@ -24,11 +24,7 @@ class VisualDeck(Visual):
     NUM_DUPLICATES = 2
 
     def draw(self) -> None:
-        """Draw the visual element.
-
-        Args:
-            screen: The pygame display surface.
-        """
+        """Draw the visual element."""
         for card in self.cards:
             card.draw()
         super().draw()
@@ -47,12 +43,7 @@ class VisualDeck(Visual):
         """Initialize a visual deck.
 
         Args:
-            x: X coordinate. Always represents the top-left corner.
-            y: Y coordinate. Always represents the top-left corner.
-            height: Height of the visual element.
-            width: Width of the visual element.
             screen: The pygame display surface.
-            deck: The deck to visualize.
         """
         self.cards: list[VisualCard] = []
         super().__init__(DECK_POS_X, DECK_POS_Y, DECK_HEIGHT, DECK_WIDTH, screen)

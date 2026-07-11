@@ -1,4 +1,4 @@
-# notty Documentation
+# Home
 
 <!-- ci/cd -->
 [![CI](https://img.shields.io/github/actions/workflow/status/Winipedia/notty/health_check.yml?label=CI&logo=github)](https://github.com/Winipedia/notty/actions/workflows/health_check.yml)
@@ -59,6 +59,6 @@ The goal is to be the first to empty your hand by discarding valid card groups.
 
 ## Links
 
-- [Main README](../README.md)
+- [Main README](https://github.com/Winipedia/notty/blob/main/README.md)
 - [GitHub Repository](https://github.com/Winipedia/notty)
-- [License](../LICENSE)
+- [License](https://github.com/Winipedia/notty/blob/main/LICENSE)

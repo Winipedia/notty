@@ -68,11 +68,7 @@ class Visual(ABC):
         self.y = y
 
     def draw(self) -> None:
-        """Draw the visual element.
-
-        Args:
-            screen: The pygame display surface.
-        """
+        """Draw the visual element."""
         # Smoothly move toward target
         dx = self.target_x - self.x
         dy = self.target_y - self.y

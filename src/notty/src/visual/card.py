@@ -62,8 +62,6 @@ class VisualCard(Visual):
             number: The number of the card.
             x: X coordinate. Always represents the top-left corner.
             y: Y coordinate. Always represents the top-left corner.
-            height: Height of the visual element.
-            width: Width of the visual element.
             screen: The pygame display surface.
         """
         self.color = color

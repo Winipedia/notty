@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.0.18"
+version = "2.1.0"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -74,9 +74,6 @@ ignore = [
     "COM812",
     "ANN401",
 ]
-fixable = [
-    "ALL",
-]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = [
@@ -86,17 +83,24 @@ fixable = [
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.pytest.ini_options]
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.pytest]
 testpaths = [
     "tests",
 ]
-addopts = "--cov=notty --cov-branch --cov-report=term-missing --cov-fail-under=0 --cov-report=xml"
-
-[tool.mypy]
+addopts = [
+    "--cov=notty",
+    "--cov-branch",
+    "--cov-fail-under=0",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=xml",
+]
+filterwarnings = [
+    "error",
+]
 strict = true
-warn_unreachable = true
-show_error_codes = true
-files = "."
 
 [tool.deptry]
 root = "src"
@@ -106,5 +110,8 @@ DEP002 = [
     "pyrig-runtime",
 ]
 
-[tool.ty.terminal]
-error-on-warning = true
+[tool.mypy]
+strict = true
+warn_unreachable = true
+show_error_codes = true
+files = "."
