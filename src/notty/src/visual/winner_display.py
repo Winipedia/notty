@@ -97,7 +97,8 @@ class WinnerDisplay:
             # Update hover states
             mouse_x, mouse_y = pygame.mouse.get_pos()
             self.new_game_hovered = self.new_game_button_rect.collidepoint(
-                mouse_x, mouse_y
+                mouse_x,
+                mouse_y,
             )
             self.quit_hovered = self.quit_button_rect.collidepoint(mouse_x, mouse_y)
 
@@ -157,7 +158,7 @@ class WinnerDisplay:
         title_font = pygame.font.Font(None, title_font_size)
         title_text = title_font.render("WINNER!", ANTI_ALIASING, (255, 215, 0))
         title_rect = title_text.get_rect(
-            center=(int(APP_WIDTH // 2), dialog_y + int(APP_HEIGHT * 0.07))
+            center=(int(APP_WIDTH // 2), dialog_y + int(APP_HEIGHT * 0.07)),
         )
         self.screen.blit(title_text, title_rect)
 
@@ -188,7 +189,10 @@ class WinnerDisplay:
         name_font = pygame.font.Font(None, name_font_size)
         name_text = name_font.render(self.winner_name, ANTI_ALIASING, (255, 255, 255))
         name_rect = name_text.get_rect(
-            center=(int(APP_WIDTH // 2), image_y + image_size + int(APP_HEIGHT * 0.048))
+            center=(
+                int(APP_WIDTH // 2),
+                image_y + image_size + int(APP_HEIGHT * 0.048),
+            ),
         )
         self.screen.blit(name_text, name_rect)
 
@@ -238,7 +242,11 @@ class WinnerDisplay:
         border_color = (255, 215, 0) if hovered else (200, 200, 100)
         border_width = max(2, int(APP_HEIGHT * 0.0036))  # 0.36% of screen height, min 2
         pygame.draw.rect(
-            self.screen, border_color, rect, border_width, border_radius=border_radius
+            self.screen,
+            border_color,
+            rect,
+            border_width,
+            border_radius=border_radius,
         )
 
         # Draw button text - scale font size

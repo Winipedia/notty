@@ -34,7 +34,14 @@ class CardButton(SelectableButton["VisualCard"]):
             card_image: The image of the card.
         """
         super().__init__(
-            x, y, width, height, card, card_image, enabled=True, selectable=False
+            x,
+            y,
+            width,
+            height,
+            card,
+            card_image,
+            enabled=True,
+            selectable=False,
         )
         self.card = card
         self.card_image = card_image
@@ -75,7 +82,9 @@ class CardSelector(BaseSelector["VisualCard"]):
     """Dialog for selecting a card to discard."""
 
     def __init__(
-        self, screen: pygame.Surface, available_cards: list["VisualCard"]
+        self,
+        screen: pygame.Surface,
+        available_cards: list["VisualCard"],
     ) -> None:
         """Initialize the card selector.
 

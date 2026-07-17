@@ -82,7 +82,9 @@ class SelectableButton[T](ABC):
         )
 
     def toggle_selection(
-        self, current_selected_count: int, max_selections: int
+        self,
+        current_selected_count: int,
+        max_selections: int,
     ) -> None:
         """Toggle the selection state of this button.
 
@@ -253,7 +255,7 @@ class BaseSelector[T](ABC):
         font = pygame.font.Font(None, font_size)
         title_text = font.render(self.title, ANTI_ALIASING, (255, 255, 255))
         title_rect = title_text.get_rect(
-            center=(int(APP_WIDTH // 2), dialog_y + int(APP_HEIGHT * 0.06))
+            center=(int(APP_WIDTH // 2), dialog_y + int(APP_HEIGHT * 0.06)),
         )
         self.screen.blit(title_text, title_rect)
 

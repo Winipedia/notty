@@ -134,7 +134,10 @@ class ActionButton:
 
         # Draw button border on the surface
         pygame.draw.rect(
-            button_surface, border_color, (0, 0, self.width, self.height), 3
+            button_surface,
+            border_color,
+            (0, 0, self.width, self.height),
+            3,
         )
 
         # Draw button text on the surface - scale font size based on button height
@@ -308,7 +311,7 @@ class ActionBoard:
                 center=(
                     panel_x + panel_width // 2,
                     panel_y - int(ACTION_BOARD_HEIGHT * 0.025),
-                )
+                ),
             )
             self.screen.blit(title_text, title_rect)
 

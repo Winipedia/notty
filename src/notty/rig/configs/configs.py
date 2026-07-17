@@ -33,8 +33,8 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
 
     def steps_core_installed_setup(
         self,
-        *args: Any,
-        **kwargs: Any,
+        *args: Any,  # noqa: ANN401
+        **kwargs: Any,  # noqa: ANN401
     ) -> list[dict[str, Any]]:
         """Get the setup steps.
 
@@ -63,7 +63,8 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
 
 
 class HealthCheckWorkflowConfigFile(
-    WorkflowConfigFileMixin, BaseHealthCheckWorkflowConfigFile
+    WorkflowConfigFileMixin,
+    BaseHealthCheckWorkflowConfigFile,
 ):
     """Health check workflow.
 
@@ -96,7 +97,8 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
         configs["tool"][TypeChecker.I.name()] = {
             "strict": True,
             "warn_unreachable": True,
-            "show_error_codes": True,
+            "enable_error_code": [],
+            "show_error_code_links": True,
             "files": ".",
         }
         return configs

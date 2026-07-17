@@ -31,7 +31,14 @@ class NumberButton(SelectableButton[int]):
         """
         # NumberButton doesn't use images, so pass None
         super().__init__(
-            x, y, width, height, number, None, enabled=enabled, selectable=False
+            x,
+            y,
+            width,
+            height,
+            number,
+            None,
+            enabled=enabled,
+            selectable=False,
         )
         self.number = number
 
@@ -60,7 +67,10 @@ class NumberButton(SelectableButton[int]):
 
         # Draw button border
         pygame.draw.rect(
-            screen, border_color, (self.x, self.y, self.width, self.height), 3
+            screen,
+            border_color,
+            (self.x, self.y, self.width, self.height),
+            3,
         )
 
         # Draw button text - scale font size based on button height
@@ -68,7 +78,7 @@ class NumberButton(SelectableButton[int]):
         font = pygame.font.Font(None, font_size)
         text_surface = font.render(str(self.number), ANTI_ALIASING, text_color)
         text_rect = text_surface.get_rect(
-            center=(self.x + self.width // 2, self.y + self.height // 2)
+            center=(self.x + self.width // 2, self.y + self.height // 2),
         )
         screen.blit(text_surface, text_rect)
 
@@ -131,6 +141,11 @@ class NumberSelector(BaseSelector[int]):
             # Disable buttons that exceed max_number
             enabled = number <= self.max_number
             button = NumberButton(
-                x, y, button_width, button_height, number, enabled=enabled
+                x,
+                y,
+                button_width,
+                button_height,
+                number,
+                enabled=enabled,
             )
             self.buttons.append(button)

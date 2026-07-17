@@ -35,7 +35,14 @@ class MultiCardButton(SelectableButton["VisualCard"]):
             card_image: The image of the card.
         """
         super().__init__(
-            x, y, width, height, card, card_image, enabled=True, selectable=True
+            x,
+            y,
+            width,
+            height,
+            card,
+            card_image,
+            enabled=True,
+            selectable=True,
         )
         self.card = card
         self.card_image = card_image
@@ -86,7 +93,7 @@ class MultiCardButton(SelectableButton["VisualCard"]):
             font = pygame.font.Font(None, font_size)
             checkmark = font.render("✓", ANTI_ALIASING, (255, 255, 255))
             checkmark_rect = checkmark.get_rect(
-                center=(self.x + self.width // 2, self.y + self.height // 2)
+                center=(self.x + self.width // 2, self.y + self.height // 2),
             )
             screen.blit(checkmark, checkmark_rect)
 
@@ -164,7 +171,10 @@ class SubmitButton:
 
         # Draw button border
         pygame.draw.rect(
-            screen, border_color, (self.x, self.y, self.width, self.height), 3
+            screen,
+            border_color,
+            (self.x, self.y, self.width, self.height),
+            3,
         )
 
         # Draw button text - scale font size based on button height
@@ -172,7 +182,7 @@ class SubmitButton:
         font = pygame.font.Font(None, font_size)
         text_surface = font.render("Submit", ANTI_ALIASING, text_color)
         text_rect = text_surface.get_rect(
-            center=(self.x + self.width // 2, self.y + self.height // 2)
+            center=(self.x + self.width // 2, self.y + self.height // 2),
         )
         screen.blit(text_surface, text_rect)
 
@@ -237,7 +247,7 @@ class CardsSelector(BaseSelector["VisualCard"]):
         start_y = int(
             APP_HEIGHT // 2
             - (num_rows * (card_height + card_spacing)) // 2
-            - int(APP_HEIGHT * 0.06)
+            - int(APP_HEIGHT * 0.06),
         )
 
         # Create buttons for each card
@@ -262,7 +272,10 @@ class CardsSelector(BaseSelector["VisualCard"]):
         submit_x = int((APP_WIDTH - submit_width) // 2)
         submit_y = int(APP_HEIGHT - int(APP_HEIGHT * 0.12))  # 12% from bottom
         self.submit_button = SubmitButton(
-            submit_x, submit_y, submit_width, submit_height
+            submit_x,
+            submit_y,
+            submit_width,
+            submit_height,
         )
 
     def _update_submit_button_state(self) -> None:
@@ -289,7 +302,8 @@ class CardsSelector(BaseSelector["VisualCard"]):
 
                     # Check if submit button was clicked
                     if self.submit_button and self.submit_button.is_clicked(
-                        mouse_x, mouse_y
+                        mouse_x,
+                        mouse_y,
                     ):
                         return self._get_selected_items()
 
@@ -297,7 +311,8 @@ class CardsSelector(BaseSelector["VisualCard"]):
                     for button in self.buttons:
                         if button.is_clicked(mouse_x, mouse_y):
                             button.toggle_selection(
-                                len(self._get_selected_items()), self.max_selections
+                                len(self._get_selected_items()),
+                                self.max_selections,
                             )
                             self._update_submit_button_state()
                             break
@@ -344,7 +359,7 @@ class CardsSelector(BaseSelector["VisualCard"]):
 
         instruction_text = instruction_font.render(instruction, ANTI_ALIASING, color)
         instruction_rect = instruction_text.get_rect(
-            center=(int(APP_WIDTH // 2), dialog_y + int(APP_HEIGHT * 0.10))
+            center=(int(APP_WIDTH // 2), dialog_y + int(APP_HEIGHT * 0.10)),
         )
         self.screen.blit(instruction_text, instruction_rect)
 

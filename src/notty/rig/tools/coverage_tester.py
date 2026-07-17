@@ -10,12 +10,12 @@ Example:
     >>> CoverageTester.I.remote_coverage_url()
 """
 
-from pyrig_codecov.rig.tools.testing.coverage import (  # deptry: ignore[DEP004]
-    CoverageTester as BaseCoverageTester,
+from pyrig_codecov.rig.tools.testing.project import (  # deptry: ignore[DEP004]
+    ProjectTester as BaseProjectTester,
 )
 
 
-class CoverageTester(BaseCoverageTester):
+class CoverageTester(BaseProjectTester):
     """You can override methods from the base class to customize behavior."""
 
     def threshold(self) -> int:

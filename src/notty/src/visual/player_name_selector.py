@@ -91,13 +91,15 @@ class PlayerNameButton(SelectableButton[str]):
             else ((100, 200, 255) if self.hovered else (255, 255, 255))
         )
         name_text = name_font.render(
-            self.player_name.capitalize(), ANTI_ALIASING, color
+            self.player_name.capitalize(),
+            ANTI_ALIASING,
+            color,
         )
         name_rect = name_text.get_rect(
             center=(
                 self.x + self.width // 2,
                 self.y + self.height + int(APP_HEIGHT * 0.04),
-            )
+            ),
         )
         screen.blit(name_text, name_rect)
 
@@ -190,7 +192,7 @@ class PlayerNameSelector(BaseSelector[str]):
         title_font = pygame.font.Font(None, title_font_size)
         title_text = title_font.render(self.title, ANTI_ALIASING, (255, 255, 255))
         title_rect = title_text.get_rect(
-            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.12))
+            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.12)),
         )
         self.screen.blit(title_text, title_rect)
 
@@ -202,10 +204,12 @@ class PlayerNameSelector(BaseSelector[str]):
         else:
             instruction = "Click on a player to select"
         instruction_text = instruction_font.render(
-            instruction, ANTI_ALIASING, (255, 255, 255)
+            instruction,
+            ANTI_ALIASING,
+            (255, 255, 255),
         )
         instruction_rect = instruction_text.get_rect(
-            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.22))
+            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.22)),
         )
         self.screen.blit(instruction_text, instruction_rect)
 
@@ -235,7 +239,8 @@ class PlayerNameSelector(BaseSelector[str]):
                                 # Multi-select mode: toggle selection
                                 current_count = len(self._get_selected_items())
                                 button.toggle_selection(
-                                    current_count, self.max_selections
+                                    current_count,
+                                    self.max_selections,
                                 )
                             else:
                                 # Single-select mode: return immediately

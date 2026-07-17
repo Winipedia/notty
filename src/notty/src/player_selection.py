@@ -50,7 +50,8 @@ def show_player_selection_screen(screen: pygame.Surface) -> str:
 
 
 def show_opponent_selection_screen(
-    screen: pygame.Surface, human_player: str
+    screen: pygame.Surface,
+    human_player: str,
 ) -> list[str]:
     """Show a screen to select 1-2 opponents.
 

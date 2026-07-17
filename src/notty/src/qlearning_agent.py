@@ -34,7 +34,7 @@ class QLearningAgent:
             epsilon_min: Minimum epsilon value.
         """
         self.q_table: dict[tuple[int, int, bool, int], dict[str, float]] = defaultdict(
-            lambda: defaultdict(float)
+            lambda: defaultdict(float),
         )
         self.alpha = alpha
         self.gamma = gamma
@@ -160,7 +160,8 @@ class QLearningAgent:
             filepath: Path to save the Q-table.
         """
         data: dict[
-            str, dict[tuple[int, int, bool, int], dict[str, float]] | float | int
+            str,
+            dict[tuple[int, int, bool, int], dict[str, float]] | float | int,
         ] = {
             "q_table": dict(self.q_table),
             "epsilon": self.epsilon,

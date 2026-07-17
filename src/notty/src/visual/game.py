@@ -499,7 +499,8 @@ class VisualGame(Visual):
         # go through all card combinations and check if any are valid
         for i in range(3, 5):
             for cards in itertools.combinations(
-                self.get_current_player().hand.cards, i
+                self.get_current_player().hand.cards,
+                i,
             ):
                 if self.card_group_is_valid(list(cards)):
                     return True
@@ -554,7 +555,9 @@ class VisualGame(Visual):
             available_cards = current_player.hand.cards
             # Pass the validation function to check if selected cards form a valid group
             selector = CardsSelector(
-                self.screen, available_cards, self.card_group_is_valid
+                self.screen,
+                available_cards,
+                self.card_group_is_valid,
             )
             return selector.show()
         msg = "Should not be reached"

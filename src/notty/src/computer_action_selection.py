@@ -237,7 +237,11 @@ def computer_chooses_action(game: "VisualGame") -> None:
 
     # Execute the action
     game.do_action(
-        action, count=count, card=card, cards=cards, target_player=target_player
+        action,
+        count=count,
+        card=card,
+        cards=cards,
+        target_player=target_player,
     )
 
     # Calculate reward based on the action taken

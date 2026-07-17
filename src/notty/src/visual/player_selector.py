@@ -34,7 +34,14 @@ class PlayerButton(SelectableButton["VisualPlayer"]):
             player_image: The image of the player.
         """
         super().__init__(
-            x, y, width, height, player, player_image, enabled=True, selectable=False
+            x,
+            y,
+            width,
+            height,
+            player,
+            player_image,
+            enabled=True,
+            selectable=False,
         )
         self.player = player
         self.player_image = player_image
@@ -79,7 +86,7 @@ class PlayerButton(SelectableButton["VisualPlayer"]):
             center=(
                 self.x + self.width // 2,
                 self.y + self.height + int(self.height * 0.2),
-            )
+            ),
         )
         screen.blit(text_surface, text_rect)
 
@@ -88,7 +95,9 @@ class PlayerSelector(BaseSelector["VisualPlayer"]):
     """Dialog for selecting a player to steal from."""
 
     def __init__(
-        self, screen: pygame.Surface, available_players: list["VisualPlayer"]
+        self,
+        screen: pygame.Surface,
+        available_players: list["VisualPlayer"],
     ) -> None:
         """Initialize the player selector.
 

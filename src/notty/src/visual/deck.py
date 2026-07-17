@@ -56,7 +56,7 @@ class VisualDeck(Visual):
             for number in Number.get_all_numbers():
                 for _ in range(self.NUM_DUPLICATES):
                     self.add_card(
-                        VisualCard(color, number, DECK_POS_X, DECK_POS_Y, self.screen)
+                        VisualCard(color, number, DECK_POS_X, DECK_POS_Y, self.screen),
                     )
 
     def get_png_name(self) -> str:

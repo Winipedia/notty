@@ -4,115 +4,114 @@ version = "2.1.4"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
-dependencies = [
-    "platformdirs>=4.10.0",
-    "pygame>=2.6.1",
-    "pyrig>=18.3.4",
-    "pyrig-runtime>=3.5.2",
-]
-license-files = [
-    "LICENSE",
-]
 license = "MIT"
+license-files = [
+  "LICENSE",
+]
+authors = [
+  { name = "Winipedia" },
+  { name = "Azeez" },
+  { name = "Hanmiao chen" },
+]
+maintainers = [
+  { name = "Winipedia" },
+]
+dependencies = [
+  "platformdirs>=4.10.0",
+  "pygame>=2.6.1",
+  "pyrig>=18.3.4",
+  "pyrig-runtime>=3.5.2",
+]
 
-[[project.authors]]
-name = "Winipedia"
-
-[[project.authors]]
-name = "Azeez"
-
-[[project.authors]]
-name = "Hanmiao chen"
-
-[[project.maintainers]]
-name = "Winipedia"
+[project.urls]
+Changelog = "https://github.com/Winipedia/notty/releases"
+Documentation = "https://Winipedia.github.io/notty"
+Homepage = "https://github.com/Winipedia/notty"
+Issues = "https://github.com/Winipedia/notty/issues"
+Source = "https://github.com/Winipedia/notty"
 
 [project.scripts]
 notty = "pyrig_runtime.rig.cli.main:main"
 
-[project.urls]
-Homepage = "https://github.com/Winipedia/notty"
-Documentation = "https://Winipedia.github.io/notty"
-Source = "https://github.com/Winipedia/notty"
-Issues = "https://github.com/Winipedia/notty/issues"
-Changelog = "https://github.com/Winipedia/notty/releases"
-
 [dependency-groups]
 dev = [
-    "bandit>=1.9.4",
-    "deptry>=0.25.1",
-    "detect-secrets>=1.5.0",
-    "mkdocs>=1.6.1",
-    "mkdocs-material>=9.7.6",
-    "mkdocs-mermaid2-plugin>=1.2.3",
-    "mkdocstrings[python]>=1.0.5",
-    "mypy>=2.2.0",
-    "pillow>=12.3.0",
-    "pip-audit>=2.10.1",
-    "prek>=0.4.8",
-    "pyinstaller>=6.21.0",
-    "pyrig>=18.3.4",
-    "pyrig-codecov>=3.2.6",
-    "pyrig-executables>=3.1.2",
-    "pytest>=9.1.1",
-    "pytest-cov>=7.1.0",
-    "ruff>=0.15.21",
-    "rumdl>=0.2.30",
-    "typos>=1.48.0",
+  "bandit>=1.9.4",
+  "deptry>=0.25.1",
+  "detect-secrets>=1.5.0",
+  "mkdocs>=1.6.1",
+  "mkdocs-material>=9.7.6",
+  "mkdocs-mermaid2-plugin>=1.2.3",
+  "mkdocstrings[python]>=1.0.5",
+  "mypy>=2.2.0",
+  "pillow>=12.3.0",
+  "pip-audit>=2.10.1",
+  "pre-commit-hooks",
+  "prek>=0.4.8",
+  "pyinstaller>=6.21.0",
+  "pyrig>=18.3.4",
+  "pyrig-codecov>=3.2.6",
+  "pyrig-executables>=3.1.2",
+  "pytest>=9.1.1",
+  "pytest-cov>=7.1.0",
+  "pytest-randomly",
+  "ruff>=0.15.21",
+  "rumdl>=0.2.30",
+  "ryl",
+  "shellcheck-py",
+  "shfmt-py",
+  "tombi",
+  "typos>=1.48.0",
 ]
 
 [build-system]
 requires = [
-    "uv_build",
+  "uv-build",
 ]
 build-backend = "uv_build"
-
-[tool.ruff.lint]
-select = [
-    "ALL",
-]
-ignore = [
-    "COM812",
-    "ANN401",
-]
-
-[tool.ruff.lint.per-file-ignores]
-"tests/**/*.py" = [
-    "S101",
-]
-
-[tool.ruff.lint.pydocstyle]
-convention = "google"
-
-[tool.ruff.format]
-docstring-code-format = true
-
-[tool.pytest]
-testpaths = [
-    "tests",
-]
-addopts = [
-    "--cov=notty",
-    "--cov-branch",
-    "--cov-fail-under=0",
-    "--cov-report=term-missing:skip-covered",
-    "--cov-report=xml",
-]
-filterwarnings = [
-    "error",
-]
-strict = true
 
 [tool.deptry]
 root = "src"
 
 [tool.deptry.per_rule_ignores]
 DEP002 = [
-    "pyrig-runtime",
+  "pyrig-runtime",
 ]
 
 [tool.mypy]
 strict = true
 warn_unreachable = true
-show_error_codes = true
+enable_error_code = []
+show_error_code_links = true
 files = "."
+
+[tool.pytest]
+addopts = [
+  "--cov-branch",
+  "--cov-fail-under=0",
+  "--cov-report=term-missing:skip-covered",
+  "--cov-report=xml",
+  "--cov=notty",
+]
+filterwarnings = [
+  "error",
+]
+strict = true
+testpaths = [
+  "tests",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+  "ALL",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+  "S101",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
