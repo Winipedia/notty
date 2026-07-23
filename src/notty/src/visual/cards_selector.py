@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class MultiCardButton(SelectableButton["VisualCard"]):
     """Represents a clickable card button that can be selected/deselected."""
 
-    def __init__(  # noqa: PLR0913
+    def __init__(  # noqa: PLR0913, PLR0917
         self,
         x: int,
         y: int,

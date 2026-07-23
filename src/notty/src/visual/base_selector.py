@@ -14,7 +14,7 @@ T = TypeVar("T")
 class SelectableButton[T](ABC):
     """Base class for selectable buttons with images."""
 
-    def __init__(  # noqa: PLR0913
+    def __init__(  # noqa: PLR0913, PLR0917
         self,
         x: int,
         y: int,

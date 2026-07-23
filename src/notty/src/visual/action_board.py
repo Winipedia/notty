@@ -43,7 +43,7 @@ class Action:
 class ActionButton:
     """Represents a clickable action button."""
 
-    def __init__(  # noqa: PLR0913
+    def __init__(  # noqa: PLR0913, PLR0917
         self,
         x: int,
         y: int,

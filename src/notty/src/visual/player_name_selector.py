@@ -11,7 +11,7 @@ from notty.src.visual.base_selector import BaseSelector, SelectableButton
 class PlayerNameButton(SelectableButton[str]):
     """Represents a clickable player name button with image."""
 
-    def __init__(  # noqa: PLR0913
+    def __init__(  # noqa: PLR0913, PLR0917
         self,
         x: int,
         y: int,
