@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.14.14"
+version = "2.14.15"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -9,12 +9,12 @@ license-files = [
   "LICENSE",
 ]
 authors = [
-  { name = "Winipedia" },
+  { name = "Winipedia", email = "winipedia@gmx.de" },
   { name = "Azeez" },
   { name = "Hanmiao chen" },
 ]
 maintainers = [
-  { name = "Winipedia" },
+  { name = "Winipedia", email = "winipedia@gmx.de" },
 ]
 dependencies = [
   "platformdirs>=4.10.0",
