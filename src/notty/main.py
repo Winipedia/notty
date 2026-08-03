@@ -95,9 +95,6 @@ def run_event_loop(game: VisualGame) -> str:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "quit"
-            if game.all_players_have_no_cards():
-                VisualGame.distribute_starting_cards(game)
-                continue
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 game.action_board.handle_click(mouse_x, mouse_y)

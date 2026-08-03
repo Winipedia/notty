@@ -110,6 +110,7 @@ class VisualGame(Visual):
         """Set up the game by shuffling deck and dealing initial cards."""
         # Shuffle deck before dealing
         self.deck.shuffle()
+        self.distribute_starting_cards(self)
 
     def _create_action_board(self) -> "ActionBoard":
         """Create action board for the human player.
