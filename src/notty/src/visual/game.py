@@ -475,15 +475,15 @@ class VisualGame(Visual):
         consecutive_numbers = all(b - a == 1 for a, b in itertools.pairwise(numbers))
         one_number = len(set(numbers)) == 1
 
-        # A sequence of at least three cards of the same colour
+        # A sequence of at least three cards of the same color
         # with consecutive numbers (e.g. blue 4, blue 5 and blue 6)
         min_cards = 3
         if len(cards) >= min_cards and one_color and consecutive_numbers:
             is_valid = True
 
         # A set of at least four cards of the same number
-        # but different colours (e.g. blue 4, green 4 and red 4).
-        # Note that no repeated colours are allowed in this type of group
+        # but different colors (e.g. blue 4, green 4 and red 4).
+        # Note that no repeated colors are allowed in this type of group
         # (e.g. blue 4, red 4 and blue 4 is not a valid group)
         min_cards = 4
         if len(cards) >= min_cards and unique_colors and one_number:
