@@ -49,7 +49,9 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
             i
             for i, step in enumerate(steps)
             if step["id"]
-            == self.id_from_method(cast("MethodType", self.step_install_dependencies))
+            == self.step_id_from_method(
+                cast("MethodType", self.step_install_dependencies),
+            )
         )
         steps.insert(index + 1, self.step_pre_install_pygame_from_binary())
         return steps
