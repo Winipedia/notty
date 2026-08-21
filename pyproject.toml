@@ -12,7 +12,7 @@ authors = [
   { name = "Winipedia", email = "winipedia@gmx.de" },
   { name = "Azeez" },
   { name = "Hanmiao chen" },
-  { name = "Winipedia2"}
+  { name = "Winipedia2" },
 ]
 maintainers = [
   { name = "Winipedia", email = "winipedia@gmx.de" },
