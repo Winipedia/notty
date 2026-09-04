@@ -80,6 +80,7 @@
     "permissions":
       "contents": "write"
     "needs":
+      - "health-check"
       - "executable"
     "runs-on": "ubuntu-latest"
     "steps":
