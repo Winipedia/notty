@@ -24,6 +24,7 @@
       "id-token": "write"
       "pages": "write"
     "runs-on": "ubuntu-latest"
+    "environment": "documentation"
     "steps":
       -
         "name": "Checkout Repository"
