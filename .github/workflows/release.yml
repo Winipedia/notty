@@ -78,7 +78,7 @@
   "publish":
     "name": "Publish"
     "permissions":
-      "contents": "write"
+      "contents": "write"  # required
     "needs":
       - "health-check"
       - "executable"
@@ -121,8 +121,8 @@
     "name": "Deploy"
     "permissions":
       "contents": "read"
-      "id-token": "write"
-      "pages": "write"
+      "id-token": "write"  # required
+      "pages": "write"  # required
     "needs":
       - "publish"
     "uses": "$/.github/workflows/deploy.yml"
