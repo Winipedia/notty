@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.14.60"
+version = "2.14.64"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -36,6 +36,7 @@ notty = "pyrig_runtime.rig.cli.main:main"
 
 [dependency-groups]
 dev = [
+  "actionlint-py>=1.7.12.24",
   "bandit>=1.9.4",
   "deptry>=0.25.1",
   "detect-secrets>=1.5.0",
@@ -44,6 +45,7 @@ dev = [
   "pillow>=12.3.0",
   "pre-commit-hooks",
   "prek>=0.4.8",
+  "pyflakes>=3.4.0",
   "pyinstaller>=6.21.0",
   "pyrig>=18.3.4",
   "pyrig-codecov>=3.2.6",
@@ -60,6 +62,7 @@ dev = [
   "tombi",
   "typos>=1.48.0",
   "zensical>=0.0.52",
+  "zizmor>=1.30.0",
 ]
 
 [build-system]
