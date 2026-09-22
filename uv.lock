@@ -509,7 +509,7 @@ wheels = [
 
 [[package]]
 name = "notty"
-version = "2.14.77"
+version = "2.14.78"
 source = { editable = "." }
 dependencies = [
     { name = "platformdirs" },
