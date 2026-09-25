@@ -172,11 +172,11 @@ changing these parameters in `computer_action_selection.py`:
 
 ```python
 agent = QLearningAgent(
-    alpha=0.1,          # Learning rate (0.0 to 1.0)
-    gamma=0.9,          # Discount factor (0.0 to 1.0)
-    epsilon=0.2,        # Initial exploration rate (0.0 to 1.0)
+    alpha=0.1,  # Learning rate (0.0 to 1.0)
+    gamma=0.9,  # Discount factor (0.0 to 1.0)
+    epsilon=0.2,  # Initial exploration rate (0.0 to 1.0)
     epsilon_decay=0.9995,  # How fast epsilon decreases
-    epsilon_min=0.05    # Minimum exploration rate
+    epsilon_min=0.05,  # Minimum exploration rate
 )
 ```
 
