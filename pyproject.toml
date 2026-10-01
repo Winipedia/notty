@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.14.91"
+version = "2.14.92"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -51,6 +51,7 @@ dev = [
   "pyrig-codecov>=3.17.31",
   "pyrig-codeql>=1.0.0",
   "pyrig-executables>=3.18.24",
+  "pyrig-public>=1.0.1",
   "pytest>=9.1.1",
   "pytest-cov>=7.1.0",
   "pytest-randomly>=5.0.0",
