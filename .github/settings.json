@@ -1,4 +1,7 @@
 {
+  "fork_pr_contributor_approval": {
+    "approval_policy": "all_external_contributors"
+  },
   "repository": {
     "name": "notty",
     "description": "A simple card game called Notty using Pygame",
@@ -104,8 +107,5 @@
         }
       ]
     }
-  ],
-  "fork_pr_contributor_approval": {
-    "approval_policy": "all_external_contributors"
-  }
+  ]
 }

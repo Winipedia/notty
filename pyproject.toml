@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.14.101"
+version = "2.14.102"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -124,3 +124,7 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ryl.rules]
+ALL = "enable"
+key-ordering = "disable"
