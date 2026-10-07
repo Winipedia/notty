@@ -148,11 +148,6 @@ class QLearningAgent:
         # Decay epsilon
         self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
 
-    def reset_episode(self) -> None:
-        """Reset episode-specific tracking."""
-        self.last_state = None
-        self.last_action = None
-
     def save(self, filepath: str = "notty_qtable.pkl") -> None:
         """Save Q-table to file.
 
@@ -209,22 +204,3 @@ class QLearningAgent:
             return False
         else:
             return True
-
-    def get_stats(self) -> dict[str, int | float]:
-        """Get learning statistics.
-
-        Returns:
-            Dictionary with learning statistics.
-        """
-        exploration_rate = (
-            self.exploration_actions / self.total_actions
-            if self.total_actions > 0
-            else 0
-        )
-        return {
-            "states_learned": len(self.q_table),
-            "total_actions": self.total_actions,
-            "exploration_actions": self.exploration_actions,
-            "exploration_rate": exploration_rate,
-            "current_epsilon": self.epsilon,
-        }

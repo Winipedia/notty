@@ -169,9 +169,6 @@ class VisualPlayer(Visual):
 
     ACTIVE_PLAYERS: ClassVar[list["VisualPlayer"]] = []
 
-    TYPE_HUMAN = "human"
-    TYPE_COMPUTER = "computer"
-
     def __init__(
         self,
         name: str,

@@ -39,9 +39,19 @@ class Number:
     NINE = 9
 
     @classmethod
-    def get_all_numbers(cls) -> range:
+    def get_all_numbers(cls) -> tuple[int, ...]:
         """Get all numbers."""
-        return range(1, 10)
+        return (
+            cls.ONE,
+            cls.TWO,
+            cls.THREE,
+            cls.FOUR,
+            cls.FIVE,
+            cls.SIX,
+            cls.SEVEN,
+            cls.EIGHT,
+            cls.NINE,
+        )
 
 
 class VisualCard(Visual):

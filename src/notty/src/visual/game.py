@@ -157,14 +157,6 @@ class VisualGame(Visual):
         """
         return [p for i, p in enumerate(self.players) if i != self.current_player_index]
 
-    def get_next_player(self) -> VisualPlayer:
-        """Get the next player.
-
-        Returns:
-            The next player.
-        """
-        return self.players[(self.current_player_index + 1) % len(self.players)]
-
     def get_next_player_index(self) -> int:
         """Get the index of the next player.
 
@@ -570,10 +562,6 @@ class VisualGame(Visual):
         for player in game.players:
             cards = game.deck.draw_cards(INITIAL_HAND_SIZE)
             player.hand.add_cards(cards)
-
-    def all_players_have_no_cards(self) -> bool:
-        """Check if all players have no cards."""
-        return all(player.hand.is_empty() for player in self.players)
 
     def action_is_possible(self, action: str) -> bool:  # noqa: PLR0911
         """Check if an action is possible.

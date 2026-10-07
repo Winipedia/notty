@@ -57,16 +57,6 @@ class Visual(ABC):
         self.target_x = x
         self.target_y = y
 
-    def set_position(self, x: int, y: int) -> None:
-        """Set the position of the visual element.
-
-        Args:
-            x: X coordinate.
-            y: Y coordinate.
-        """
-        self.x = x
-        self.y = y
-
     def draw(self) -> None:
         """Draw the visual element."""
         # Smoothly move toward target

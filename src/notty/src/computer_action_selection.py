@@ -269,9 +269,3 @@ def save_qlearning_agent() -> None:
     if _qlearning_agent_container["agent"] is not None:
         save_path = str(get_qlearning_save_path())
         _qlearning_agent_container["agent"].save(save_path)
-
-
-def reset_qlearning_episode() -> None:
-    """Reset the Q-Learning agent for a new episode/game."""
-    if _qlearning_agent_container["agent"] is not None:
-        _qlearning_agent_container["agent"].reset_episode()
