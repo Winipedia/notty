@@ -27,28 +27,6 @@ def get_players(screen: pygame.Surface) -> list[VisualPlayer]:
     return players_list
 
 
-def show_player_selection_screen(screen: pygame.Surface) -> str:
-    """Show a screen to select which player you want to be.
-
-    Args:
-        screen: The pygame display surface.
-
-    Returns:
-        The name of the selected player.
-    """
-    all_names = VisualPlayer.get_all_player_names()
-    selector = PlayerNameSelector(
-        screen=screen,
-        available_names=all_names,
-        title="Choose Your Player",
-        max_selections=1,
-        min_selections=1,
-    )
-    result = selector.show()
-    # Return single string (not list)
-    return result if isinstance(result, str) else result[0]
-
-
 def show_opponent_selection_screen(
     screen: pygame.Surface,
     human_player: str,
@@ -75,3 +53,25 @@ def show_opponent_selection_screen(
     result = selector.show()
     # Return list of strings
     return result if isinstance(result, list) else [result]
+
+
+def show_player_selection_screen(screen: pygame.Surface) -> str:
+    """Show a screen to select which player you want to be.
+
+    Args:
+        screen: The pygame display surface.
+
+    Returns:
+        The name of the selected player.
+    """
+    all_names = VisualPlayer.get_all_player_names()
+    selector = PlayerNameSelector(
+        screen=screen,
+        available_names=all_names,
+        title="Choose Your Player",
+        max_selections=1,
+        min_selections=1,
+    )
+    result = selector.show()
+    # Return single string (not list)
+    return result if isinstance(result, str) else result[0]

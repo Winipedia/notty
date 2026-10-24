@@ -6,6 +6,15 @@ import pygame
 from platformdirs import user_data_dir
 
 
+def get_qlearning_save_path() -> Path:
+    """Get the path for saving Q-Learning agent data.
+
+    Returns:
+        Path to the Q-table save file.
+    """
+    return get_user_data_dir() / "notty_qtable.pkl"
+
+
 def get_window_size() -> tuple[int, int]:
     """Get the window size based on screen dimensions.
 
@@ -47,12 +56,3 @@ def get_user_data_dir() -> Path:
     data_dir = Path(user_data_dir("Notty", "Notty"))
     data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir
-
-
-def get_qlearning_save_path() -> Path:
-    """Get the path for saving Q-Learning agent data.
-
-    Returns:
-        Path to the Q-table save file.
-    """
-    return get_user_data_dir() / "notty_qtable.pkl"

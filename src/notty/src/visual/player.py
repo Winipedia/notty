@@ -26,6 +26,70 @@ from notty.src.visual.base import Visual
 from notty.src.visual.card import VisualCard
 
 
+class VisualPlayer(Visual):
+    """Visual player."""
+
+    ACTIVE_PLAYERS: ClassVar[list["VisualPlayer"]] = []
+
+    def __init__(
+        self,
+        name: str,
+        *,
+        is_human: bool = False,
+        screen: pygame.Surface,
+    ) -> None:
+        """Initialize a visual player."""
+        VisualPlayer.ACTIVE_PLAYERS.append(self)
+        self.name = name
+        self.is_human = is_human
+        x, y = self.get_coordinates()
+        super().__init__(x, y, PLAYER_HEIGHT, PLAYER_WIDTH, screen)
+        self.hand = VisualHand(player=self)
+
+    def draw(self) -> None:
+        """Draw the player."""
+        super().draw()
+        self.hand.draw()
+
+    def get_png_name(self) -> str:
+        """Get the png for the visual element."""
+        return self.name
+
+    def get_png_pkg(self) -> ModuleType:
+        """Get the png for the visual element."""
+        return players
+
+    def get_coordinates(self) -> tuple[int, int]:
+        """Get the coordinates for the player."""
+        # make all xy dependent on APP_WIDTH and APP_HEIGHT
+        y = APP_HEIGHT - PLAYER_HEIGHT
+        # make position dependent on number of players
+        # and index of player
+        num_players = MAX_PLAYERS
+
+        index = VisualPlayer.ACTIVE_PLAYERS.index(self)
+
+        # Divide screen into equal spaces and center each player in their space
+        player_space_width = APP_WIDTH // num_players
+
+        # Center the player in their allocated space
+        x = index * player_space_width
+
+        return x, y
+
+    @classmethod
+    def get_all_player_names(cls) -> list[str]:
+        """Get all player names."""
+        # use importlib resources to gte all files in players package
+        # that end with .png
+
+        return [
+            f.name.removesuffix(".png")
+            for f in resources.files(players).iterdir()
+            if f.name.endswith(".png")
+        ]
+
+
 class VisualHand(Visual):
     """Represents a player's hand of cards.
 
@@ -162,67 +226,3 @@ class VisualHand(Visual):
     def shuffle(self) -> None:
         """Shuffle the cards in the hand."""
         random.shuffle(self.cards)
-
-
-class VisualPlayer(Visual):
-    """Visual player."""
-
-    ACTIVE_PLAYERS: ClassVar[list["VisualPlayer"]] = []
-
-    def __init__(
-        self,
-        name: str,
-        *,
-        is_human: bool = False,
-        screen: pygame.Surface,
-    ) -> None:
-        """Initialize a visual player."""
-        VisualPlayer.ACTIVE_PLAYERS.append(self)
-        self.name = name
-        self.is_human = is_human
-        x, y = self.get_coordinates()
-        super().__init__(x, y, PLAYER_HEIGHT, PLAYER_WIDTH, screen)
-        self.hand = VisualHand(player=self)
-
-    def draw(self) -> None:
-        """Draw the player."""
-        super().draw()
-        self.hand.draw()
-
-    def get_png_name(self) -> str:
-        """Get the png for the visual element."""
-        return self.name
-
-    def get_png_pkg(self) -> ModuleType:
-        """Get the png for the visual element."""
-        return players
-
-    def get_coordinates(self) -> tuple[int, int]:
-        """Get the coordinates for the player."""
-        # make all xy dependent on APP_WIDTH and APP_HEIGHT
-        y = APP_HEIGHT - PLAYER_HEIGHT
-        # make position dependent on number of players
-        # and index of player
-        num_players = MAX_PLAYERS
-
-        index = VisualPlayer.ACTIVE_PLAYERS.index(self)
-
-        # Divide screen into equal spaces and center each player in their space
-        player_space_width = APP_WIDTH // num_players
-
-        # Center the player in their allocated space
-        x = index * player_space_width
-
-        return x, y
-
-    @classmethod
-    def get_all_player_names(cls) -> list[str]:
-        """Get all player names."""
-        # use importlib resources to gte all files in players package
-        # that end with .png
-
-        return [
-            f.name.removesuffix(".png")
-            for f in resources.files(players).iterdir()
-            if f.name.endswith(".png")
-        ]

@@ -3,6 +3,10 @@
 import notty
 
 
+def test_get_screen() -> None:
+    """Test function."""
+
+
 def test_main() -> None:
     """Test func for main."""
     assert notty.__name__ == notty.__name__
@@ -12,19 +16,15 @@ def test_run() -> None:
     """Test function."""
 
 
-def test_get_screen() -> None:
-    """Test function."""
-
-
-def test_simulate_first_shuffle_and_deal() -> None:
-    """Test function."""
-
-
 def test_run_event_loop() -> None:
     """Test function."""
 
 
 def test_show_winner() -> None:
+    """Test function."""
+
+
+def test_simulate_first_shuffle_and_deal() -> None:
     """Test function."""
 
 

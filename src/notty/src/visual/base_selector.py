@@ -11,104 +11,6 @@ from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
 T = TypeVar("T")
 
 
-class SelectableButton[T](ABC):
-    """Base class for selectable buttons with images."""
-
-    def __init__(  # noqa: PLR0913, PLR0917
-        self,
-        x: int,
-        y: int,
-        width: int,
-        height: int,
-        item: T,
-        image: pygame.Surface | None = None,
-        *,
-        enabled: bool = True,
-        selectable: bool = False,
-    ) -> None:
-        """Initialize a selectable button.
-
-        Args:
-            x: X coordinate of the button.
-            y: Y coordinate of the button.
-            width: Width of the button.
-            height: Height of the button.
-            item: The item this button represents.
-            image: The image to display.
-            enabled: Whether the button is enabled (clickable).
-            selectable: Whether the button can be selected (for multi-select).
-        """
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.item = item
-        self.image = image
-        self.enabled = enabled
-        self.selectable = selectable
-        self.hovered = False
-        self.selected = False
-
-    def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
-        """Check if the button was clicked.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-
-        Returns:
-            True if the button was clicked and is enabled.
-        """
-        if not self.enabled:
-            return False
-        return (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
-    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
-        """Update hover state based on mouse position.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-        """
-        if not self.enabled:
-            self.hovered = False
-            return
-        self.hovered = (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
-    def toggle_selection(
-        self,
-        current_selected_count: int,
-        max_selections: int,
-    ) -> None:
-        """Toggle the selection state of this button.
-
-        Args:
-            current_selected_count: Number of currently selected items.
-            max_selections: Maximum number of selections allowed.
-        """
-        if self.selectable:
-            if self.selected:
-                # Always allow deselection
-                self.selected = False
-            elif current_selected_count < max_selections:
-                # Only allow selection if under max
-                self.selected = True
-
-    @abstractmethod
-    def draw(self, screen: pygame.Surface) -> None:
-        """Draw the button.
-
-        Args:
-            screen: The pygame display surface.
-        """
-
-
 class BaseSelector[T](ABC):
     """Base class for selector dialogs."""
 
@@ -262,3 +164,101 @@ class BaseSelector[T](ABC):
         # Draw buttons
         for button in self.buttons:
             button.draw(self.screen)
+
+
+class SelectableButton[T](ABC):
+    """Base class for selectable buttons with images."""
+
+    def __init__(  # noqa: PLR0913, PLR0917
+        self,
+        x: int,
+        y: int,
+        width: int,
+        height: int,
+        item: T,
+        image: pygame.Surface | None = None,
+        *,
+        enabled: bool = True,
+        selectable: bool = False,
+    ) -> None:
+        """Initialize a selectable button.
+
+        Args:
+            x: X coordinate of the button.
+            y: Y coordinate of the button.
+            width: Width of the button.
+            height: Height of the button.
+            item: The item this button represents.
+            image: The image to display.
+            enabled: Whether the button is enabled (clickable).
+            selectable: Whether the button can be selected (for multi-select).
+        """
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.item = item
+        self.image = image
+        self.enabled = enabled
+        self.selectable = selectable
+        self.hovered = False
+        self.selected = False
+
+    def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
+        """Check if the button was clicked.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+
+        Returns:
+            True if the button was clicked and is enabled.
+        """
+        if not self.enabled:
+            return False
+        return (
+            self.x <= mouse_x <= self.x + self.width
+            and self.y <= mouse_y <= self.y + self.height
+        )
+
+    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
+        """Update hover state based on mouse position.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+        """
+        if not self.enabled:
+            self.hovered = False
+            return
+        self.hovered = (
+            self.x <= mouse_x <= self.x + self.width
+            and self.y <= mouse_y <= self.y + self.height
+        )
+
+    def toggle_selection(
+        self,
+        current_selected_count: int,
+        max_selections: int,
+    ) -> None:
+        """Toggle the selection state of this button.
+
+        Args:
+            current_selected_count: Number of currently selected items.
+            max_selections: Maximum number of selections allowed.
+        """
+        if self.selectable:
+            if self.selected:
+                # Always allow deselection
+                self.selected = False
+            elif current_selected_count < max_selections:
+                # Only allow selection if under max
+                self.selected = True
+
+    @abstractmethod
+    def draw(self, screen: pygame.Surface) -> None:
+        """Draw the button.
+
+        Args:
+            screen: The pygame display surface.
+        """

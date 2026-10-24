@@ -11,73 +11,6 @@ if TYPE_CHECKING:
     from notty.src.visual.card import VisualCard
 
 
-class CardButton(SelectableButton["VisualCard"]):
-    """Represents a clickable card button."""
-
-    def __init__(  # noqa: PLR0913, PLR0917
-        self,
-        x: int,
-        y: int,
-        width: int,
-        height: int,
-        card: "VisualCard",
-        card_image: pygame.Surface,
-    ) -> None:
-        """Initialize a card button.
-
-        Args:
-            x: X coordinate of the button.
-            y: Y coordinate of the button.
-            width: Width of the button.
-            height: Height of the button.
-            card: The card this button represents.
-            card_image: The image of the card.
-        """
-        super().__init__(
-            x,
-            y,
-            width,
-            height,
-            card,
-            card_image,
-            enabled=True,
-            selectable=False,
-        )
-        self.card = card
-        self.card_image = card_image
-
-    def draw(self, screen: pygame.Surface) -> None:
-        """Draw the button.
-
-        Args:
-            screen: The pygame display surface.
-        """
-        # Determine border color based on state
-        if self.hovered:
-            border_color = (100, 200, 255)  # Light blue for hover
-            border_width = 5
-        else:
-            border_color = (255, 255, 255)  # White
-            border_width = 3
-
-        # Draw border
-        border_padding = 5
-        pygame.draw.rect(
-            screen,
-            border_color,
-            (
-                self.x - border_padding,
-                self.y - border_padding,
-                self.width + 2 * border_padding,
-                self.height + 2 * border_padding,
-            ),
-            border_width,
-        )
-
-        # Draw card image
-        screen.blit(self.card_image, (self.x, self.y))
-
-
 class CardSelector(BaseSelector["VisualCard"]):
     """Dialog for selecting a card to discard."""
 
@@ -148,3 +81,70 @@ class CardSelector(BaseSelector["VisualCard"]):
             card_image = pygame.transform.scale(card.png, (card_width, card_height))
             button = CardButton(x, y, card_width, card_height, card, card_image)
             self.buttons.append(button)
+
+
+class CardButton(SelectableButton["VisualCard"]):
+    """Represents a clickable card button."""
+
+    def __init__(  # noqa: PLR0913, PLR0917
+        self,
+        x: int,
+        y: int,
+        width: int,
+        height: int,
+        card: "VisualCard",
+        card_image: pygame.Surface,
+    ) -> None:
+        """Initialize a card button.
+
+        Args:
+            x: X coordinate of the button.
+            y: Y coordinate of the button.
+            width: Width of the button.
+            height: Height of the button.
+            card: The card this button represents.
+            card_image: The image of the card.
+        """
+        super().__init__(
+            x,
+            y,
+            width,
+            height,
+            card,
+            card_image,
+            enabled=True,
+            selectable=False,
+        )
+        self.card = card
+        self.card_image = card_image
+
+    def draw(self, screen: pygame.Surface) -> None:
+        """Draw the button.
+
+        Args:
+            screen: The pygame display surface.
+        """
+        # Determine border color based on state
+        if self.hovered:
+            border_color = (100, 200, 255)  # Light blue for hover
+            border_width = 5
+        else:
+            border_color = (255, 255, 255)  # White
+            border_width = 3
+
+        # Draw border
+        border_padding = 5
+        pygame.draw.rect(
+            screen,
+            border_color,
+            (
+                self.x - border_padding,
+                self.y - border_padding,
+                self.width + 2 * border_padding,
+                self.height + 2 * border_padding,
+            ),
+            border_width,
+        )
+
+        # Draw card image
+        screen.blit(self.card_image, (self.x, self.y))

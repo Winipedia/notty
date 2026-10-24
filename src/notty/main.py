@@ -45,16 +45,6 @@ def main() -> None:
         pygame.quit()
 
 
-def start_background_music() -> None:
-    """Start looping background music if possible."""
-    music_path = resource_path("music.mp3", music)
-
-    pygame.mixer.init()
-    pygame.mixer.music.load(str(music_path))
-    pygame.mixer.music.set_volume(0.4)
-    pygame.mixer.music.play(-1)  # # loop forever
-
-
 def run() -> str:
     """Run the game.
 
@@ -69,7 +59,17 @@ def run() -> str:
     game = VisualGame(screen, players)
 
     # Run the event loop and return the result
-    return run_event_loop(game)
+    return run_event_loop(game)  # # loop forever
+
+
+def start_background_music() -> None:
+    """Start looping background music if possible."""
+    music_path = resource_path("music.mp3", music)
+
+    pygame.mixer.init()
+    pygame.mixer.music.load(str(music_path))
+    pygame.mixer.music.set_volume(0.4)
+    pygame.mixer.music.play(-1)
 
 
 def get_screen() -> pygame.Surface:

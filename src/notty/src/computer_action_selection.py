@@ -17,26 +17,123 @@ if TYPE_CHECKING:
 _qlearning_agent_container: dict[str, QLearningAgent | None] = {"agent": None}
 
 
-def get_qlearning_agent() -> QLearningAgent:
-    """Get or create the Q-Learning agent.
+def computer_chooses_action(game: "VisualGame") -> None:
+    """Computer chooses an action using Q-Learning.
+
+    Args:
+        game: The game instance.
+    """
+    # Check if current player is a computer player and auto-pass
+    current_player = game.get_current_player()
+    if current_player.is_human or not game.can_computer_act():
+        return
+    game.mark_computer_action()
+
+    # Get the Q-Learning agent
+    agent = get_qlearning_agent()
+
+    # Store previous hand size to calculate reward
+    prev_hand_size = current_player.hand.size()
+
+    # Choose action using Q-Learning
+    action = agent.choose_action(game)
+
+    # Choose appropriate parameters based on the action
+    count, card, cards, target_player = None, None, None, None
+
+    if action == Action.DRAW_MULTIPLE:
+        count = choose_draw_count(game)
+    elif action == Action.STEAL:
+        target_player = choose_target_player(game)
+    elif action == Action.DRAW_DISCARD_DISCARD:
+        card = choose_card_to_discard(game)
+    elif action == Action.DISCARD_GROUP:
+        cards = find_best_discard_group(game)
+        if cards is None:
+            # Fallback: if we can't find a valid group, pass instead
+            action = Action.NEXT_TURN
+
+    # Execute the action
+    game.do_action(
+        action,
+        count=count,
+        card=card,
+        cards=cards,
+        target_player=target_player,
+    )
+
+    # Calculate reward based on the action taken
+    player_index = game.players.index(current_player)
+    reward = game.calculate_reward(player_index, action)
+
+    # Additional reward shaping based on hand size change
+    new_hand_size = current_player.hand.size()
+    hand_size_change = prev_hand_size - new_hand_size
+    if hand_size_change > 0:
+        # Reward for reducing hand size
+        reward += hand_size_change * 2.0
+
+    # Learn from the action
+    agent.learn(game, reward)
+
+    # Auto-save Q-table periodically (every 100 actions)
+    if agent.total_actions % 100 == 0:
+        save_path = str(get_qlearning_save_path())
+        agent.save(save_path)
+
+
+def save_qlearning_agent() -> None:
+    """Save the Q-Learning agent's Q-table."""
+    if _qlearning_agent_container["agent"] is not None:
+        save_path = str(get_qlearning_save_path())
+        _qlearning_agent_container["agent"].save(save_path)  # Always draw at least 1
+
+
+def choose_card_to_discard(game: "VisualGame") -> "VisualCard":
+    """Choose which card to discard in draw-discard-discard action.
+
+    Args:
+        game: The game instance.
 
     Returns:
-        The Q-Learning agent instance.
+        The card to discard.
     """
-    agent = _qlearning_agent_container["agent"]
-    if agent is None:
-        agent = QLearningAgent(
-            alpha=0.1,  # Learning rate
-            gamma=0.9,  # Discount factor
-            epsilon=0.2,  # Initial exploration rate
-            epsilon_decay=0.9995,  # Decay rate
-            epsilon_min=0.05,  # Minimum exploration
-        )
-        _qlearning_agent_container["agent"] = agent
-        # Try to load existing Q-table
-        save_path = str(get_qlearning_save_path())
-        agent.load(save_path)
-    return agent
+    current_player = game.get_current_player()
+    cards = current_player.hand.cards
+
+    if not cards:
+        msg = "No cards to discard"
+        raise ValueError(msg)
+
+    # Strategy: discard cards that are least likely to form groups
+    # Count how many cards of each color and number we have
+
+    color_counts = Counter(card.color for card in cards)
+    number_counts = Counter(card.number for card in cards)
+
+    # Score each card (lower is worse, more likely to discard)
+    card_scores: list[tuple[VisualCard, int]] = []
+    for card in cards:
+        score = 0
+        # Cards with more of the same color are better (can form sequences)
+        score += color_counts[card.color] * 2
+        # Cards with more of the same number are better (can form sets)
+        score += number_counts[card.number] * 2
+
+        # Check if card can be part of a sequence
+        for other_card in cards:
+            if (
+                other_card.color == card.color
+                and abs(other_card.number - card.number) == 1
+            ):
+                score += 3
+
+        card_scores.append((card, score))
+
+    # Sort by score and pick one of the worst cards
+    card_scores.sort(key=lambda x: x[1])
+    # Pick the worst card
+    return card_scores[0][0]
 
 
 def choose_draw_count(game: "VisualGame") -> int:  # noqa: C901
@@ -117,7 +214,7 @@ def choose_draw_count(game: "VisualGame") -> int:  # noqa: C901
     # Final constraint: ensure we don't exceed hand limit
     max_drawable = min(MAX_HAND_SIZE - hand_size, deck_size)
     draw_count = min(draw_count, max_drawable, 3)
-    return max(draw_count, 1)  # Always draw at least 1
+    return max(draw_count, 1)
 
 
 def choose_target_player(game: "VisualGame") -> "VisualPlayer":
@@ -133,53 +230,6 @@ def choose_target_player(game: "VisualGame") -> "VisualPlayer":
 
     # Prefer stealing from player with most cards
     return max(other_players, key=lambda p: p.hand.size())
-
-
-def choose_card_to_discard(game: "VisualGame") -> "VisualCard":
-    """Choose which card to discard in draw-discard-discard action.
-
-    Args:
-        game: The game instance.
-
-    Returns:
-        The card to discard.
-    """
-    current_player = game.get_current_player()
-    cards = current_player.hand.cards
-
-    if not cards:
-        msg = "No cards to discard"
-        raise ValueError(msg)
-
-    # Strategy: discard cards that are least likely to form groups
-    # Count how many cards of each color and number we have
-
-    color_counts = Counter(card.color for card in cards)
-    number_counts = Counter(card.number for card in cards)
-
-    # Score each card (lower is worse, more likely to discard)
-    card_scores: list[tuple[VisualCard, int]] = []
-    for card in cards:
-        score = 0
-        # Cards with more of the same color are better (can form sequences)
-        score += color_counts[card.color] * 2
-        # Cards with more of the same number are better (can form sets)
-        score += number_counts[card.number] * 2
-
-        # Check if card can be part of a sequence
-        for other_card in cards:
-            if (
-                other_card.color == card.color
-                and abs(other_card.number - card.number) == 1
-            ):
-                score += 3
-
-        card_scores.append((card, score))
-
-    # Sort by score and pick one of the worst cards
-    card_scores.sort(key=lambda x: x[1])
-    # Pick the worst card
-    return card_scores[0][0]
 
 
 def find_best_discard_group(game: "VisualGame") -> list["VisualCard"] | None:
@@ -199,73 +249,23 @@ def find_best_discard_group(game: "VisualGame") -> list["VisualCard"] | None:
     return discardable_groups[0]
 
 
-def computer_chooses_action(game: "VisualGame") -> None:
-    """Computer chooses an action using Q-Learning.
+def get_qlearning_agent() -> QLearningAgent:
+    """Get or create the Q-Learning agent.
 
-    Args:
-        game: The game instance.
+    Returns:
+        The Q-Learning agent instance.
     """
-    # Check if current player is a computer player and auto-pass
-    current_player = game.get_current_player()
-    if current_player.is_human or not game.can_computer_act():
-        return
-    game.mark_computer_action()
-
-    # Get the Q-Learning agent
-    agent = get_qlearning_agent()
-
-    # Store previous hand size to calculate reward
-    prev_hand_size = current_player.hand.size()
-
-    # Choose action using Q-Learning
-    action = agent.choose_action(game)
-
-    # Choose appropriate parameters based on the action
-    count, card, cards, target_player = None, None, None, None
-
-    if action == Action.DRAW_MULTIPLE:
-        count = choose_draw_count(game)
-    elif action == Action.STEAL:
-        target_player = choose_target_player(game)
-    elif action == Action.DRAW_DISCARD_DISCARD:
-        card = choose_card_to_discard(game)
-    elif action == Action.DISCARD_GROUP:
-        cards = find_best_discard_group(game)
-        if cards is None:
-            # Fallback: if we can't find a valid group, pass instead
-            action = Action.NEXT_TURN
-
-    # Execute the action
-    game.do_action(
-        action,
-        count=count,
-        card=card,
-        cards=cards,
-        target_player=target_player,
-    )
-
-    # Calculate reward based on the action taken
-    player_index = game.players.index(current_player)
-    reward = game.calculate_reward(player_index, action)
-
-    # Additional reward shaping based on hand size change
-    new_hand_size = current_player.hand.size()
-    hand_size_change = prev_hand_size - new_hand_size
-    if hand_size_change > 0:
-        # Reward for reducing hand size
-        reward += hand_size_change * 2.0
-
-    # Learn from the action
-    agent.learn(game, reward)
-
-    # Auto-save Q-table periodically (every 100 actions)
-    if agent.total_actions % 100 == 0:
+    agent = _qlearning_agent_container["agent"]
+    if agent is None:
+        agent = QLearningAgent(
+            alpha=0.1,  # Learning rate
+            gamma=0.9,  # Discount factor
+            epsilon=0.2,  # Initial exploration rate
+            epsilon_decay=0.9995,  # Decay rate
+            epsilon_min=0.05,  # Minimum exploration
+        )
+        _qlearning_agent_container["agent"] = agent
+        # Try to load existing Q-table
         save_path = str(get_qlearning_save_path())
-        agent.save(save_path)
-
-
-def save_qlearning_agent() -> None:
-    """Save the Q-Learning agent's Q-table."""
-    if _qlearning_agent_container["agent"] is not None:
-        save_path = str(get_qlearning_save_path())
-        _qlearning_agent_container["agent"].save(save_path)
+        agent.load(save_path)
+    return agent

@@ -1,21 +1,19 @@
 """module."""
 
 
-class TestWorkflowConfigFileMixin:
+class TestBuildWorkflow:
     """Test class."""
 
-    def test_steps_core_installed_setup(self) -> None:
-        """Test method."""
 
-    def test_step_pre_install_pygame_from_binary(self) -> None:
-        """Test method."""
+class TestBuildWorkflowConfigFile:
+    """Test class."""
 
 
 class TestHealthCheckWorkflow:
     """Test class."""
 
 
-class TestReleaseWorkflow:
+class TestHealthCheckWorkflowConfigFile:
     """Test class."""
 
 
@@ -26,11 +24,7 @@ class TestPyprojectConfigFile:
         """Test method."""
 
 
-class TestBuildWorkflow:
-    """Test class."""
-
-
-class TestHealthCheckWorkflowConfigFile:
+class TestReleaseWorkflow:
     """Test class."""
 
 
@@ -38,5 +32,11 @@ class TestReleaseWorkflowConfigFile:
     """Test class."""
 
 
-class TestBuildWorkflowConfigFile:
+class TestWorkflowConfigFileMixin:
     """Test class."""
+
+    def test_steps_core_installed_setup(self) -> None:
+        """Test method."""
+
+    def test_step_pre_install_pygame_from_binary(self) -> None:
+        """Test method."""

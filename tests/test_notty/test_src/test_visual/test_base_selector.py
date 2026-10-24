@@ -1,25 +1,6 @@
 """module."""
 
 
-class TestSelectableButton:
-    """Test class."""
-
-    def test___init__(self) -> None:
-        """Test method."""
-
-    def test_is_clicked(self) -> None:
-        """Test method."""
-
-    def test_update_hover(self) -> None:
-        """Test method."""
-
-    def test_toggle_selection(self) -> None:
-        """Test method."""
-
-    def test_draw(self) -> None:
-        """Test method."""
-
-
 class TestBaseSelector:
     """Test class."""
 
@@ -45,4 +26,23 @@ class TestBaseSelector:
         """Test method."""
 
     def test__draw(self) -> None:
+        """Test method."""
+
+
+class TestSelectableButton:
+    """Test class."""
+
+    def test___init__(self) -> None:
+        """Test method."""
+
+    def test_is_clicked(self) -> None:
+        """Test method."""
+
+    def test_update_hover(self) -> None:
+        """Test method."""
+
+    def test_toggle_selection(self) -> None:
+        """Test method."""
+
+    def test_draw(self) -> None:
         """Test method."""

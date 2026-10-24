@@ -12,181 +12,6 @@ if TYPE_CHECKING:
     from notty.src.visual.card import VisualCard
 
 
-class MultiCardButton(SelectableButton["VisualCard"]):
-    """Represents a clickable card button that can be selected/deselected."""
-
-    def __init__(  # noqa: PLR0913, PLR0917
-        self,
-        x: int,
-        y: int,
-        width: int,
-        height: int,
-        card: "VisualCard",
-        card_image: pygame.Surface,
-    ) -> None:
-        """Initialize a multi-card button.
-
-        Args:
-            x: X coordinate of the button.
-            y: Y coordinate of the button.
-            width: Width of the button.
-            height: Height of the button.
-            card: The card this button represents.
-            card_image: The image of the card.
-        """
-        super().__init__(
-            x,
-            y,
-            width,
-            height,
-            card,
-            card_image,
-            enabled=True,
-            selectable=True,
-        )
-        self.card = card
-        self.card_image = card_image
-
-    def draw(self, screen: pygame.Surface) -> None:
-        """Draw the button.
-
-        Args:
-            screen: The pygame display surface.
-        """
-        # Determine border color based on state
-        if self.selected:
-            border_color = (50, 255, 50)  # Green for selected
-            border_width = 6
-        elif self.hovered:
-            border_color = (100, 200, 255)  # Light blue for hover
-            border_width = 5
-        else:
-            border_color = (255, 255, 255)  # White
-            border_width = 3
-
-        # Draw border
-        border_padding = 5
-        pygame.draw.rect(
-            screen,
-            border_color,
-            (
-                self.x - border_padding,
-                self.y - border_padding,
-                self.width + 2 * border_padding,
-                self.height + 2 * border_padding,
-            ),
-            border_width,
-        )
-
-        # Draw card image
-        screen.blit(self.card_image, (self.x, self.y))
-
-        # Draw checkmark if selected
-        if self.selected:
-            # Draw a semi-transparent green overlay
-            overlay = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
-            overlay.fill((50, 255, 50, 80))
-            screen.blit(overlay, (self.x, self.y))
-
-            # Draw checkmark - scale font size based on card height
-            font_size = int(self.height * 0.53)  # 53% of card height
-            font = pygame.font.Font(None, font_size)
-            checkmark = font.render("✓", ANTI_ALIASING, (255, 255, 255))
-            checkmark_rect = checkmark.get_rect(
-                center=(self.x + self.width // 2, self.y + self.height // 2),
-            )
-            screen.blit(checkmark, checkmark_rect)
-
-
-class SubmitButton:
-    """Represents a submit button."""
-
-    def __init__(self, x: int, y: int, width: int, height: int) -> None:
-        """Initialize a submit button.
-
-        Args:
-            x: X coordinate of the button.
-            y: Y coordinate of the button.
-            width: Width of the button.
-            height: Height of the button.
-        """
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.hovered = False
-        self.enabled = False
-
-    def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
-        """Check if the button was clicked.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-
-        Returns:
-            True if the button was clicked and is enabled.
-        """
-        if not self.enabled:
-            return False
-        return (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
-    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
-        """Update hover state based on mouse position.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-        """
-        self.hovered = (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
-    def draw(self, screen: pygame.Surface) -> None:
-        """Draw the button.
-
-        Args:
-            screen: The pygame display surface.
-        """
-        # Determine button color based on state
-        if not self.enabled:
-            bg_color = (100, 100, 100)  # Gray for disabled
-            text_color = (150, 150, 150)  # Light gray text
-            border_color = (80, 80, 80)
-        elif self.hovered:
-            bg_color = (100, 200, 255)  # Light blue for hover
-            text_color = (0, 0, 0)  # Black text
-            border_color = (50, 150, 255)
-        else:
-            bg_color = (50, 150, 50)  # Green for enabled
-            text_color = (255, 255, 255)  # White text
-            border_color = (30, 100, 30)
-
-        # Draw button background
-        pygame.draw.rect(screen, bg_color, (self.x, self.y, self.width, self.height))
-
-        # Draw button border
-        pygame.draw.rect(
-            screen,
-            border_color,
-            (self.x, self.y, self.width, self.height),
-            3,
-        )
-
-        # Draw button text - scale font size based on button height
-        font_size = int(self.height * 0.72)  # 72% of button height
-        font = pygame.font.Font(None, font_size)
-        text_surface = font.render("Submit", ANTI_ALIASING, text_color)
-        text_rect = text_surface.get_rect(
-            center=(self.x + self.width // 2, self.y + self.height // 2),
-        )
-        screen.blit(text_surface, text_rect)
-
-
 class CardsSelector(BaseSelector["VisualCard"]):
     """Dialog for selecting multiple cards to discard as a group."""
 
@@ -366,3 +191,178 @@ class CardsSelector(BaseSelector["VisualCard"]):
         # Draw submit button
         if self.submit_button:
             self.submit_button.draw(self.screen)
+
+
+class MultiCardButton(SelectableButton["VisualCard"]):
+    """Represents a clickable card button that can be selected/deselected."""
+
+    def __init__(  # noqa: PLR0913, PLR0917
+        self,
+        x: int,
+        y: int,
+        width: int,
+        height: int,
+        card: "VisualCard",
+        card_image: pygame.Surface,
+    ) -> None:
+        """Initialize a multi-card button.
+
+        Args:
+            x: X coordinate of the button.
+            y: Y coordinate of the button.
+            width: Width of the button.
+            height: Height of the button.
+            card: The card this button represents.
+            card_image: The image of the card.
+        """
+        super().__init__(
+            x,
+            y,
+            width,
+            height,
+            card,
+            card_image,
+            enabled=True,
+            selectable=True,
+        )
+        self.card = card
+        self.card_image = card_image
+
+    def draw(self, screen: pygame.Surface) -> None:
+        """Draw the button.
+
+        Args:
+            screen: The pygame display surface.
+        """
+        # Determine border color based on state
+        if self.selected:
+            border_color = (50, 255, 50)  # Green for selected
+            border_width = 6
+        elif self.hovered:
+            border_color = (100, 200, 255)  # Light blue for hover
+            border_width = 5
+        else:
+            border_color = (255, 255, 255)  # White
+            border_width = 3
+
+        # Draw border
+        border_padding = 5
+        pygame.draw.rect(
+            screen,
+            border_color,
+            (
+                self.x - border_padding,
+                self.y - border_padding,
+                self.width + 2 * border_padding,
+                self.height + 2 * border_padding,
+            ),
+            border_width,
+        )
+
+        # Draw card image
+        screen.blit(self.card_image, (self.x, self.y))
+
+        # Draw checkmark if selected
+        if self.selected:
+            # Draw a semi-transparent green overlay
+            overlay = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+            overlay.fill((50, 255, 50, 80))
+            screen.blit(overlay, (self.x, self.y))
+
+            # Draw checkmark - scale font size based on card height
+            font_size = int(self.height * 0.53)  # 53% of card height
+            font = pygame.font.Font(None, font_size)
+            checkmark = font.render("✓", ANTI_ALIASING, (255, 255, 255))
+            checkmark_rect = checkmark.get_rect(
+                center=(self.x + self.width // 2, self.y + self.height // 2),
+            )
+            screen.blit(checkmark, checkmark_rect)
+
+
+class SubmitButton:
+    """Represents a submit button."""
+
+    def __init__(self, x: int, y: int, width: int, height: int) -> None:
+        """Initialize a submit button.
+
+        Args:
+            x: X coordinate of the button.
+            y: Y coordinate of the button.
+            width: Width of the button.
+            height: Height of the button.
+        """
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hovered = False
+        self.enabled = False
+
+    def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
+        """Check if the button was clicked.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+
+        Returns:
+            True if the button was clicked and is enabled.
+        """
+        if not self.enabled:
+            return False
+        return (
+            self.x <= mouse_x <= self.x + self.width
+            and self.y <= mouse_y <= self.y + self.height
+        )
+
+    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
+        """Update hover state based on mouse position.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+        """
+        self.hovered = (
+            self.x <= mouse_x <= self.x + self.width
+            and self.y <= mouse_y <= self.y + self.height
+        )
+
+    def draw(self, screen: pygame.Surface) -> None:
+        """Draw the button.
+
+        Args:
+            screen: The pygame display surface.
+        """
+        # Determine button color based on state
+        if not self.enabled:
+            bg_color = (100, 100, 100)  # Gray for disabled
+            text_color = (150, 150, 150)  # Light gray text
+            border_color = (80, 80, 80)
+        elif self.hovered:
+            bg_color = (100, 200, 255)  # Light blue for hover
+            text_color = (0, 0, 0)  # Black text
+            border_color = (50, 150, 255)
+        else:
+            bg_color = (50, 150, 50)  # Green for enabled
+            text_color = (255, 255, 255)  # White text
+            border_color = (30, 100, 30)
+
+        # Draw button background
+        pygame.draw.rect(screen, bg_color, (self.x, self.y, self.width, self.height))
+
+        # Draw button border
+        pygame.draw.rect(
+            screen,
+            border_color,
+            (self.x, self.y, self.width, self.height),
+            3,
+        )
+
+        # Draw button text - scale font size based on button height
+        font_size = int(self.height * 0.72)  # 72% of button height
+        font = pygame.font.Font(None, font_size)
+        text_surface = font.render("Submit", ANTI_ALIASING, text_color)
+        text_rect = text_surface.get_rect(
+            center=(self.x + self.width // 2, self.y + self.height // 2),
+        )
+        screen.blit(text_surface, text_rect)

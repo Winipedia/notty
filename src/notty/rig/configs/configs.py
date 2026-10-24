@@ -24,6 +24,27 @@ if TYPE_CHECKING:
     from types import MethodType
 
 
+class PyprojectConfigFile(BasePyprojectConfigFile):
+    """Pyproject config file.
+
+    Extends winipedia_utils pyproject config file to add additional config.
+    """
+
+    def _configs(self) -> dict[str, Any]:
+        """Get the configs."""
+        configs = super()._configs()
+
+        # add mypy settings
+        configs["tool"][TypeChecker.I.name()] = {
+            "strict": True,
+            "warn_unreachable": True,
+            "enable_error_code": [],
+            "show_error_code_links": True,
+            "files": ".",
+        }
+        return configs
+
+
 class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
     """Mixin to add PySide6-specific workflow steps.
 
@@ -83,24 +104,3 @@ class ReleaseWorkflowConfigFile(WorkflowConfigFileMixin, BaseReleaseWorkflowConf
     This is necessary to make pyside6 work on github actions which is a headless linux
     environment.
     """
-
-
-class PyprojectConfigFile(BasePyprojectConfigFile):
-    """Pyproject config file.
-
-    Extends winipedia_utils pyproject config file to add additional config.
-    """
-
-    def _configs(self) -> dict[str, Any]:
-        """Get the configs."""
-        configs = super()._configs()
-
-        # add mypy settings
-        configs["tool"][TypeChecker.I.name()] = {
-            "strict": True,
-            "warn_unreachable": True,
-            "enable_error_code": [],
-            "show_error_code_links": True,
-            "files": ".",
-        }
-        return configs

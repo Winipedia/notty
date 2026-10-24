@@ -8,102 +8,6 @@ from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
 from notty.src.visual.base_selector import BaseSelector, SelectableButton
 
 
-class PlayerNameButton(SelectableButton[str]):
-    """Represents a clickable player name button with image."""
-
-    def __init__(  # noqa: PLR0913, PLR0917
-        self,
-        x: int,
-        y: int,
-        width: int,
-        height: int,
-        player_name: str,
-        player_image: pygame.Surface,
-        *,
-        enabled: bool = True,
-        selectable: bool = False,
-    ) -> None:
-        """Initialize a player name button.
-
-        Args:
-            x: X coordinate of the button.
-            y: Y coordinate of the button.
-            width: Width of the button.
-            height: Height of the button.
-            player_name: The name of the player.
-            player_image: The image of the player.
-            enabled: Whether the button is enabled.
-            selectable: Whether the button can be selected/deselected.
-        """
-        super().__init__(
-            x,
-            y,
-            width,
-            height,
-            player_name,
-            player_image,
-            enabled=enabled,
-            selectable=selectable,
-        )
-        self.player_name = player_name
-        self.player_image = player_image
-
-    def draw(self, screen: pygame.Surface) -> None:
-        """Draw the button.
-
-        Args:
-            screen: The pygame display surface.
-        """
-        # Determine border color based on state
-        if self.selected:
-            border_color = (50, 255, 50)  # Green for selected
-            border_width = 5
-        elif self.hovered:
-            border_color = (100, 200, 255)  # Light blue for hover
-            border_width = 5
-        else:
-            border_color = (255, 255, 255)  # White
-            border_width = 2
-
-        # Draw border
-        border_padding = int(APP_WIDTH * 0.008)  # 0.8% of screen width
-        pygame.draw.rect(
-            screen,
-            border_color,
-            (
-                self.x - border_padding,
-                self.y - border_padding,
-                self.width + 2 * border_padding,
-                self.height + 2 * border_padding,
-            ),
-            border_width,
-        )
-
-        # Draw player image
-        screen.blit(self.player_image, (self.x, self.y))
-
-        # Draw player name
-        name_font_size = int(APP_HEIGHT * 0.06)  # 6% of screen height
-        name_font = pygame.font.Font(None, name_font_size)
-        color = (
-            (50, 255, 50)
-            if self.selected
-            else ((100, 200, 255) if self.hovered else (255, 255, 255))
-        )
-        name_text = name_font.render(
-            self.player_name.capitalize(),
-            ANTI_ALIASING,
-            color,
-        )
-        name_rect = name_text.get_rect(
-            center=(
-                self.x + self.width // 2,
-                self.y + self.height + int(APP_HEIGHT * 0.04),
-            ),
-        )
-        screen.blit(name_text, name_rect)
-
-
 class PlayerNameSelector(BaseSelector[str]):
     """Dialog for selecting player name(s) at game start."""
 
@@ -261,4 +165,100 @@ class PlayerNameSelector(BaseSelector[str]):
 
             # Update display
             pygame.display.flip()
-            clock.tick(60)  # 60 FPS
+            clock.tick(60)
+
+
+class PlayerNameButton(SelectableButton[str]):
+    """Represents a clickable player name button with image."""
+
+    def __init__(  # noqa: PLR0913, PLR0917
+        self,
+        x: int,
+        y: int,
+        width: int,
+        height: int,
+        player_name: str,
+        player_image: pygame.Surface,
+        *,
+        enabled: bool = True,
+        selectable: bool = False,
+    ) -> None:
+        """Initialize a player name button.
+
+        Args:
+            x: X coordinate of the button.
+            y: Y coordinate of the button.
+            width: Width of the button.
+            height: Height of the button.
+            player_name: The name of the player.
+            player_image: The image of the player.
+            enabled: Whether the button is enabled.
+            selectable: Whether the button can be selected/deselected.
+        """
+        super().__init__(
+            x,
+            y,
+            width,
+            height,
+            player_name,
+            player_image,
+            enabled=enabled,
+            selectable=selectable,
+        )
+        self.player_name = player_name
+        self.player_image = player_image
+
+    def draw(self, screen: pygame.Surface) -> None:
+        """Draw the button.
+
+        Args:
+            screen: The pygame display surface.
+        """
+        # Determine border color based on state
+        if self.selected:
+            border_color = (50, 255, 50)  # Green for selected
+            border_width = 5
+        elif self.hovered:
+            border_color = (100, 200, 255)  # Light blue for hover
+            border_width = 5
+        else:
+            border_color = (255, 255, 255)  # White
+            border_width = 2
+
+        # Draw border
+        border_padding = int(APP_WIDTH * 0.008)  # 0.8% of screen width
+        pygame.draw.rect(
+            screen,
+            border_color,
+            (
+                self.x - border_padding,
+                self.y - border_padding,
+                self.width + 2 * border_padding,
+                self.height + 2 * border_padding,
+            ),
+            border_width,
+        )
+
+        # Draw player image
+        screen.blit(self.player_image, (self.x, self.y))
+
+        # Draw player name
+        name_font_size = int(APP_HEIGHT * 0.06)  # 6% of screen height
+        name_font = pygame.font.Font(None, name_font_size)
+        color = (
+            (50, 255, 50)
+            if self.selected
+            else ((100, 200, 255) if self.hovered else (255, 255, 255))
+        )
+        name_text = name_font.render(
+            self.player_name.capitalize(),
+            ANTI_ALIASING,
+            color,
+        )
+        name_rect = name_text.get_rect(
+            center=(
+                self.x + self.width // 2,
+                self.y + self.height + int(APP_HEIGHT * 0.04),
+            ),
+        )
+        screen.blit(name_text, name_rect)  # 60 FPS

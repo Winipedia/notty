@@ -8,22 +8,6 @@ class TestAction:
         """Test method."""
 
 
-class TestActionButton:
-    """Test class."""
-
-    def test___init__(self) -> None:
-        """Test method."""
-
-    def test_is_clicked(self) -> None:
-        """Test method."""
-
-    def test_update_hover(self) -> None:
-        """Test method."""
-
-    def test_draw(self) -> None:
-        """Test method."""
-
-
 class TestActionBoard:
     """Test class."""
 
@@ -40,6 +24,22 @@ class TestActionBoard:
         """Test method."""
 
     def test_handle_click(self) -> None:
+        """Test method."""
+
+    def test_draw(self) -> None:
+        """Test method."""
+
+
+class TestActionButton:
+    """Test class."""
+
+    def test___init__(self) -> None:
+        """Test method."""
+
+    def test_is_clicked(self) -> None:
+        """Test method."""
+
+    def test_update_hover(self) -> None:
         """Test method."""
 
     def test_draw(self) -> None:
