@@ -42,10 +42,6 @@ class BaseSelector[T](ABC):
         self._setup_buttons()
 
     @abstractmethod
-    def _setup_buttons(self) -> None:
-        """Set up the selectable buttons. Must be implemented by subclasses."""
-
-    @abstractmethod
     def _get_button_dimensions(self) -> tuple[int, int, int]:
         """Get button dimensions (width, height, spacing).
 
@@ -54,33 +50,16 @@ class BaseSelector[T](ABC):
         """
 
     @abstractmethod
+    def _setup_buttons(self) -> None:
+        """Set up the selectable buttons. Must be implemented by subclasses."""
+
+    @abstractmethod
     def _get_dialog_dimensions(self) -> tuple[int, int]:
         """Get dialog dimensions.
 
         Returns:
             Tuple of (dialog_width, dialog_height).
         """
-
-    def _get_selected_items(self) -> list[T]:
-        """Get the list of currently selected items.
-
-        Returns:
-            List of selected items.
-        """
-        return [button.item for button in self.buttons if button.selected]
-
-    def _is_valid_selection(self) -> bool:
-        """Check if the current selection is valid.
-
-        Returns:
-            True if the selection is valid.
-        """
-        selected = self._get_selected_items()
-        if not selected:
-            return False
-        if self.validation_func:
-            return self.validation_func(selected)
-        return len(selected) <= self.max_selections
 
     def show(self) -> list[T] | T | None:
         """Show the selector and wait for user input.
@@ -122,7 +101,20 @@ class BaseSelector[T](ABC):
 
             # Update display
             pygame.display.flip()
-            clock.tick(60)  # 60 FPS
+            clock.tick(60)
+
+    def _is_valid_selection(self) -> bool:
+        """Check if the current selection is valid.
+
+        Returns:
+            True if the selection is valid.
+        """
+        selected = self._get_selected_items()
+        if not selected:
+            return False
+        if self.validation_func:
+            return self.validation_func(selected)
+        return len(selected) <= self.max_selections
 
     def _draw(self) -> None:
         """Draw the selector dialog."""
@@ -163,7 +155,15 @@ class BaseSelector[T](ABC):
 
         # Draw buttons
         for button in self.buttons:
-            button.draw(self.screen)
+            button.draw(self.screen)  # 60 FPS
+
+    def _get_selected_items(self) -> list[T]:
+        """Get the list of currently selected items.
+
+        Returns:
+            List of selected items.
+        """
+        return [button.item for button in self.buttons if button.selected]
 
 
 class SelectableButton[T](ABC):
@@ -204,6 +204,14 @@ class SelectableButton[T](ABC):
         self.hovered = False
         self.selected = False
 
+    @abstractmethod
+    def draw(self, screen: pygame.Surface) -> None:
+        """Draw the button.
+
+        Args:
+            screen: The pygame display surface.
+        """
+
     def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
         """Check if the button was clicked.
 
@@ -217,21 +225,6 @@ class SelectableButton[T](ABC):
         if not self.enabled:
             return False
         return (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
-    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
-        """Update hover state based on mouse position.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-        """
-        if not self.enabled:
-            self.hovered = False
-            return
-        self.hovered = (
             self.x <= mouse_x <= self.x + self.width
             and self.y <= mouse_y <= self.y + self.height
         )
@@ -255,10 +248,17 @@ class SelectableButton[T](ABC):
                 # Only allow selection if under max
                 self.selected = True
 
-    @abstractmethod
-    def draw(self, screen: pygame.Surface) -> None:
-        """Draw the button.
+    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
+        """Update hover state based on mouse position.
 
         Args:
-            screen: The pygame display surface.
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
         """
+        if not self.enabled:
+            self.hovered = False
+            return
+        self.hovered = (
+            self.x <= mouse_x <= self.x + self.width
+            and self.y <= mouse_y <= self.y + self.height
+        )

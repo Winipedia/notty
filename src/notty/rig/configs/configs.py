@@ -3,7 +3,7 @@
 All subclasses of ConfigFile in the configs package are automatically called.
 """
 
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, cast, override
 
 from pyrig.rig.configs.base.workflow import (  # deptry: ignore[DEP004]
     WorkflowConfigFile as BaseWorkflowConfigFile,
@@ -30,6 +30,7 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
     Extends winipedia_utils pyproject config file to add additional config.
     """
 
+    @override
     def _configs(self) -> dict[str, Any]:
         """Get the configs."""
         configs = super()._configs()
@@ -52,10 +53,11 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
     GitHub Actions headless Linux environments.
     """
 
+    @override
     def steps_core_installed_setup(
         self,
-        *args: Any,  # noqa: ANN401
-        **kwargs: Any,  # noqa: ANN401
+        *args: Any,
+        **kwargs: Any,
     ) -> list[dict[str, Any]]:
         """Get the setup steps.
 

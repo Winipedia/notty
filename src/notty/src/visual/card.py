@@ -2,6 +2,7 @@
 
 from importlib import import_module
 from types import ModuleType
+from typing import override
 
 import pygame
 
@@ -78,10 +79,12 @@ class VisualCard(Visual):
         self.number = number
         super().__init__(x, y, CARD_HEIGHT, CARD_WIDTH, screen)
 
+    @override
     def get_png_name(self) -> str:
         """Get the png for the visual element."""
         return f"{self.number}"
 
+    @override
     def get_png_pkg(self) -> ModuleType:
         """Get the png for the visual element."""
         card_mod_name = cards.__name__ + "." + self.color

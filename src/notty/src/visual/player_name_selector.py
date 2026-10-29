@@ -1,5 +1,7 @@
 """Player name selector for initial player selection."""
 
+from typing import override
+
 import pygame
 from pyrig.core.resources import resource_path
 
@@ -38,89 +40,7 @@ class PlayerNameSelector(BaseSelector[str]):
             max_selections=max_selections,
         )
 
-    def _get_button_dimensions(self) -> tuple[int, int, int]:
-        """Get button dimensions (width, height, spacing).
-
-        Returns:
-            Tuple of (button_width, button_height, button_spacing).
-        """
-        image_size = int(APP_WIDTH * 0.12)  # 12% of screen width
-        spacing = int(APP_WIDTH * 0.02)  # 2% of screen width
-        return image_size, image_size, spacing
-
-    def _get_dialog_dimensions(self) -> tuple[int, int]:
-        """Get dialog dimensions.
-
-        Returns:
-            Tuple of (dialog_width, dialog_height).
-        """
-        # Full screen for player selection
-        return APP_WIDTH, APP_HEIGHT
-
-    def _setup_buttons(self) -> None:
-        """Set up the player name buttons."""
-        image_size, _, _spacing = self._get_button_dimensions()
-
-        # Load player images
-        player_images: dict[str, pygame.Surface] = {}
-        for name in self.items:
-            png_path = resource_path(name + ".png", players)
-            img = pygame.image.load(png_path)
-            player_images[name] = pygame.transform.scale(img, (image_size, image_size))
-
-        # Calculate positions - center horizontally
-        player_spacing = APP_WIDTH // (len(self.items) + 1)
-        for i, name in enumerate(self.items):
-            x = player_spacing * (i + 1) - image_size // 2
-            y = APP_HEIGHT // 2 - image_size // 2
-
-            button = PlayerNameButton(
-                x,
-                y,
-                image_size,
-                image_size,
-                name,
-                player_images[name],
-                enabled=True,
-                selectable=self.needs_submit,
-            )
-            self.buttons.append(button)
-
-    def _draw(self) -> None:
-        """Draw the player name selector."""
-        # Draw black background (no overlay for full screen)
-        self.screen.fill((0, 0, 0))
-
-        # Draw title
-        title_font_size = int(APP_HEIGHT * 0.09)  # 9% of screen height
-        title_font = pygame.font.Font(None, title_font_size)
-        title_text = title_font.render(self.title, ANTI_ALIASING, (255, 255, 255))
-        title_rect = title_text.get_rect(
-            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.12)),
-        )
-        self.screen.blit(title_text, title_rect)
-
-        # Draw instruction
-        instruction_font_size = int(APP_HEIGHT * 0.045)  # 4.5% of screen height
-        instruction_font = pygame.font.Font(None, instruction_font_size)
-        if self.needs_submit:
-            instruction = "Click to select/deselect • Press ENTER when done"
-        else:
-            instruction = "Click on a player to select"
-        instruction_text = instruction_font.render(
-            instruction,
-            ANTI_ALIASING,
-            (255, 255, 255),
-        )
-        instruction_rect = instruction_text.get_rect(
-            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.22)),
-        )
-        self.screen.blit(instruction_text, instruction_rect)
-
-        # Draw buttons
-        for button in self.buttons:
-            button.draw(self.screen)
-
+    @override
     def show(self) -> str | list[str]:  # noqa: C901
         """Show the player name selector and wait for user input.
 
@@ -167,6 +87,93 @@ class PlayerNameSelector(BaseSelector[str]):
             pygame.display.flip()
             clock.tick(60)
 
+    @override
+    def _get_dialog_dimensions(self) -> tuple[int, int]:
+        """Get dialog dimensions.
+
+        Returns:
+            Tuple of (dialog_width, dialog_height).
+        """
+        # Full screen for player selection
+        return APP_WIDTH, APP_HEIGHT
+
+    @override
+    def _setup_buttons(self) -> None:
+        """Set up the player name buttons."""
+        image_size, _, _spacing = self._get_button_dimensions()
+
+        # Load player images
+        player_images: dict[str, pygame.Surface] = {}
+        for name in self.items:
+            png_path = resource_path(name + ".png", players)
+            img = pygame.image.load(png_path)
+            player_images[name] = pygame.transform.scale(img, (image_size, image_size))
+
+        # Calculate positions - center horizontally
+        player_spacing = APP_WIDTH // (len(self.items) + 1)
+        for i, name in enumerate(self.items):
+            x = player_spacing * (i + 1) - image_size // 2
+            y = APP_HEIGHT // 2 - image_size // 2
+
+            button = PlayerNameButton(
+                x,
+                y,
+                image_size,
+                image_size,
+                name,
+                player_images[name],
+                enabled=True,
+                selectable=self.needs_submit,
+            )
+            self.buttons.append(button)
+
+    @override
+    def _draw(self) -> None:
+        """Draw the player name selector."""
+        # Draw black background (no overlay for full screen)
+        self.screen.fill((0, 0, 0))
+
+        # Draw title
+        title_font_size = int(APP_HEIGHT * 0.09)  # 9% of screen height
+        title_font = pygame.font.Font(None, title_font_size)
+        title_text = title_font.render(self.title, ANTI_ALIASING, (255, 255, 255))
+        title_rect = title_text.get_rect(
+            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.12)),
+        )
+        self.screen.blit(title_text, title_rect)
+
+        # Draw instruction
+        instruction_font_size = int(APP_HEIGHT * 0.045)  # 4.5% of screen height
+        instruction_font = pygame.font.Font(None, instruction_font_size)
+        if self.needs_submit:
+            instruction = "Click to select/deselect • Press ENTER when done"
+        else:
+            instruction = "Click on a player to select"
+        instruction_text = instruction_font.render(
+            instruction,
+            ANTI_ALIASING,
+            (255, 255, 255),
+        )
+        instruction_rect = instruction_text.get_rect(
+            center=(APP_WIDTH // 2, int(APP_HEIGHT * 0.22)),
+        )
+        self.screen.blit(instruction_text, instruction_rect)
+
+        # Draw buttons
+        for button in self.buttons:
+            button.draw(self.screen)
+
+    @override
+    def _get_button_dimensions(self) -> tuple[int, int, int]:
+        """Get button dimensions (width, height, spacing).
+
+        Returns:
+            Tuple of (button_width, button_height, button_spacing).
+        """
+        image_size = int(APP_WIDTH * 0.12)  # 12% of screen width
+        spacing = int(APP_WIDTH * 0.02)  # 2% of screen width
+        return image_size, image_size, spacing
+
 
 class PlayerNameButton(SelectableButton[str]):
     """Represents a clickable player name button with image."""
@@ -208,6 +215,7 @@ class PlayerNameButton(SelectableButton[str]):
         self.player_name = player_name
         self.player_image = player_image
 
+    @override
     def draw(self, screen: pygame.Surface) -> None:
         """Draw the button.
 

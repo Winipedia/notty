@@ -38,100 +38,6 @@ class ActionBoard:
         self.buttons: list[ActionButton] = []
         self._setup_buttons()
 
-    def _setup_buttons(self) -> None:
-        """Set up the action buttons."""
-        # Use constants from consts.py for action board position and size
-        board_x = ACTION_BOARD_X
-        board_y = ACTION_BOARD_Y
-        board_width = ACTION_BOARD_WIDTH
-        board_height = ACTION_BOARD_HEIGHT
-
-        # Define all possible actions
-        actions = [
-            ("Draw 1-3 Cards", Action.DRAW_MULTIPLE),
-            ("Steal Card", Action.STEAL),
-            ("Draw & Discard (Draw)", Action.DRAW_DISCARD_DRAW),
-            ("Draw & Discard (Discard)", Action.DRAW_DISCARD_DISCARD),
-            ("Discard Group", Action.DISCARD_GROUP),
-            ("Next Turn", Action.NEXT_TURN),
-            ("Play for Me", Action.PLAY_FOR_ME),
-        ]
-
-        # Calculate button dimensions based on action board size and number of buttons
-        num_buttons = len(actions)
-        button_spacing = 10
-        total_spacing = button_spacing * (
-            num_buttons + 1
-        )  # Spacing above, below, and between buttons
-
-        # Button width is board width minus padding on both sides
-        button_padding = 15
-        button_width = board_width - (2 * button_padding)
-
-        # Button height is calculated to fit all buttons with spacing
-        button_height = (board_height - total_spacing) // num_buttons
-
-        # Create buttons
-        for i, (text, action_name) in enumerate(actions):
-            y = board_y + button_spacing + i * (button_height + button_spacing)
-            x = board_x + button_padding
-            button = ActionButton(
-                x=x,
-                y=y,
-                width=button_width,
-                height=button_height,
-                text=text,
-                action_name=action_name,
-                enabled=False,  # Will be updated based on game state
-            )
-            self.buttons.append(button)
-
-    def update_button_states(self, game: "VisualGame") -> None:
-        """Update button enabled states based on current game state.
-
-        Args:
-            game: The game instance to check action availability.
-        """
-        current_player = game.get_current_player()
-        is_human_turn = current_player.is_human
-
-        for button in self.buttons:
-            if not is_human_turn:
-                button.enabled = False
-            elif button.action_name == Action.PLAY_FOR_ME:
-                # "Play for Me" button is always enabled during human's turn
-                button.enabled = True
-            else:
-                button.enabled = game.action_is_possible(button.action_name)
-
-    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
-        """Update hover state for all buttons.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-        """
-        for button in self.buttons:
-            button.update_hover(mouse_x, mouse_y)
-
-    def handle_click(self, mouse_x: int, mouse_y: int) -> None:
-        """Handle click on action board.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-
-        Returns:
-            The action name if a button was clicked, None otherwise.
-        """
-        game = self.game
-        for button in self.buttons:
-            enabled = button.enabled
-            clicked = button.is_clicked(mouse_x, mouse_y)
-            action_name = button.action_name
-            if enabled and clicked:
-                game.do_action(action_name)
-
     def draw(self) -> None:
         """Draw the action board and all buttons.
 
@@ -182,6 +88,100 @@ class ActionBoard:
         # Draw all buttons
         for button in self.buttons:
             button.draw(self.screen)
+
+    def handle_click(self, mouse_x: int, mouse_y: int) -> None:
+        """Handle click on action board.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+
+        Returns:
+            The action name if a button was clicked, None otherwise.
+        """
+        game = self.game
+        for button in self.buttons:
+            enabled = button.enabled
+            clicked = button.is_clicked(mouse_x, mouse_y)
+            action_name = button.action_name
+            if enabled and clicked:
+                game.do_action(action_name)
+
+    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
+        """Update hover state for all buttons.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+        """
+        for button in self.buttons:
+            button.update_hover(mouse_x, mouse_y)
+
+    def update_button_states(self, game: "VisualGame") -> None:
+        """Update button enabled states based on current game state.
+
+        Args:
+            game: The game instance to check action availability.
+        """
+        current_player = game.get_current_player()
+        is_human_turn = current_player.is_human
+
+        for button in self.buttons:
+            if not is_human_turn:
+                button.enabled = False
+            elif button.action_name == Action.PLAY_FOR_ME:
+                # "Play for Me" button is always enabled during human's turn
+                button.enabled = True
+            else:
+                button.enabled = game.action_is_possible(button.action_name)
+
+    def _setup_buttons(self) -> None:
+        """Set up the action buttons."""
+        # Use constants from consts.py for action board position and size
+        board_x = ACTION_BOARD_X
+        board_y = ACTION_BOARD_Y
+        board_width = ACTION_BOARD_WIDTH
+        board_height = ACTION_BOARD_HEIGHT
+
+        # Define all possible actions
+        actions = [
+            ("Draw 1-3 Cards", Action.DRAW_MULTIPLE),
+            ("Steal Card", Action.STEAL),
+            ("Draw & Discard (Draw)", Action.DRAW_DISCARD_DRAW),
+            ("Draw & Discard (Discard)", Action.DRAW_DISCARD_DISCARD),
+            ("Discard Group", Action.DISCARD_GROUP),
+            ("Next Turn", Action.NEXT_TURN),
+            ("Play for Me", Action.PLAY_FOR_ME),
+        ]
+
+        # Calculate button dimensions based on action board size and number of buttons
+        num_buttons = len(actions)
+        button_spacing = 10
+        total_spacing = button_spacing * (
+            num_buttons + 1
+        )  # Spacing above, below, and between buttons
+
+        # Button width is board width minus padding on both sides
+        button_padding = 15
+        button_width = board_width - (2 * button_padding)
+
+        # Button height is calculated to fit all buttons with spacing
+        button_height = (board_height - total_spacing) // num_buttons
+
+        # Create buttons
+        for i, (text, action_name) in enumerate(actions):
+            y = board_y + button_spacing + i * (button_height + button_spacing)
+            x = board_x + button_padding
+            button = ActionButton(
+                x=x,
+                y=y,
+                width=button_width,
+                height=button_height,
+                text=text,
+                action_name=action_name,
+                enabled=False,  # Will be updated based on game state
+            )
+            self.buttons.append(button)
 
 
 class Action:
@@ -242,35 +242,6 @@ class ActionButton:
         self.enabled = enabled
         self.hovered = False
 
-    def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
-        """Check if the button was clicked.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-
-        Returns:
-            True if the button was clicked and is enabled.
-        """
-        if not self.enabled:
-            return False
-        return (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
-    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
-        """Update hover state based on mouse position.
-
-        Args:
-            mouse_x: Mouse x coordinate.
-            mouse_y: Mouse y coordinate.
-        """
-        self.hovered = (
-            self.x <= mouse_x <= self.x + self.width
-            and self.y <= mouse_y <= self.y + self.height
-        )
-
     def draw(self, screen: pygame.Surface) -> None:
         """Draw the button.
 
@@ -318,3 +289,32 @@ class ActionButton:
         # Set alpha and blit to screen
         button_surface.set_alpha(alpha)
         screen.blit(button_surface, (self.x, self.y))
+
+    def is_clicked(self, mouse_x: int, mouse_y: int) -> bool:
+        """Check if the button was clicked.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+
+        Returns:
+            True if the button was clicked and is enabled.
+        """
+        if not self.enabled:
+            return False
+        return (
+            self.x <= mouse_x <= self.x + self.width
+            and self.y <= mouse_y <= self.y + self.height
+        )
+
+    def update_hover(self, mouse_x: int, mouse_y: int) -> None:
+        """Update hover state based on mouse position.
+
+        Args:
+            mouse_x: Mouse x coordinate.
+            mouse_y: Mouse y coordinate.
+        """
+        self.hovered = (
+            self.x <= mouse_x <= self.x + self.width
+            and self.y <= mouse_y <= self.y + self.height
+        )

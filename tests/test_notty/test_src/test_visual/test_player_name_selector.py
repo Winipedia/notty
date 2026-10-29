@@ -17,6 +17,9 @@ class TestPlayerNameSelector:
     def test___init__(self) -> None:
         """Test method."""
 
+    def test__draw(self) -> None:
+        """Test method."""
+
     def test__get_button_dimensions(self) -> None:
         """Test method."""
 
@@ -24,9 +27,6 @@ class TestPlayerNameSelector:
         """Test method."""
 
     def test__setup_buttons(self) -> None:
-        """Test method."""
-
-    def test__draw(self) -> None:
         """Test method."""
 
     def test_show(self) -> None:

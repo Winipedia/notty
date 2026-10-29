@@ -4,8 +4,8 @@
 class TestCoverageTester:
     """Test class."""
 
-    def test_threshold(self) -> None:
+    def test_coverage_threshold(self) -> None:
         """Test method."""
 
-    def test_coverage_threshold(self) -> None:
+    def test_threshold(self) -> None:
         """Test method."""

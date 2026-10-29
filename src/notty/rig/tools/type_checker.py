@@ -1,5 +1,7 @@
 """Overriding the type checker to get from ty to mypy."""
 
+from typing import override
+
 from pyrig.core.subprocesses import Args  # deptry: ignore[DEP004]
 from pyrig.rig.tools.typing.checker import (
     TypeChecker as BaseTypeChecker,  # deptry: ignore[DEP004]
@@ -9,10 +11,12 @@ from pyrig.rig.tools.typing.checker import (
 class TypeChecker(BaseTypeChecker):
     """Mypy type checker."""
 
-    def name(self) -> str:
-        """Get the name of the type checker."""
-        return "mypy"
-
+    @override
     def check_args(self, *args: str) -> Args:
         """Get the args for checking types."""
         return self.args(*args)
+
+    @override
+    def name(self) -> str:
+        """Get the name of the type checker."""
+        return "mypy"

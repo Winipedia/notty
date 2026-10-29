@@ -1,5 +1,7 @@
 """Number selector dialog for choosing how many cards to draw."""
 
+from typing import override
+
 import pygame
 
 from notty.src.consts import ANTI_ALIASING, APP_HEIGHT, APP_WIDTH
@@ -26,17 +28,7 @@ class NumberSelector(BaseSelector[int]):
             max_selections=1,
         )
 
-    def _get_button_dimensions(self) -> tuple[int, int, int]:
-        """Get button dimensions (width, height, spacing).
-
-        Returns:
-            Tuple of (button_width, button_height, button_spacing).
-        """
-        button_width = int(APP_WIDTH * 0.08)  # 8% of screen width
-        button_height = int(APP_HEIGHT * 0.12)  # 12% of screen height
-        button_spacing = int(APP_WIDTH * 0.015)  # 1.5% of screen width
-        return button_width, button_height, button_spacing
-
+    @override
     def _get_dialog_dimensions(self) -> tuple[int, int]:
         """Get dialog dimensions.
 
@@ -47,6 +39,7 @@ class NumberSelector(BaseSelector[int]):
         dialog_height = int(APP_HEIGHT * 0.30)  # 30% of screen height
         return dialog_width, dialog_height
 
+    @override
     def _setup_buttons(self) -> None:
         """Set up the number buttons."""
         # Get button dimensions
@@ -72,6 +65,18 @@ class NumberSelector(BaseSelector[int]):
                 enabled=enabled,
             )
             self.buttons.append(button)
+
+    @override
+    def _get_button_dimensions(self) -> tuple[int, int, int]:
+        """Get button dimensions (width, height, spacing).
+
+        Returns:
+            Tuple of (button_width, button_height, button_spacing).
+        """
+        button_width = int(APP_WIDTH * 0.08)  # 8% of screen width
+        button_height = int(APP_HEIGHT * 0.12)  # 12% of screen height
+        button_spacing = int(APP_WIDTH * 0.015)  # 1.5% of screen width
+        return button_width, button_height, button_spacing
 
 
 class NumberButton(SelectableButton[int]):
@@ -110,6 +115,7 @@ class NumberButton(SelectableButton[int]):
         )
         self.number = number
 
+    @override
     def draw(self, screen: pygame.Surface) -> None:
         """Draw the button.
 

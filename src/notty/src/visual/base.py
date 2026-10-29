@@ -41,21 +41,13 @@ class Visual(ABC):
         png = pygame.image.load(self.get_png_path())
         self.png = pygame.transform.scale(png, (self.width, self.height))
 
-    def get_center(self) -> tuple[int, int]:
-        """Get the center of the visual element."""
-        return self.x + self.width // 2, self.y + self.height // 2
+    @abstractmethod
+    def get_png_name(self) -> str:
+        """Get the png for the visual element."""
 
-    def move(self, x: int, y: int) -> None:
-        """Move the visual element.
-
-        Animates the movement in a straight line to that given location.
-
-        Args:
-            x: X coordinate.
-            y: Y coordinate.
-        """
-        self.target_x = x
-        self.target_y = y
+    @abstractmethod
+    def get_png_pkg(self) -> ModuleType:
+        """Get the png for the visual element."""
 
     def draw(self) -> None:
         """Draw the visual element."""
@@ -76,14 +68,22 @@ class Visual(ABC):
         # Draw the image at current position
         self.screen.blit(self.png, (self.x, self.y))
 
+    def get_center(self) -> tuple[int, int]:
+        """Get the center of the visual element."""
+        return self.x + self.width // 2, self.y + self.height // 2
+
+    def move(self, x: int, y: int) -> None:
+        """Move the visual element.
+
+        Animates the movement in a straight line to that given location.
+
+        Args:
+            x: X coordinate.
+            y: Y coordinate.
+        """
+        self.target_x = x
+        self.target_y = y
+
     def get_png_path(self) -> Path:
         """Get the png for the visual element."""
         return resource_path(self.get_png_name() + ".png", self.get_png_pkg())
-
-    @abstractmethod
-    def get_png_name(self) -> str:
-        """Get the png for the visual element."""
-
-    @abstractmethod
-    def get_png_pkg(self) -> ModuleType:
-        """Get the png for the visual element."""

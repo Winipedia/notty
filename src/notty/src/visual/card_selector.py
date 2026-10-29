@@ -1,6 +1,6 @@
 """Card selector dialog for choosing which card to discard."""
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, override
 
 import pygame
 
@@ -32,17 +32,7 @@ class CardSelector(BaseSelector["VisualCard"]):
             max_selections=1,
         )
 
-    def _get_button_dimensions(self) -> tuple[int, int, int]:
-        """Get button dimensions (width, height, spacing).
-
-        Returns:
-            Tuple of (button_width, button_height, button_spacing).
-        """
-        card_width = int(APP_WIDTH * 0.05)  # 5% of screen width
-        card_height = int(APP_HEIGHT * 0.11)  # 11% of screen height
-        card_spacing = int(APP_WIDTH * 0.008)  # 0.8% of screen width
-        return card_width, card_height, card_spacing
-
+    @override
     def _get_dialog_dimensions(self) -> tuple[int, int]:
         """Get dialog dimensions.
 
@@ -53,6 +43,7 @@ class CardSelector(BaseSelector["VisualCard"]):
         dialog_height = int(APP_HEIGHT * 0.48)  # 48% of screen height
         return dialog_width, dialog_height
 
+    @override
     def _setup_buttons(self) -> None:
         """Set up the card buttons."""
         # Get button dimensions
@@ -81,6 +72,18 @@ class CardSelector(BaseSelector["VisualCard"]):
             card_image = pygame.transform.scale(card.png, (card_width, card_height))
             button = CardButton(x, y, card_width, card_height, card, card_image)
             self.buttons.append(button)
+
+    @override
+    def _get_button_dimensions(self) -> tuple[int, int, int]:
+        """Get button dimensions (width, height, spacing).
+
+        Returns:
+            Tuple of (button_width, button_height, button_spacing).
+        """
+        card_width = int(APP_WIDTH * 0.05)  # 5% of screen width
+        card_height = int(APP_HEIGHT * 0.11)  # 11% of screen height
+        card_spacing = int(APP_WIDTH * 0.008)  # 0.8% of screen width
+        return card_width, card_height, card_spacing
 
 
 class CardButton(SelectableButton["VisualCard"]):
@@ -118,6 +121,7 @@ class CardButton(SelectableButton["VisualCard"]):
         self.card = card
         self.card_image = card_image
 
+    @override
     def draw(self, screen: pygame.Surface) -> None:
         """Draw the button.
 

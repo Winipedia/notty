@@ -1,5 +1,7 @@
 """Subclassing MirrorTest to test the notty game."""
 
+from typing import override
+
 from pyrig.rig.tests.mirror import (
     MirrorTestConfigFile as BaseMirrorTestConfigFile,  # deptry: ignore[DEP004]
 )
@@ -8,6 +10,7 @@ from pyrig.rig.tests.mirror import (
 class MirrorTestConfigFile(BaseMirrorTestConfigFile):
     """Subclassing MirrorTest to test the notty game."""
 
+    @override
     def test_func_skeleton(self, test_func_name: str) -> str:
         """Get the test function skeleton."""
         return f'''
@@ -16,6 +19,7 @@ def {test_func_name}() -> None:
     """Test function."""
 '''
 
+    @override
     def test_method_skeleton(self, test_method_name: str) -> str:
         """Get the test method skeleton."""
         return f'''

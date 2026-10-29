@@ -48,39 +48,6 @@ class QLearningAgent:
         self.last_state: tuple[int, int, bool, int] | None = None
         self.last_action: str | None = None
 
-    def get_state(self, game: "VisualGame") -> tuple[int, int, bool, int]:
-        """Extract state features from the game.
-
-        Args:
-            game: The game instance.
-
-        Returns:
-            Tuple representing the current state.
-        """
-        current_player = game.get_current_player()
-        hand_size = current_player.hand.size()
-        deck_size = game.deck.size()
-
-        # Discretize hand size into buckets
-        hand_bucket = min(hand_size // 5, 3)  # 0-4, 5-9, 10-14, 15-20
-
-        # Discretize deck size
-        deck_bucket = 0 if deck_size < 30 else (1 if deck_size < 60 else 2)  # noqa: PLR2004
-
-        # Check if can discard
-        can_discard = game.can_discard_group()
-
-        # Count other players' cards (simplified)
-        other_players = game.get_other_players()
-        avg_other_hand_size = (
-            sum(p.hand.size() for p in other_players) // len(other_players)
-            if other_players
-            else 0
-        )
-        other_hand_bucket = min(avg_other_hand_size // 5, 3)
-
-        return (hand_bucket, deck_bucket, can_discard, other_hand_bucket)
-
     def choose_action(self, game: "VisualGame") -> str:
         """Choose an action using epsilon-greedy policy.
 
@@ -148,26 +115,6 @@ class QLearningAgent:
         # Decay epsilon
         self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
 
-    def save(self, filepath: str = "notty_qtable.pkl") -> None:
-        """Save Q-table to file.
-
-        Args:
-            filepath: Path to save the Q-table.
-        """
-        data: dict[
-            str,
-            dict[tuple[int, int, bool, int], dict[str, float]] | float | int,
-        ] = {
-            "q_table": dict(self.q_table),
-            "epsilon": self.epsilon,
-            "total_actions": self.total_actions,
-            "exploration_actions": self.exploration_actions,
-        }
-        Path(filepath).parent.mkdir(parents=True, exist_ok=True)
-        with Path(filepath).open("wb") as f:
-            pickle.dump(data, f)
-        logger.info("Q-table saved to %s", filepath)
-
     def load(self, filepath: str = "notty_qtable.pkl") -> bool:
         """Load Q-table from file.
 
@@ -204,3 +151,56 @@ class QLearningAgent:
             return False
         else:
             return True
+
+    def save(self, filepath: str = "notty_qtable.pkl") -> None:
+        """Save Q-table to file.
+
+        Args:
+            filepath: Path to save the Q-table.
+        """
+        data: dict[
+            str,
+            dict[tuple[int, int, bool, int], dict[str, float]] | float | int,
+        ] = {
+            "q_table": dict(self.q_table),
+            "epsilon": self.epsilon,
+            "total_actions": self.total_actions,
+            "exploration_actions": self.exploration_actions,
+        }
+        Path(filepath).parent.mkdir(parents=True, exist_ok=True)
+        with Path(filepath).open("wb") as f:
+            pickle.dump(data, f)
+        logger.info("Q-table saved to %s", filepath)
+
+    def get_state(self, game: "VisualGame") -> tuple[int, int, bool, int]:
+        """Extract state features from the game.
+
+        Args:
+            game: The game instance.
+
+        Returns:
+            Tuple representing the current state.
+        """
+        current_player = game.get_current_player()
+        hand_size = current_player.hand.size()
+        deck_size = game.deck.size()
+
+        # Discretize hand size into buckets
+        hand_bucket = min(hand_size // 5, 3)  # 0-4, 5-9, 10-14, 15-20
+
+        # Discretize deck size
+        deck_bucket = 0 if deck_size < 30 else (1 if deck_size < 60 else 2)  # noqa: PLR2004
+
+        # Check if can discard
+        can_discard = game.can_discard_group()
+
+        # Count other players' cards (simplified)
+        other_players = game.get_other_players()
+        avg_other_hand_size = (
+            sum(p.hand.size() for p in other_players) // len(other_players)
+            if other_players
+            else 0
+        )
+        other_hand_bucket = min(avg_other_hand_size // 5, 3)
+
+        return (hand_bucket, deck_bucket, can_discard, other_hand_bucket)

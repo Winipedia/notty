@@ -1,6 +1,6 @@
 """Player selector dialog for choosing which player to steal from."""
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, override
 
 import pygame
 
@@ -32,16 +32,7 @@ class PlayerSelector(BaseSelector["VisualPlayer"]):
             max_selections=1,
         )
 
-    def _get_button_dimensions(self) -> tuple[int, int, int]:
-        """Get button dimensions (width, height, spacing).
-
-        Returns:
-            Tuple of (button_width, button_height, button_spacing).
-        """
-        image_size = int(APP_HEIGHT * 0.18)  # 18% of screen height
-        button_spacing = int(APP_WIDTH * 0.03)  # 3% of screen width
-        return image_size, image_size, button_spacing
-
+    @override
     def _get_dialog_dimensions(self) -> tuple[int, int]:
         """Get dialog dimensions.
 
@@ -52,6 +43,7 @@ class PlayerSelector(BaseSelector["VisualPlayer"]):
         dialog_height = int(APP_HEIGHT * 0.42)  # 42% of screen height
         return dialog_width, dialog_height
 
+    @override
     def _setup_buttons(self) -> None:
         """Set up the player buttons."""
         # Get button dimensions
@@ -70,6 +62,17 @@ class PlayerSelector(BaseSelector["VisualPlayer"]):
             player_image = pygame.transform.scale(player.png, (image_size, image_size))
             button = PlayerButton(x, y, image_size, image_size, player, player_image)
             self.buttons.append(button)
+
+    @override
+    def _get_button_dimensions(self) -> tuple[int, int, int]:
+        """Get button dimensions (width, height, spacing).
+
+        Returns:
+            Tuple of (button_width, button_height, button_spacing).
+        """
+        image_size = int(APP_HEIGHT * 0.18)  # 18% of screen height
+        button_spacing = int(APP_WIDTH * 0.03)  # 3% of screen width
+        return image_size, image_size, button_spacing
 
 
 class PlayerButton(SelectableButton["VisualPlayer"]):
@@ -107,6 +110,7 @@ class PlayerButton(SelectableButton["VisualPlayer"]):
         self.player = player
         self.player_image = player_image
 
+    @override
     def draw(self, screen: pygame.Surface) -> None:
         """Draw the button.
 
