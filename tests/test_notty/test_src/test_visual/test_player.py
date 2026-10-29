@@ -16,16 +16,16 @@ class TestVisualHand:
     def test_draw(self) -> None:
         """Test method."""
 
-    def test_get_png_name(self) -> None:
-        """Test method."""
-
-    def test_get_png_pkg(self) -> None:
-        """Test method."""
-
     def test_get_all_player_names(self) -> None:
         """Test method."""
 
     def test_get_coordinates(self) -> None:
+        """Test method."""
+
+    def test_get_png_name(self) -> None:
+        """Test method."""
+
+    def test_get_png_pkg(self) -> None:
         """Test method."""
 
     def test_hand_is_full(self) -> None:
@@ -59,14 +59,14 @@ class TestVisualPlayer:
     def test_draw(self) -> None:
         """Test method."""
 
-    def test_get_png_name(self) -> None:
-        """Test method."""
-
-    def test_get_png_pkg(self) -> None:
-        """Test method."""
-
     def test_get_all_player_names(self) -> None:
         """Test method."""
 
     def test_get_coordinates(self) -> None:
+        """Test method."""
+
+    def test_get_png_name(self) -> None:
+        """Test method."""
+
+    def test_get_png_pkg(self) -> None:
         """Test method."""

@@ -35,16 +35,16 @@ class TestMultiCardButton:
     def test___init__(self) -> None:
         """Test method."""
 
-    def test_update_hover(self) -> None:
+    def test_draw(self) -> None:
         """Test method."""
 
-    def test_draw(self) -> None:
+    def test_is_clicked(self) -> None:
         """Test method."""
 
     def test_toggle_selection(self) -> None:
         """Test method."""
 
-    def test_is_clicked(self) -> None:
+    def test_update_hover(self) -> None:
         """Test method."""
 
 
@@ -54,11 +54,11 @@ class TestSubmitButton:
     def test___init__(self) -> None:
         """Test method."""
 
+    def test_draw(self) -> None:
+        """Test method."""
+
     def test_is_clicked(self) -> None:
         """Test method."""
 
     def test_update_hover(self) -> None:
-        """Test method."""
-
-    def test_draw(self) -> None:
         """Test method."""
