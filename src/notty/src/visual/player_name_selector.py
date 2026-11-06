@@ -69,11 +69,14 @@ class PlayerNameSelector(BaseSelector[str]):
                             else:
                                 # Single-select mode: return immediately
                                 return button.item
-                elif event.type == pygame.KEYDOWN and self.needs_submit:
-                    if event.key == pygame.K_RETURN:
-                        selected = self._get_selected_items()
-                        if len(selected) >= self.min_selections:
-                            return selected
+                elif (
+                    event.type == pygame.KEYDOWN
+                    and self.needs_submit
+                    and event.key == pygame.K_RETURN
+                ):
+                    selected = self._get_selected_items()
+                    if len(selected) >= self.min_selections:
+                        return selected
 
             # Update hover state
             mouse_x, mouse_y = pygame.mouse.get_pos()
