@@ -1,7 +1,7 @@
 # notty
 
 <!-- project-status -->
-[![CI](https://img.shields.io/github/actions/workflow/status/Winipedia/notty/health_check.yml?label=CI&logo=github)](https://github.com/Winipedia/notty/actions/workflows/health_check.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/Winipedia/notty/health-check.yml?label=CI&logo=github)](https://github.com/Winipedia/notty/actions/workflows/health-check.yml)
 [![CD](https://img.shields.io/github/actions/workflow/status/Winipedia/notty/release.yml?label=CD&logo=github)](https://github.com/Winipedia/notty/actions/workflows/release.yml)
 [![CoverageTester](https://codecov.io/gh/Winipedia/notty/branch/main/graph/badge.svg)](https://codecov.io/gh/Winipedia/notty)
 <!-- code-quality -->

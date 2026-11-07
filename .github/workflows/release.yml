@@ -49,15 +49,7 @@
       -
         "name": "Build Executable"
         "id": "build-executable"
-        "run": |-
-          uv \
-          run \
-          pyinstaller \
-          --onefile \
-          --name=notty-"${OS}" \
-          --icon=src/notty/rig/resources/icon.png \
-          --collect-data=notty.rig.resources \
-          src/notty/main.py
+        "run": "bash build-executable.sh"
         "env":
           "OS": "${{ runner.os }}"
       -
@@ -66,7 +58,7 @@
         # ryl disable-line rule:line-length
         "uses": "actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9"  # v7.0.2
         "with":
-          "name": "executable-${{ runner.os }}"
+          "name": "executable-${{ matrix.os }}"
           "path": "dist"
           "if-no-files-found": "error"
   "health-check":
@@ -76,7 +68,7 @@
       "contents": "read"
       "id-token": "write"  # required
       "security-events": "write"  # required
-    "uses": "$/.github/workflows/health_check.yml"
+    "uses": "$/.github/workflows/health-check.yml"
   "publish":
     "name": "Publish"
     "permissions":
@@ -121,12 +113,12 @@
         "id": "create-release"
         "run": |-
           gh \
-          release \
-          create \
-          "${VERSION}" \
-          dist/* \
-          --title="${VERSION}" \
-          --generate-notes
+            release \
+            create \
+            "${VERSION}" \
+            dist/* \
+            --title="${VERSION}" \
+            --generate-notes
         "env":
           "GH_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
           "VERSION": "${{ steps.extract-version.outputs.version }}"
