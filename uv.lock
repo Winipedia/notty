@@ -137,11 +137,11 @@ wheels = [
 
 [[package]]
 name = "click"
-version = "8.5.0"
+version = "8.5.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c7/0e/7fa0ef50764b67090eca4114772a2abf8b6148198475e54c660b97caeee6/click-8.5.0.tar.gz", hash = "sha256:ba0d2089de75ea0310e2dde03160e6ca10009947fb95a182f9b54021bb272e34", size = 382235, upload-time = "2026-08-26T13:33:14.56Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/45/37/edbf1b0707709013c0cf2e8317e03d97ed29bf4cac709fe328904ae92a38/click-8.5.1.tar.gz", hash = "sha256:9bbfada76703fd1d784b83eea012e3e8c6a001a876543ef104fa56aaaeb072b4", size = 399151, upload-time = "2026-11-06T17:37:01.021Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl", hash = "sha256:255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360", size = 125251, upload-time = "2026-08-26T13:33:12.928Z" },
+    { url = "https://files.pythonhosted.org/packages/31/7d/164b7ffc8624fe9efb4221bf9af485d5c1e41b9ae118045d2b6dc5457d8b/click-8.5.1-py3-none-any.whl", hash = "sha256:8bb5376d2006950386f8c6427613334a2acadc5f559cb80e638d00b4df957e37", size = 126163, upload-time = "2026-11-06T17:36:59.287Z" },
 ]
 
 [[package]]
@@ -513,7 +513,7 @@ wheels = [
 
 [[package]]
 name = "notty"
-version = "2.15.54"
+version = "2.15.55"
 source = { editable = "." }
 dependencies = [
     { name = "platformdirs" },
@@ -817,7 +817,7 @@ wheels = [
 
 [[package]]
 name = "pyrig"
-version = "19.13.2"
+version = "19.14.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "inquirerpy" },
@@ -828,9 +828,9 @@ dependencies = [
     { name = "tomli-w" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8c/f1/2872fe3a5e52713e0c08d78417fb466d17db30dfade954230ff3800cf3b6/pyrig-19.13.2.tar.gz", hash = "sha256:bdfec6f152ed8aff9d4fe4fa06798ab3d28fe5c78c82500bf59b6ae4a22f5597", size = 114248, upload-time = "2026-11-04T13:04:33.443Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ef/cf/df3bc6624e2810ee567132e24f42058dfa934d230da0dcc23db46d079ae9/pyrig-19.14.1.tar.gz", hash = "sha256:b1d63af61e7bb2ee4e0b470257a120da7462174f0c8dc73c87d2a4202bfaef78", size = 114221, upload-time = "2026-11-07T11:55:20.759Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ea/52/a0ca7bc1578df5da30d39249d4b764c25bf35f7086d133cf9b53a2977956/pyrig-19.13.2-py3-none-any.whl", hash = "sha256:1aedf6cc8f85a397569e82aea2764955f9c34c163fb67ec487d33e86b999368b", size = 173317, upload-time = "2026-11-04T13:04:31.22Z" },
+    { url = "https://files.pythonhosted.org/packages/c2/f6/adbab91cdbf20c84328b016b1581ea36a189d4fdf71212d9974490920979/pyrig-19.14.1-py3-none-any.whl", hash = "sha256:855c75be03e2102aca11f958b15b6ac61cb8619212691e6c470bc17f3de22f1b", size = 173287, upload-time = "2026-11-07T11:55:19.145Z" },
 ]
 
 [[package]]
@@ -1233,7 +1233,7 @@ wheels = [
 
 [[package]]
 name = "typer"
-version = "0.27.3"
+version = "0.28.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "annotated-doc" },
@@ -1241,9 +1241,9 @@ dependencies = [
     { name = "rich" },
     { name = "shellingham" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/03/51/d33db42cc72ffd8c30777547b42d01f0cbf9d95a770457698d0174b3ed71/typer-0.27.3.tar.gz", hash = "sha256:d0396f770a560ab1b0a8504e13b5f254b728cedb05c61cf0359e944e50ce8901", size = 205303, upload-time = "2026-10-06T17:24:16.61Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/8f/21021859316f44289101638dc74d82e13d722d8533e4b8708a3ab7c8461a/typer-0.28.0.tar.gz", hash = "sha256:69ab84ef79fd601cff071bbd2566d855ecadfd93adbc4b3360b9924359bdd857", size = 205415, upload-time = "2026-11-06T08:37:19.779Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/07/ea/2e31b67051e91a133189e9c000c222502ddc6969856416de0d095de4c0b0/typer-0.27.3-py3-none-any.whl", hash = "sha256:e50022f28b82a86313e54501317a1db64bf8f8d036ff8cfe5ca7e47675454aff", size = 123312, upload-time = "2026-10-06T17:24:15.054Z" },
+    { url = "https://files.pythonhosted.org/packages/19/98/8ef60c7cd773dbab9d276a4c7bff505913a25b61acd8a9ef01ceeb70f554/typer-0.28.0-py3-none-any.whl", hash = "sha256:afd18929180b706c5e9a239f53c3c8136903553c0c2d460598bbaa924191d4ab", size = 123253, upload-time = "2026-11-06T08:37:18.611Z" },
 ]
 
 [[package]]
