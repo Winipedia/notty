@@ -14,8 +14,8 @@ from pyrig.rig.configs.pyproject import (  # deptry: ignore[DEP004]
 from pyrig_codecov.rig.configs.version_control.remote.workflows.health_check import (  # deptry: ignore[DEP004]  # noqa: E501
     HealthCheckWorkflowConfigFile as BaseHealthCheckWorkflowConfigFile,
 )
-from pyrig_executables.rig.configs.version_control.remote.workflows.release import (  # deptry: ignore[DEP004]  # noqa: E501
-    ReleaseWorkflowConfigFile as BaseReleaseWorkflowConfigFile,
+from pyrig_executables.rig.configs.version_control.remote.workflows.executable import (  # deptry: ignore[DEP004]  # noqa: E501
+    ExecutableWorkflowConfigFile as BaseExecutableWorkflowConfigFile,
 )
 
 from notty.rig.tools.type_checker import TypeChecker
@@ -47,11 +47,7 @@ class PyprojectConfigFile(BasePyprojectConfigFile):
 
 
 class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
-    """Mixin to add PySide6-specific workflow steps.
-
-    This mixin provides common overrides for PySide6 workflows to work on
-    GitHub Actions headless Linux environments.
-    """
+    """Install Pygame from a binary wheel in test and executable workflows."""
 
     @override
     def steps_core_installed_setup(
@@ -59,10 +55,7 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
         *args: Any,
         **kwargs: Any,
     ) -> list[dict[str, Any]]:
-        """Get the setup steps.
-
-        We need to install additional system dependencies for pyside6.
-        """
+        """Install the Pygame wheel after project dependencies."""
         steps = super().steps_core_installed_setup(
             *args,
             **kwargs,
@@ -80,29 +73,22 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
         return steps
 
     def step_pre_install_pygame_from_binary(self) -> dict[str, Any]:
-        """Get the step to install PySide6 dependencies."""
+        """Install Pygame without building it from source."""
         return self.step(
             cast("MethodType", self.step_pre_install_pygame_from_binary),
             run="uv pip install pygame --only-binary=:all:",
         )
 
 
+class ExecutableWorkflowConfigFile(
+    WorkflowConfigFileMixin,
+    BaseExecutableWorkflowConfigFile,
+):
+    """Build executables with the Pygame binary wheel installed."""
+
+
 class HealthCheckWorkflowConfigFile(
     WorkflowConfigFileMixin,
     BaseHealthCheckWorkflowConfigFile,
 ):
-    """Health check workflow.
-
-    Extends winipedia_utils health check workflow to add additional steps.
-    This is necessary to make pyside6 work on github actions which is a headless linux
-    environment.
-    """
-
-
-class ReleaseWorkflowConfigFile(WorkflowConfigFileMixin, BaseReleaseWorkflowConfigFile):
-    """Release workflow.
-
-    Extends winipedia_utils release workflow to add additional steps.
-    This is necessary to make pyside6 work on github actions which is a headless linux
-    environment.
-    """
+    """Run health checks with the Pygame binary wheel installed."""
