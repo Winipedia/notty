@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.15.90"
+version = "2.15.92"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -40,6 +40,8 @@ dev = [
   "bandit>=1.9.4",
   "deptry>=0.25.1",
   "detect-secrets>=1.5.0",
+  "hypofuzz>=25.11.1",
+  "hypothesis>=6.170.15",
   "mkdocstrings[python]>=1.0.8",
   "mypy>=2.4.0",
   "pillow>=13.0.0",
