@@ -41,18 +41,22 @@
       -
         "name": "Update Dependencies"
         "id": "update-dependencies"
+        "shell": "bash"
         "run": "uv lock --upgrade"
       -
         "name": "Install Dependencies"
         "id": "install-dependencies"
+        "shell": "bash"
         "run": "uv sync"
       -
         "name": "Pre Install Pygame From Binary"
         "id": "pre-install-pygame-from-binary"
+        "shell": "bash"
         "run": "uv pip install pygame --only-binary=:all:"
       -
         "name": "Run Version Control Hooks"
         "id": "run-version-control-hooks"
+        "shell": "bash"
         "run": "uv run prek run --all-files --group=all"
         "env":
           "GH_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
@@ -89,18 +93,22 @@
       -
         "name": "Update Dependencies"
         "id": "update-dependencies"
+        "shell": "bash"
         "run": "uv lock --upgrade"
       -
         "name": "Install Dependencies"
         "id": "install-dependencies"
+        "shell": "bash"
         "run": "uv sync"
       -
         "name": "Pre Install Pygame From Binary"
         "id": "pre-install-pygame-from-binary"
+        "shell": "bash"
         "run": "uv pip install pygame --only-binary=:all:"
       -
         "name": "Run Tests"
         "id": "run-tests"
+        "shell": "bash"
         "run": "uv run pytest"
       -
         "name": "Upload Coverage Report"
@@ -166,5 +174,6 @@
       -
         "name": "Aggregate Jobs"
         "id": "aggregate-jobs"
+        "shell": "bash"
         "run": "echo 'Aggregating jobs into one job.'"
 ...
