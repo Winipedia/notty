@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.15.116"
+version = "2.15.118"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -18,10 +18,10 @@ maintainers = [
   { name = "Winipedia", email = "winipedia@gmx.de" },
 ]
 dependencies = [
-  "platformdirs>=4.13.4",
+  "platformdirs>=4.14.8",
   "pygame>=2.6.1",
-  "pyrig>=19.29.0",
-  "pyrig-runtime>=3.27.0",
+  "pyrig>=19.50.6",
+  "pyrig-runtime>=3.27.113",
 ]
 
 [project.urls]
@@ -41,33 +41,33 @@ dev = [
   "deptry>=0.25.1",
   "detect-secrets>=1.5.0",
   "hypofuzz>=25.11.1",
-  "hypothesis>=6.170.15",
+  "hypothesis>=6.170.22",
   "mkdocstrings[python]>=1.0.8",
-  "mypy>=2.4.0",
+  "mypy>=2.4.1",
   "pillow>=13.0.0",
   "pre-commit-hooks>=6.0.0",
-  "prek>=0.5.5",
-  "pyflakes>=4.0.3",
+  "prek>=0.5.12",
+  "pyflakes>=4.1.0",
   "pyinstaller>=6.22.3",
-  "pyorder>=0.5.1",
-  "pyrig-codecov>=3.18.0",
-  "pyrig-codeql>=1.2.0",
-  "pyrig-executables>=3.20.0",
-  "pyrig-public>=1.2.0",
-  "pytest>=9.1.1",
+  "pyorder>=1.0.79",
+  "pyrig-codecov>=5.4.38",
+  "pyrig-codeql>=3.1.51",
+  "pyrig-executables>=5.2.4",
+  "pyrig-public>=1.5.2",
+  "pytest>=9.2.0",
   "pytest-cov>=7.1.0",
-  "pytest-randomly>=5.0.0",
+  "pytest-randomly>=5.1.0",
   "pytest-xdist>=3.8.0",
-  "ruff>=0.17.1",
-  "rumdl>=0.3.0",
-  "ryl>=0.26.0",
+  "ruff>=0.17.6",
+  "rumdl>=0.3.8",
+  "ryl>=0.30.0",
   "shellcheck-py>=0.11.0.1",
   "shfmt-py>=4.2.0",
-  "tombi>=1.8.7",
-  "typos>=1.51.1",
+  "tombi>=1.11.3",
+  "typos>=1.52.2",
   "vulture>=2.16",
-  "zensical>=0.0.71",
-  "zizmor>=1.31.1",
+  "zensical>=0.1.4",
+  "zizmor>=1.33.1",
 ]
 
 [build-system]
