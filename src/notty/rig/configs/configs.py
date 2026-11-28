@@ -3,7 +3,7 @@
 All subclasses of ConfigFile in the configs package are automatically called.
 """
 
-from typing import TYPE_CHECKING, Any, cast, override
+from typing import Any, override
 
 from pyrig.rig.configs.base.workflow import (  # deptry: ignore[DEP004]
     WorkflowConfigFile as BaseWorkflowConfigFile,
@@ -19,9 +19,6 @@ from pyrig_executables.rig.configs.version_control.remote.workflows.executable i
 )
 
 from notty.rig.tools.type_checker import TypeChecker
-
-if TYPE_CHECKING:
-    from types import MethodType
 
 
 class PyprojectConfigFile(BasePyprojectConfigFile):
@@ -66,7 +63,7 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
             for i, step in enumerate(steps)
             if step["id"]
             == self.step_id_from_method(
-                cast("MethodType", self.step_install_dependencies),
+                self.step_install_dependencies,
             )
         )
         steps.insert(index + 1, self.step_pre_install_pygame_from_binary())
@@ -75,7 +72,7 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
     def step_pre_install_pygame_from_binary(self) -> dict[str, Any]:
         """Install Pygame without building it from source."""
         return self.step(
-            cast("MethodType", self.step_pre_install_pygame_from_binary),
+            self.step_pre_install_pygame_from_binary,
             run="uv pip install pygame --only-binary=:all:",
         )
 

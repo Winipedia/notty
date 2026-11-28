@@ -1,6 +1,6 @@
 [project]
 name = "notty"
-version = "2.15.118"
+version = "2.15.122"
 description = "A simple card game called Notty using Pygame"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -18,10 +18,10 @@ maintainers = [
   { name = "Winipedia", email = "winipedia@gmx.de" },
 ]
 dependencies = [
-  "platformdirs>=4.14.8",
+  "platformdirs>=4.14.9",
   "pygame>=2.6.1",
-  "pyrig>=19.50.6",
-  "pyrig-runtime>=3.27.113",
+  "pyrig>=19.51.0",
+  "pyrig-runtime>=3.27.115",
 ]
 
 [project.urls]
@@ -41,7 +41,7 @@ dev = [
   "deptry>=0.25.1",
   "detect-secrets>=1.5.0",
   "hypofuzz>=25.11.1",
-  "hypothesis>=6.170.22",
+  "hypothesis>=6.170.23",
   "mkdocstrings[python]>=1.0.8",
   "mypy>=2.4.1",
   "pillow>=13.0.0",
@@ -49,11 +49,11 @@ dev = [
   "prek>=0.5.12",
   "pyflakes>=4.1.0",
   "pyinstaller>=6.22.3",
-  "pyorder>=1.0.79",
-  "pyrig-codecov>=5.4.38",
-  "pyrig-codeql>=3.1.51",
-  "pyrig-executables>=5.2.4",
-  "pyrig-public>=1.5.2",
+  "pyorder>=1.0.81",
+  "pyrig-codecov>=5.5.0",
+  "pyrig-codeql>=3.2.0",
+  "pyrig-executables>=5.3.0",
+  "pyrig-public>=1.5.4",
   "pytest>=9.2.0",
   "pytest-cov>=7.1.0",
   "pytest-randomly>=5.1.0",
