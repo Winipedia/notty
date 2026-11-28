@@ -3,6 +3,7 @@
 All subclasses of ConfigFile in the configs package are automatically called.
 """
 
+from collections.abc import Callable
 from typing import Any, override
 
 from pyrig.rig.configs.base.workflow import (  # deptry: ignore[DEP004]
@@ -49,30 +50,25 @@ class WorkflowConfigFileMixin(BaseWorkflowConfigFile):
     @override
     def steps_core_installed_setup(
         self,
-        *args: Any,
-        **kwargs: Any,
-    ) -> list[dict[str, Any]]:
+        *,
+        python_version: str | None = None,
+        update_dependencies: bool = False,
+    ) -> tuple[Callable[[], dict[str, Any]], ...]:
         """Install the Pygame wheel after project dependencies."""
-        steps = super().steps_core_installed_setup(
-            *args,
-            **kwargs,
+        steps = list(
+            super().steps_core_installed_setup(
+                python_version=python_version,
+                update_dependencies=update_dependencies,
+            ),
         )
 
-        index = next(
-            i
-            for i, step in enumerate(steps)
-            if step["id"]
-            == self.step_id_from_method(
-                self.step_install_dependencies,
-            )
-        )
-        steps.insert(index + 1, self.step_pre_install_pygame_from_binary())
-        return steps
+        index = steps.index(self.step_install_dependencies) + 1
+        steps.insert(index, self.step_pre_install_pygame_from_binary)
+        return tuple(steps)
 
     def step_pre_install_pygame_from_binary(self) -> dict[str, Any]:
         """Install Pygame without building it from source."""
         return self.step(
-            self.step_pre_install_pygame_from_binary,
             run="uv pip install pygame --only-binary=:all:",
         )
 

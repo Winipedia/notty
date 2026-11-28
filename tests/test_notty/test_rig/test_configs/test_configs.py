@@ -44,8 +44,9 @@ class TestWorkflowConfigFileMixin:
 
     def test_steps_core_installed_setup(self) -> None:
         """Check the Pygame wheel is installed after dependencies."""
-        steps = WorkflowConfigFileMixin.I.steps_core_installed_setup()
-        ids = [step["id"] for step in steps]
+        workflow = WorkflowConfigFileMixin.I
+        steps = workflow.steps_core_installed_setup()
+        ids = [step["id"] for step in workflow.steps_configs(steps)]
         assert ids[ids.index("install-dependencies") + 1] == (
             "pre-install-pygame-from-binary"
         )
